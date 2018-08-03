@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SRGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CxPAsistentes">
+    <Key>
+      <PropertyRef Name="IdCxPAsistentes" />
+    </Key>
+    <Property Name="IdCxPAsistentes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="CxPConceptos">
+    <Key>
+      <PropertyRef Name="IdCxPConcepto" />
+    </Key>
+    <Property Name="IdCxPConcepto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nchar" MaxLength="1" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="CxPImpuestos">
+    <Key>
+      <PropertyRef Name="IdCxPImpuestos" />
+    </Key>
+    <Property Name="IdCxPImpuestos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="int" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="150" />
+    <Property Name="Valor" Type="float" />
+  </EntityType>
+  <EntityType Name="CxPRegimen">
+    <Key>
+      <PropertyRef Name="IdCxPRegimen" />
+    </Key>
+    <Property Name="IdCxPRegimen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PanelAsistArea">
+    <Key>
+      <PropertyRef Name="IdPanelAsistArea" />
+    </Key>
+    <Property Name="IdPanelAsistArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Responsables" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="PanelAsistProceso">
+    <Key>
+      <PropertyRef Name="IdPanelAsistProceso" />
+    </Key>
+    <Property Name="IdPanelAsistProceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="FechaCierra" Type="datetime" />
+    <Property Name="Creador" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Solicitante" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="STS01" Type="smallint" Nullable="false" />
+    <Property Name="STS02" Type="smallint" Nullable="false" />
+    <Property Name="STS03" Type="smallint" Nullable="false" />
+    <Property Name="STS04" Type="smallint" Nullable="false" />
+    <Property Name="STS05" Type="smallint" Nullable="false" />
+    <Property Name="Asistente" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="CodCentroCosto" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="CodCuentaContable" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="NotaSolicitante" Type="nvarchar" MaxLength="250" />
+    <Property Name="NotaAprobador" Type="nvarchar" MaxLength="250" />
+    <Property Name="IdPanelAsistArea" Type="int" Nullable="false" />
+    <Property Name="DescripcionGastos" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NombreProveedor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NitProveedor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CorreoProveedor" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="AsistenteCierra" Type="nvarchar" MaxLength="25" />
+    <Property Name="NumPedidoSAP" Type="nvarchar" MaxLength="25" />
+    <Property Name="FechaMaximaRadicacion" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RCAU">
+    <Key>
+      <PropertyRef Name="UUSR" />
+    </Key>
+    <Property Name="USTS" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="UTIPO" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UUSR" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="UMOD" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="UGRP01" Type="nvarchar" MaxLength="15" />
+    <Property Name="UGRP02" Type="nvarchar" MaxLength="15" />
+    <Property Name="UGRP03" Type="nvarchar" MaxLength="15" />
+    <Property Name="UGRP" Type="decimal" Precision="3" Scale="0" />
+    <Property Name="UTRA" Type="decimal" Precision="8" Scale="0" />
+    <Property Name="UVEND" Type="decimal" Precision="8" Scale="0" />
+    <Property Name="UPASS" Type="nvarchar" MaxLength="150" />
+    <Property Name="UNOM" Type="nchar" MaxLength="50" />
+    <Property Name="UEMAIL" Type="nvarchar" MaxLength="120" />
+    <Property Name="UFECCAD" Type="date" />
+    <Property Name="UDIAS" Type="decimal" Precision="3" Scale="0" />
+    <Property Name="UCATEG1" Type="nvarchar" MaxLength="50" />
+    <Property Name="UCATEG2" Type="nvarchar" MaxLength="50" />
+    <Property Name="UCATEG3" Type="nvarchar" MaxLength="50" />
+    <Property Name="UCATEG4" Type="nvarchar" MaxLength="50" />
+    <Property Name="UCATEG5" Type="nvarchar" MaxLength="50" />
+    <Property Name="UVIAPAG" Type="nvarchar" MaxLength="15" />
+    <Property Name="UANILL" Type="nvarchar" MaxLength="100" />
+    <Property Name="USFCNS" Type="nvarchar" MaxLength="100" />
+    <Property Name="UBODS" Type="nvarchar" MaxLength="150" />
+    <Property Name="UQRY" Type="nvarchar" MaxLength="900" />
+    <Property Name="UTU" Type="decimal" Precision="3" Scale="0" />
+    <Property Name="UEMAILBAK" Type="nvarchar" MaxLength="100" />
+    <Property Name="UPERFIL" Type="nvarchar" MaxLength="15" />
+    <Property Name="USTYLE" Type="nvarchar" MaxLength="100" />
+    <Property Name="USEPDEC" Type="nvarchar" MaxLength="1" />
+    <Property Name="USEPLST" Type="nvarchar" MaxLength="1" />
+    <Property Name="UUPDDAT" Type="datetime" />
+    <Property Name="UINGR" Type="decimal" Precision="7" Scale="0" />
+    <Property Name="UPRF400" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UNUMDOC" Type="nvarchar" MaxLength="35" />
+    <Property Name="UNUMTC" Type="nvarchar" MaxLength="35" />
+    <Property Name="UBANCO" Type="nvarchar" MaxLength="35" />
+    <Property Name="UDIGVER" Type="nvarchar" MaxLength="1" />
+    <Property Name="UUDFA01" Type="nvarchar" MaxLength="25" />
+    <Property Name="UUDFA02" Type="nvarchar" MaxLength="25" />
+    <Property Name="UUDFA03" Type="nvarchar" MaxLength="25" />
+    <Property Name="UUDFN01" Type="decimal" Precision="11" Scale="4" />
+    <Property Name="UUDFN02" Type="decimal" Precision="11" Scale="4" />
+    <Property Name="UUDFN03" Type="decimal" Precision="11" Scale="4" />
+    <Property Name="UFLAG01" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UFLAG02" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UFLAG03" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UUPLFILE1" Type="nvarchar" MaxLength="250" />
+    <Property Name="UUPLFILE2" Type="nvarchar" MaxLength="250" />
+    <Property Name="UTOKEN" Type="nvarchar" MaxLength="50" />
+    <Property Name="UUSRABR" Type="nchar" MaxLength="10" />
+    <Property Name="UPLANT" Type="nchar" MaxLength="10" />
+    <Property Name="UUEN" Type="nchar" MaxLength="10" />
+    <Property Name="UWHS" Type="nchar" MaxLength="10" />
+    <Property Name="UACC00" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC01" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC02" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC03" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC04" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC05" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC06" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC07" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC08" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC09" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="UACC10" Type="decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityContainer Name="SRGModelStoreContainer">
+    <EntitySet Name="CxPAsistentes" EntityType="Self.CxPAsistentes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CxPConceptos" EntityType="Self.CxPConceptos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CxPImpuestos" EntityType="Self.CxPImpuestos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CxPRegimen" EntityType="Self.CxPRegimen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PanelAsistProceso" EntityType="Self.PanelAsistProceso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RCAU" EntityType="Self.RCAU" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

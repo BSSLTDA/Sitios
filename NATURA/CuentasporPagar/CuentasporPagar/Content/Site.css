@@ -40,3 +40,75 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.ctext {
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-shadow: rgba(0,0,0,.1) 1px 1px 2px inset;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+    .ctext:focus {
+        border-color: #66afe9;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+
+.oculto {
+    display: none;
+}
+
+#dropzone {
+    max-height: 200px;
+}
+
+#nCargo {
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+    #nCargo td {
+        border: 1px solid #e0e0e0;
+        padding: 6px;
+        font-size: .8em;
+        text-align: center;
+    }
+
+        #nCargo td:hover {
+            cursor: pointer;
+        }
+
+.hoverCargo {
+    background: #01be00;
+    color: #fff;
+    cursor: pointer;
+}
+
+#uCargo {
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+    #uCargo td {
+        border: 1px solid #e0e0e0;
+        padding: 6px;
+        font-size: .8em;
+        text-align: center;
+    }
+
+        #uCargo td:hover {
+            cursor: pointer;
+        }
+
+.inpincompleto {
+    border: 1px solid rgba(254, 13, 13, 1);
+    box-shadow: rgba(254, 13, 13, .1) 1px 1px 2px inset;
+}
+
+.inpcompleto {
+    border: 1px solid rgba(26, 151, 25, 1);
+    box-shadow: rgba(26, 151, 25, .1) 1px 1px 2px inset;
+}

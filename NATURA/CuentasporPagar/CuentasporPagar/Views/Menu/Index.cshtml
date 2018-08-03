@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/favicon.png" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <div id="tituloMenu" style="display:none;">Cuentas Por Pagar</div>
+    <div id="cssmenu">
+        <ul id="menu">
+            <li>
+                <a>
+                    @*<img id="ImgEmpresa" alt="Logo Empresa" border="0" src="~/Content/img/brinsalogo.svg" />*@
+                </a>
+            </li>
+            @if (SessionManager.Get<CuentasporPagar.Models.EF.RCAU>("VarUsuario") != null)
+            {
+                <li>@Html.ActionLink("Contratos", "Index", "Contrato")</li>
+                <li>@Html.ActionLink("Salir", "LogOff", "Account")</li>
+            }
+            else
+            {
+                <li>@Html.ActionLink("Iniciar Sesión", "Login", "Account")</li>
+            }
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+</body>
+</html>
+

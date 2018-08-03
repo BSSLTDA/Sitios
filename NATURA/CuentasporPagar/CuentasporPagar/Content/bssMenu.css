@@ -1,0 +1,630 @@
+﻿body {
+    padding-top: 0;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a,
+#cssmenu #menu-button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    line-height: 1;
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    #cssmenu:after,
+    #cssmenu > ul:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+
+    #cssmenu #menu-button {
+        display: none;
+    }
+
+    #cssmenu #inicioEmpresa {
+        display: none;
+    }
+
+    #cssmenu #menu {
+        float: left;
+    }
+
+#cssmenu {
+    line-height: 1;
+    background: #FAC01E;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #dddddd;
+}
+
+    #cssmenu > ul > li {
+        float: left;
+    }
+
+    #cssmenu.align-center > ul {
+        font-size: 0;
+        text-align: center;
+    }
+
+        #cssmenu.align-center > ul > li {
+            display: inline-block;
+            float: none;
+        }
+
+    #cssmenu.align-center ul ul {
+        text-align: left;
+    }
+
+    #cssmenu.align-right > ul > li {
+        float: right;
+    }
+
+    #cssmenu.align-right ul ul {
+        text-align: right;
+    }
+
+    #cssmenu > ul > li > a {
+        padding: 10px 15px;
+        font-size: 14px;
+        text-decoration: none;
+        color: rgba(0, 0, 0, .8);
+        -webkit-transition: color .2s ease;
+        -moz-transition: color .2s ease;
+        -ms-transition: color .2s ease;
+        -o-transition: color .2s ease;
+        transition: color .2s ease;
+        line-height: 20px;
+    }
+
+    #cssmenu > ul > li:hover > a,
+    #cssmenu > ul > li.active > a {
+        color: rgba(0, 0, 0, 1);
+        background: #ebb317;
+    }
+
+    #cssmenu > ul > li.has-sub > a {
+        padding-right: 25px;
+    }
+
+        #cssmenu > ul > li.has-sub > a::after {
+            position: absolute;
+            top: 21px;
+            right: 10px;
+            width: 4px;
+            height: 4px;
+            border-bottom: 1px solid #fff;
+            border-right: 1px solid #fff;
+            content: "";
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            -webkit-transition: border-color 0.2s ease;
+            -moz-transition: border-color 0.2s ease;
+            -ms-transition: border-color 0.2s ease;
+            -o-transition: border-color 0.2s ease;
+            transition: border-color 0.2s ease;
+        }
+
+    #cssmenu > ul > li.has-sub:hover > a::after {
+        border-color: #fff;
+        border-width: 2px;
+    }
+
+    #cssmenu ul ul {
+        position: absolute;
+        left: -9999px;
+    }
+
+    #cssmenu li:hover > ul {
+        left: auto;
+    }
+
+    #cssmenu.align-right li:hover > ul {
+        right: 0;
+    }
+
+    #cssmenu ul ul ul {
+        margin-left: 100%;
+        top: 0;
+    }
+
+    #cssmenu.align-right ul ul ul {
+        margin-left: 0;
+        margin-right: 100%;
+    }
+
+    #cssmenu ul ul li {
+        height: 0;
+        -webkit-transition: height .2s ease;
+        -moz-transition: height .2s ease;
+        -ms-transition: height .2s ease;
+        -o-transition: height .2s ease;
+        transition: height .2s ease;
+    }
+
+    #cssmenu ul li:hover > ul > li {
+        height: 25px;
+    }
+
+    #cssmenu ul ul li a {
+        padding: 7px 11px;
+        width: 250px;
+        font-size: 12px;
+        background: #FAC01E;
+        text-decoration: none;
+        color: rgba(0,0,0,.8);
+        -webkit-transition: color .2s ease;
+        -moz-transition: color .2s ease;
+        -ms-transition: color .2s ease;
+        -o-transition: color .2s ease;
+        transition: color .2s ease;
+        position: relative;
+        z-index: 30;
+    }
+
+    #cssmenu ul ul {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+        #cssmenu ul ul li:hover > a,
+        #cssmenu ul ul li a:hover {
+            color: rgba(0,0,0,1);
+            font-weight: bold;
+            background: #ebb317;
+        }
+
+        #cssmenu ul ul li.has-sub > a::after {
+            position: absolute;
+            top: 13px;
+            right: 10px;
+            width: 4px;
+            height: 4px;
+            border-bottom: 1px solid #fff;
+            border-right: 1px solid #fff;
+            content: "";
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-transition: border-color 0.2s ease;
+            -moz-transition: border-color 0.2s ease;
+            -ms-transition: border-color 0.2s ease;
+            -o-transition: border-color 0.2s ease;
+            transition: border-color 0.2s ease;
+        }
+
+    #cssmenu.align-right ul ul li.has-sub > a::after {
+        right: auto;
+        left: 10px;
+        border-bottom: 0;
+        border-right: 0;
+        border-top: 1px solid #fff;
+        border-left: 1px solid #fff;
+    }
+
+    #cssmenu ul ul li.has-sub:hover > a::after {
+        border-color: #fff;
+        border-width: 2px;
+    }
+
+    #cssmenu.small-screen {
+        width: 100%;
+    }
+
+        #cssmenu.small-screen ul {
+            width: 100%;
+            display: none;
+        }
+
+        #cssmenu.small-screen.align-center > ul,
+        #cssmenu.small-screen.align-right ul ul {
+            text-align: left;
+        }
+
+        #cssmenu.small-screen ul li,
+        #cssmenu.small-screen ul ul li,
+        #cssmenu.small-screen ul li:hover > ul > li {
+            width: 100%;
+            height: auto;
+            border-top: 1px solid rgba(250, 250, 250, 0.25);
+        }
+
+            #cssmenu.small-screen ul li a,
+            #cssmenu.small-screen ul ul li a {
+                width: 100%;
+            }
+
+        #cssmenu.small-screen > ul > li,
+        #cssmenu.small-screen.align-center > ul > li,
+        #cssmenu.small-screen.align-right > ul > li {
+            display: block;
+        }
+
+        #cssmenu.small-screen ul ul li a {
+            padding: 20px 20px 20px 30px;
+            font-size: 12px;
+            color: #000;
+            background: none;
+            background: #d5d5d5;
+        }
+
+            #cssmenu.small-screen ul ul li:hover > a,
+            #cssmenu.small-screen ul ul li a:hover {
+                color: #002e5b;
+            }
+
+        #cssmenu.small-screen ul ul ul li a {
+            padding-left: 40px;
+        }
+
+        #cssmenu.small-screen ul ul,
+        #cssmenu.small-screen ul ul ul {
+            position: relative;
+            left: 0;
+            right: auto;
+            width: 100%;
+            margin: 0;
+        }
+
+            #cssmenu.small-screen > ul > li.has-sub > a::after,
+            #cssmenu.small-screen ul ul li.has-sub > a::after {
+                display: none;
+            }
+
+        #cssmenu.small-screen #menu-line {
+            display: none;
+        }
+
+        #cssmenu.small-screen #logoEmpresa {
+            display: none;
+        }
+
+        #cssmenu.small-screen #infosesion {
+            display: none;
+        }
+
+        #cssmenu.small-screen #inicioEmpresa {
+            display: block;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        #cssmenu.small-screen #menu-button {
+            display: block;
+            padding: 20px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+            #cssmenu.small-screen #menu-button::after {
+                content: '';
+                position: absolute;
+                top: 13px;
+                right: 20px;
+                display: block;
+                width: 15px;
+                height: 2px;
+                background: #000;
+            }
+
+            #cssmenu.small-screen #menu-button::before {
+                content: '';
+                position: absolute;
+                top: 18px;
+                right: 20px;
+                display: block;
+                width: 15px;
+                height: 7px;
+                border-top: 2px solid #000;
+                border-bottom: 2px solid #000;
+            }
+
+        #cssmenu.small-screen .submenu-button {
+            position: absolute;
+            z-index: 10;
+            right: 0;
+            top: 0;
+            display: block;
+            border-left: 1px solid rgba(0, 0, 0, 0.25);
+            height: 40px;
+            width: 52px;
+            cursor: pointer;
+        }
+
+            #cssmenu.small-screen .submenu-button::after {
+                content: '';
+                position: absolute;
+                top: 15px;
+                left: 26px;
+                display: block;
+                width: 1px;
+                height: 11px;
+                background: #000;
+                z-index: 99;
+            }
+
+            #cssmenu.small-screen .submenu-button::before {
+                content: '';
+                position: absolute;
+                left: 21px;
+                top: 20px;
+                display: block;
+                width: 11px;
+                height: 1px;
+                background: #000;
+                z-index: 99;
+            }
+
+            #cssmenu.small-screen .submenu-button.submenu-opened:after {
+                display: none;
+            }
+
+        #cssmenu.small-screen.select-list {
+            padding: 5px;
+        }
+
+    #cssmenu #menu li a {
+        position: relative;
+    }
+
+        #cssmenu #menu li a img {
+            width: 150px;
+            height: 55px;
+            position: relative;
+            top: -4px;
+            left: 0;            
+        }
+
+#tituloMenu {
+    padding-left: 215px;
+    color: #f3f6ca;
+    font-size: 112%;
+    vertical-align: middle;
+    font-weight: bold;
+    display: none;
+    margin-left: .5%;
+    margin-right: .5%;
+}
+
+#menu-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0px;
+    background: #ccd1d5;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -ms-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    margin-right: 200px;
+}
+
+
+#cssmenu > ul > li:nth-child(2).has-sub > a::after {
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+#cssmenu > ul > li:nth-child(2) {
+    padding-bottom: -10px;
+}
+
+#cssmenu.small-screen #menu-button {
+    content: '';
+    background: url('../img/logo.svg') no-repeat left;
+    background-size: 125px 40px;
+    border-bottom-left-radius: 3px;
+}
+
+#cssmenu ul li:nth-child(2) ul li div {
+    display: none;
+}
+
+#cssmenu .clsmmm {
+    position: relative;
+    width: 280px;
+    padding-left: 65px;
+    margin-left: 20px;
+    color: black;
+    font-size: 18px;
+}
+
+.clsmmm:before {
+    position: absolute;
+    content: ' ';
+    background: url('img/mmm.svg') no-repeat;
+    background-size: contain;
+    width: 45px;
+    height: 36px;
+    top: 0;
+    left: 10px;
+}
+
+@media (max-width: 1034px) {
+    #cssmenu #infosesion {
+        display: none;
+    }
+}
+
+@media (max-width: 830px) {
+    .body-content {
+        padding-top: 40px;
+    }
+}
+
+@media (min-width: 769px) {
+    .navbar-collapse .navbar-nav.navbar-right:last-child {
+        margin-right: 15px;
+    }
+
+    .navbar-right {
+        float: right !important;
+    }
+
+    #cssmenu .ubicaLogin {        
+        line-height: 1.428571429;
+        margin-right: 40px;
+        color: #333333;
+        font-size: 14px;
+    }
+
+    #cssmenu ul li:nth-child(2) ul li div {
+        display: block;
+    }
+
+    #cssmenu #infosesion {
+        padding-bottom: -10px;
+        position: relative;
+        left: 0;
+        margin-bottom: -30px;
+        padding-bottom: -20px;
+        margin-left: 50px;
+        top: -25px;
+    }
+
+        #cssmenu #infosesion.has-sub > a::after {
+            border-bottom: 1px solid #fff;
+            border-right: 1px solid #fff;
+        }
+
+        #cssmenu #infosesion ul li {
+            height: 40px;
+            width: 100%;
+        }
+
+        #cssmenu #infosesion ul {
+            width: 300px;
+            box-sizing: border-box;
+            min-height: 200px;
+            margin-left: -55%;
+            background: #eee;
+            border-radius: 5px;
+            z-index: 10;
+            max-height: 600px;
+            overflow: auto;
+        }
+
+            #cssmenu #infosesion ul li a {
+                color: #888;
+                font-size: 18px;
+                text-shadow: 1px 1px 0 #FFF;
+                border-radius: 5px;
+                padding: 12px;
+                width: 100%;
+            }
+
+                #cssmenu #infosesion ul li a:hover {
+                    background: #eee;
+                }
+
+            #cssmenu #infosesion ul li:hover a {
+                background: #eee;
+            }
+
+            #cssmenu #infosesion ul li:hover div table a {
+                background: #fff;
+            }
+
+            #cssmenu #infosesion ul li div {
+                background: #fff;
+                padding: 8px;
+                border-bottom: 1px solid #eee;
+                line-height: 2;
+            }
+
+                #cssmenu #infosesion ul li div table {
+                    font-size: .8em;
+                }
+
+                    #cssmenu #infosesion ul li div table a {
+                        font-size: .8em;
+                    }
+
+                #cssmenu #infosesion ul li div a {
+                    background: #fff;
+                    padding: 8px;
+                }
+
+                    #cssmenu #infosesion ul li div a:hover {
+                        background: #fff;
+                    }
+
+            #cssmenu #infosesion ul li a {
+                text-align: center;
+            }
+
+    #cssmenu > ul > li > a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .clsmmm:before {
+        height: 46px;
+    }
+}
+
+@media (min-width: 829px) {
+    #tituloMenu {
+        display: block;
+        background: #06417c;
+        margin-left: 156px;
+    }
+
+    #cssmenu #Empresa a {
+        background: #fff;
+        padding: 0;
+    }
+
+    #cssmenu #Empresa:hover a {
+        background: #fff;
+    }
+
+    #cssmenu > ul > li:nth-child(2) {
+        background: #FAC01E;
+        padding-bottom: -10px;
+    }
+}
+
+#cssmenu.small-screen {
+    position: absolute;
+    z-index: 10;
+}
+
+.inhabilita {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}
+
+#ImgEmpresa {
+    margin-top: -15px;
+    margin-bottom: -19px;
+    margin-left: -15px;
+    margin-right: -15px;
+    width: 145px;
+}

@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SRGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CxPAsistentes">
+    <Key>
+      <PropertyRef Name="IdCxPAsistentes" />
+    </Key>
+    <Property Name="IdCxPAsistentes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CxPConceptos">
+    <Key>
+      <PropertyRef Name="IdCxPConcepto" />
+    </Key>
+    <Property Name="IdCxPConcepto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CxPImpuestos">
+    <Key>
+      <PropertyRef Name="IdCxPImpuestos" />
+    </Key>
+    <Property Name="IdCxPImpuestos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="Int32" />
+    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Valor" Type="Double" />
+  </EntityType>
+  <EntityType Name="CxPRegimen">
+    <Key>
+      <PropertyRef Name="IdCxPRegimen" />
+    </Key>
+    <Property Name="IdCxPRegimen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PanelAsistArea">
+    <Key>
+      <PropertyRef Name="IdPanelAsistArea" />
+    </Key>
+    <Property Name="IdPanelAsistArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Responsables" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PanelAsistProceso">
+    <Key>
+      <PropertyRef Name="IdPanelAsistProceso" />
+    </Key>
+    <Property Name="IdPanelAsistProceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaCierra" Type="DateTime" Precision="3" />
+    <Property Name="Creador" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Solicitante" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="STS01" Type="Int16" Nullable="false" />
+    <Property Name="STS02" Type="Int16" Nullable="false" />
+    <Property Name="STS03" Type="Int16" Nullable="false" />
+    <Property Name="STS04" Type="Int16" Nullable="false" />
+    <Property Name="STS05" Type="Int16" Nullable="false" />
+    <Property Name="Asistente" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CodCentroCosto" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CodCuentaContable" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NotaSolicitante" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NotaAprobador" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IdPanelAsistArea" Type="Int32" Nullable="false" />
+    <Property Name="DescripcionGastos" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NombreProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NitProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CorreoProveedor" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AsistenteCierra" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="NumPedidoSAP" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="FechaMaximaRadicacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="SRGEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CxPAsistentes" EntityType="Self.CxPAsistentes" />
+    <EntitySet Name="CxPConceptos" EntityType="Self.CxPConceptos" />
+    <EntitySet Name="CxPImpuestos" EntityType="Self.CxPImpuestos" />
+    <EntitySet Name="CxPRegimen" EntityType="Self.CxPRegimen" />
+    <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" />
+    <EntitySet Name="PanelAsistProceso" EntityType="Self.PanelAsistProceso" />
+    <EntitySet Name="RCAU" EntityType="SRGModel.RCAU" />
+  </EntityContainer>
+  <EntityType Name="RCAU">
+    <Key>
+      <PropertyRef Name="UUSR" />
+    </Key>
+    <Property Name="USTS" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="UTIPO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="UUSR" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="UMOD" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="UGRP01" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="UGRP02" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="UGRP03" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="UGRP" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="UTRA" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="UVEND" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="UPASS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="UNOM" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="UEMAIL" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="UFECCAD" Type="DateTime" Precision="0" />
+    <Property Name="UDIAS" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="UCATEG1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UCATEG2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UCATEG3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UCATEG4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UCATEG5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UVIAPAG" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="UANILL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="USFCNS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UBODS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="UQRY" Type="String" MaxLength="900" FixedLength="false" Unicode="true" />
+    <Property Name="UTU" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="UEMAILBAK" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UPERFIL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="USTYLE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="USEPDEC" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="USEPLST" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="UUPDDAT" Type="DateTime" Precision="3" />
+    <Property Name="UINGR" Type="Decimal" Precision="7" Scale="0" />
+    <Property Name="UPRF400" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UNUMDOC" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="UNUMTC" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="UBANCO" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="UDIGVER" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="UUDFA01" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="UUDFA02" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="UUDFA03" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="UUDFN01" Type="Decimal" Precision="11" Scale="4" />
+    <Property Name="UUDFN02" Type="Decimal" Precision="11" Scale="4" />
+    <Property Name="UUDFN03" Type="Decimal" Precision="11" Scale="4" />
+    <Property Name="UFLAG01" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UFLAG02" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UFLAG03" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UUPLFILE1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UUPLFILE2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UTOKEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UUSRABR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="UPLANT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="UUEN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="UWHS" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="UACC00" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC01" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC02" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC03" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC04" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC05" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC06" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC07" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC08" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC09" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="UACC10" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+</Schema>
