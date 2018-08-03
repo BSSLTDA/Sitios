@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanelAsistentes", "PanelAsistentes\PanelAsistentes.csproj", "{CC7B76EF-3C30-4B99-AD72-2D8EA2C858EC}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TokenGenerator", "TokenGenerator\TokenGenerator.vbproj", "{A5351269-1F77-432D-ABFA-6E475689DD63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC7B76EF-3C30-4B99-AD72-2D8EA2C858EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC7B76EF-3C30-4B99-AD72-2D8EA2C858EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC7B76EF-3C30-4B99-AD72-2D8EA2C858EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC7B76EF-3C30-4B99-AD72-2D8EA2C858EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5351269-1F77-432D-ABFA-6E475689DD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5351269-1F77-432D-ABFA-6E475689DD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5351269-1F77-432D-ABFA-6E475689DD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5351269-1F77-432D-ABFA-6E475689DD63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8399854A-EA65-4A35-9B2B-89834137AD94}
+	EndGlobalSection
+EndGlobal

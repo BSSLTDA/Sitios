@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/favicon.png" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <div id="tituloMenu" style="display:none;">Pedidos SAP</div>
+    <div id="cssmenu">
+        <ul id="menu">
+            <li>
+                <a>
+                    @*<img id="ImgEmpresa" alt="Logo Empresa" border="0" src="~/Content/img/brinsalogo.svg" />*@
+                </a>
+            </li>
+            @if (SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario") != null)
+            {
+                if (SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario").UMOD.Trim() == "JURIDICO")
+                {
+                    <li>@Html.ActionLink("Contratos", "Index", "Contrato")</li>
+                }
+                if (SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario").UMOD.Trim() == "JEFE")
+                {
+                    <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                    <li>@Html.ActionLink("Procesos", "Index", "Proceso")</li>
+
+                    @*<li>@Html.ActionLink("Centros de Costo", "Index", "CentroCosto")</li>
+                        <li>@Html.ActionLink("Cuentas Contables", "Index", "CuentaContable")</li>*@
+                    <li>@Html.ActionLink("Areas", "Index", "Area")</li>
+                }
+                if (SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario").UMOD.Trim() == "ASISTENTE")
+                {
+                    if (SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario").UUSR == "1026569490")
+                    {
+                        <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                    }
+                    <li>@Html.ActionLink("Procesos", "Asistente", "Proceso")</li>
+                }
+                if (SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario").UMOD.Trim() == "SRGUSR")
+                {
+                    if (SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario").UUSR == "1026569490")
+                    {
+                        <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                        <li>@Html.ActionLink("Procesos", "Asistente", "Proceso")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Procesos", "Usuario", "Proceso")</li>
+                    }
+
+                    <li>@Html.ActionLink("Contratos", "Index", "Contrato")</li>
+                }
+                <li>@Html.ActionLink("Salir", "LogOff", "Account")</li>
+            }
+            else
+            {
+                <li>@Html.ActionLink("Iniciar Sesión", "Login", "Account")</li>
+            }
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+</body>
+</html>
+

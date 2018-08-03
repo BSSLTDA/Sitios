@@ -1,0 +1,824 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SRGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contrato">
+          <Key>
+            <PropertyRef Name="NContrato" />
+          </Key>
+          <Property Name="NContrato" Type="int" Nullable="false" />
+          <Property Name="RazonSocial" Type="nvarchar" MaxLength="255" />
+          <Property Name="NIT" Type="nvarchar" MaxLength="40" />
+          <Property Name="FechaDeInicio" Type="datetime" />
+          <Property Name="FechaDeTerminacion" Type="datetime" />
+          <Property Name="DuracionDias" Type="int" />
+          <Property Name="ProrrogaAutomatica" Type="nchar" MaxLength="1" />
+          <Property Name="Ubicacion" Type="nvarchar" MaxLength="300" />
+          <Property Name="ObjetoDelContrato" Type="nvarchar" MaxLength="300" />
+          <Property Name="ValorUsd" Type="nvarchar" MaxLength="25" />
+          <Property Name="ValorCop" Type="nvarchar" MaxLength="80" />
+          <Property Name="PeriodicidadDelPago" Type="nvarchar" MaxLength="255" />
+          <Property Name="AplicaImpTimbre" Type="nchar" MaxLength="53" />
+          <Property Name="Cuantia" Type="nchar" MaxLength="1" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="450" />
+          <Property Name="SeguimientoMensual" Type="nvarchar" MaxLength="20" />
+          <Property Name="FechaDePago" Type="nvarchar" MaxLength="120" />
+          <Property Name="AreaSolicitante" Type="nvarchar" MaxLength="35" />
+          <Property Name="Inflacion" Type="nvarchar" MaxLength="85" />
+          <Property Name="ComentarioContrato" Type="nvarchar" MaxLength="580" />
+          <Property Name="STS01" Type="smallint" />
+          <Property Name="STS02" Type="smallint" />
+          <Property Name="STS03" Type="smallint" />
+          <Property Name="STS04" Type="smallint" />
+          <Property Name="STS05" Type="smallint" />
+        </EntityType>
+        <EntityType Name="ContratoArea">
+          <Key>
+            <PropertyRef Name="IdContratoArea" />
+          </Key>
+          <Property Name="IdContratoArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Responsables" Type="nvarchar" MaxLength="400" />
+          <Property Name="CorreoResponsables" Type="nvarchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="PanelAsistArea">
+          <Key>
+            <PropertyRef Name="IdPanelAsistArea" />
+          </Key>
+          <Property Name="IdPanelAsistArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Responsables" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PanelAsistCarga">
+          <Key>
+            <PropertyRef Name="IdPanelAsistCarga" />
+          </Key>
+          <Property Name="IdPanelAsistCarga" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Orden" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Asistente" Type="nvarchar" MaxLength="25" />
+          <Property Name="Carga01" Type="nvarchar" MaxLength="15" />
+          <Property Name="Carga02" Type="nvarchar" MaxLength="15" />
+          <Property Name="Carga03" Type="nvarchar" MaxLength="15" />
+          <Property Name="Carga04" Type="nvarchar" MaxLength="15" />
+          <Property Name="Carga05" Type="nvarchar" MaxLength="15" />
+          <Property Name="Carga06" Type="nvarchar" MaxLength="15" />
+          <Property Name="Carga07" Type="nvarchar" MaxLength="15" />
+          <Property Name="Carga08" Type="nvarchar" MaxLength="15" />
+          <Property Name="Carga09" Type="nvarchar" MaxLength="15" />
+          <Property Name="Carga10" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="PanelAsistProceso">
+          <Key>
+            <PropertyRef Name="IdPanelAsistProceso" />
+          </Key>
+          <Property Name="IdPanelAsistProceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaCrea" Type="datetime" Nullable="false" />
+          <Property Name="FechaCierra" Type="datetime" />
+          <Property Name="Creador" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Solicitante" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="STS01" Type="smallint" Nullable="false" />
+          <Property Name="STS02" Type="smallint" Nullable="false" />
+          <Property Name="STS03" Type="smallint" Nullable="false" />
+          <Property Name="STS04" Type="smallint" Nullable="false" />
+          <Property Name="STS05" Type="smallint" Nullable="false" />
+          <Property Name="Asistente" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="CodCentroCosto" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="CodCuentaContable" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="NotaSolicitante" Type="nvarchar" MaxLength="250" />
+          <Property Name="NotaAprobador" Type="nvarchar" MaxLength="250" />
+          <Property Name="IdPanelAsistArea" Type="int" Nullable="false" />
+          <Property Name="DescripcionGastos" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NombreProveedor" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="VlrAntesIVA" Type="float" />
+          <Property Name="NitProveedor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CorreoProveedor" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="AsistenteCierra" Type="nvarchar" MaxLength="25" />
+          <Property Name="NumPedidoSAP" Type="nvarchar" MaxLength="25" />
+          <Property Name="FechaMaximaRadicacion" Type="datetime" />
+          <Property Name="NumeroReenvios" Type="int" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nit" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DV" Type="nchar" MaxLength="1" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="RCAU">
+          <Key>
+            <PropertyRef Name="UUSR" />
+          </Key>
+          <Property Name="USTS" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="UTIPO" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UUSR" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="UMOD" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="UGRP01" Type="nvarchar" MaxLength="15" />
+          <Property Name="UGRP02" Type="nvarchar" MaxLength="15" />
+          <Property Name="UGRP03" Type="nvarchar" MaxLength="15" />
+          <Property Name="UGRP" Type="decimal" Precision="3" Scale="0" />
+          <Property Name="UTRA" Type="decimal" Precision="8" Scale="0" />
+          <Property Name="UVEND" Type="decimal" Precision="8" Scale="0" />
+          <Property Name="UPASS" Type="nvarchar" MaxLength="150" />
+          <Property Name="UNOM" Type="nchar" MaxLength="50" />
+          <Property Name="UEMAIL" Type="nvarchar" MaxLength="120" />
+          <Property Name="UFECCAD" Type="date" />
+          <Property Name="UDIAS" Type="decimal" Precision="3" Scale="0" />
+          <Property Name="UCATEG1" Type="nvarchar" MaxLength="50" />
+          <Property Name="UCATEG2" Type="nvarchar" MaxLength="50" />
+          <Property Name="UCATEG3" Type="nvarchar" MaxLength="50" />
+          <Property Name="UCATEG4" Type="nvarchar" MaxLength="50" />
+          <Property Name="UCATEG5" Type="nvarchar" MaxLength="50" />
+          <Property Name="UVIAPAG" Type="nvarchar" MaxLength="15" />
+          <Property Name="UANILL" Type="nvarchar" MaxLength="100" />
+          <Property Name="USFCNS" Type="nvarchar" MaxLength="100" />
+          <Property Name="UBODS" Type="nvarchar" MaxLength="150" />
+          <Property Name="UQRY" Type="nvarchar" MaxLength="900" />
+          <Property Name="UTU" Type="decimal" Precision="3" Scale="0" />
+          <Property Name="UEMAILBAK" Type="nvarchar" MaxLength="100" />
+          <Property Name="UPERFIL" Type="nvarchar" MaxLength="15" />
+          <Property Name="USTYLE" Type="nvarchar" MaxLength="100" />
+          <Property Name="USEPDEC" Type="nvarchar" MaxLength="1" />
+          <Property Name="USEPLST" Type="nvarchar" MaxLength="1" />
+          <Property Name="UUPDDAT" Type="datetime" />
+          <Property Name="UINGR" Type="decimal" Precision="7" Scale="0" />
+          <Property Name="UPRF400" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UNUMDOC" Type="nvarchar" MaxLength="35" />
+          <Property Name="UNUMTC" Type="nvarchar" MaxLength="35" />
+          <Property Name="UBANCO" Type="nvarchar" MaxLength="35" />
+          <Property Name="UDIGVER" Type="nvarchar" MaxLength="1" />
+          <Property Name="UUDFA01" Type="nvarchar" MaxLength="25" />
+          <Property Name="UUDFA02" Type="nvarchar" MaxLength="25" />
+          <Property Name="UUDFA03" Type="nvarchar" MaxLength="25" />
+          <Property Name="UUDFN01" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="UUDFN02" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="UUDFN03" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="UFLAG01" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UFLAG02" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UFLAG03" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UUPLFILE1" Type="nvarchar" MaxLength="250" />
+          <Property Name="UUPLFILE2" Type="nvarchar" MaxLength="250" />
+          <Property Name="UTOKEN" Type="nvarchar" MaxLength="50" />
+          <Property Name="UUSRABR" Type="nchar" MaxLength="10" />
+          <Property Name="UPLANT" Type="nchar" MaxLength="10" />
+          <Property Name="UUEN" Type="nchar" MaxLength="10" />
+          <Property Name="UWHS" Type="nchar" MaxLength="10" />
+          <Property Name="UACC00" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC01" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC02" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC03" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC04" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC05" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC06" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC07" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC08" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC09" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="UACC10" Type="decimal" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="RFADJUNTO">
+          <Key>
+            <PropertyRef Name="FANUMREG" />
+          </Key>
+          <Property Name="FID" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="FANUMREG" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FAPROCNUM" Type="bigint" Nullable="false" />
+          <Property Name="FAPROCLIN" Type="bigint" Nullable="false" />
+          <Property Name="FACATEG01" Type="nvarchar" MaxLength="50" />
+          <Property Name="FACATEG02" Type="nvarchar" MaxLength="50" />
+          <Property Name="FACATEG03" Type="nvarchar" MaxLength="50" />
+          <Property Name="FADESCRIP" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="FACRTUSR" Type="nvarchar" MaxLength="25" />
+          <Property Name="FACRTDAT" Type="datetime" Nullable="false" />
+          <Property Name="FAFILE" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="FATITURL" Type="nvarchar" MaxLength="250" />
+          <Property Name="FAURL" Type="nvarchar" MaxLength="2000" />
+          <Property Name="STS01" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="STS02" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="STS03" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="STS04" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="STS05" Type="decimal" Precision="1" Scale="0" />
+          <Property Name="FREFNUM" Type="bigint" />
+        </EntityType>
+        <EntityType Name="RFPARAM">
+          <Key>
+            <PropertyRef Name="CCTABL" />
+            <PropertyRef Name="CCCODE" />
+            <PropertyRef Name="CCCODE2" />
+            <PropertyRef Name="CCCODE3" />
+            <PropertyRef Name="CCCODE4" />
+            <PropertyRef Name="CCCODE5" />
+            <PropertyRef Name="CCCODEN" />
+            <PropertyRef Name="CCCODEN2" />
+          </Key>
+          <Property Name="CCNUM" Type="decimal" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CCID" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="CCTABL" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CCCODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CCCODE2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CCCODE3" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CCCODE4" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CCCODE5" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CCCODEN" Type="decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="CCCODEN2" Type="decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="CCLANG" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="CCALTC" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCDESC" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCSDSC" Type="nvarchar" MaxLength="30" />
+          <Property Name="CCNOT1" Type="nvarchar" MaxLength="250" />
+          <Property Name="CCNOT2" Type="nvarchar" MaxLength="250" />
+          <Property Name="CCUDC0" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC1" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC2" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC3" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC4" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC5" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC6" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC7" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC8" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC9" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDV1" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="CCUDV2" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="CCUDV3" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="CCUDV4" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="CCUDTS" Type="datetime" Nullable="false" />
+          <Property Name="CCUDDT" Type="date" />
+          <Property Name="CCRESV" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CCENDT" Type="datetime" Nullable="false" />
+          <Property Name="CCENUS" Type="nvarchar" MaxLength="25" />
+          <Property Name="CCMNDT" Type="datetime" />
+          <Property Name="CCMNUS" Type="nvarchar" MaxLength="25" />
+          <Property Name="CCNOTE" Type="nvarchar(max)" />
+          <Property Name="CFLAG1" Type="nchar" MaxLength="1" />
+          <Property Name="CFLAG2" Type="nchar" MaxLength="1" />
+          <Property Name="CFLAG3" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityContainer Name="SRGModelStoreContainer">
+          <EntitySet Name="Contrato" EntityType="Self.Contrato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContratoArea" EntityType="Self.ContratoArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PanelAsistCarga" EntityType="Self.PanelAsistCarga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PanelAsistProceso" EntityType="Self.PanelAsistProceso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RCAU" EntityType="Self.RCAU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RFADJUNTO" EntityType="Self.RFADJUNTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RFPARAM" EntityType="Self.RFPARAM" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SRGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PanelAsistArea">
+          <Key>
+            <PropertyRef Name="IdPanelAsistArea" />
+          </Key>
+          <Property Name="IdPanelAsistArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Responsables" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PanelAsistCarga">
+          <Key>
+            <PropertyRef Name="IdPanelAsistCarga" />
+          </Key>
+          <Property Name="IdPanelAsistCarga" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Orden" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Asistente" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Carga01" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Carga02" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Carga03" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Carga04" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Carga05" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Carga06" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Carga07" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Carga08" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Carga09" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Carga10" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RCAU">
+          <Key>
+            <PropertyRef Name="UUSR" />
+          </Key>
+          <Property Name="USTS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="UTIPO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UUSR" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UMOD" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UGRP01" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="UGRP02" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="UGRP03" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="UGRP" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="UTRA" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="UVEND" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="UPASS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UNOM" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="UEMAIL" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="UFECCAD" Type="DateTime" Precision="0" />
+          <Property Name="UDIAS" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="UCATEG1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UCATEG2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UCATEG3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UCATEG4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UCATEG5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UVIAPAG" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="UANILL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="USFCNS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UBODS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UQRY" Type="String" MaxLength="900" FixedLength="false" Unicode="true" />
+          <Property Name="UTU" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="UEMAILBAK" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UPERFIL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="USTYLE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="USEPDEC" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="USEPLST" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="UUPDDAT" Type="DateTime" Precision="3" />
+          <Property Name="UINGR" Type="Decimal" Precision="7" Scale="0" />
+          <Property Name="UPRF400" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UNUMDOC" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="UNUMTC" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="UBANCO" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="UDIGVER" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="UUDFA01" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="UUDFA02" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="UUDFA03" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="UUDFN01" Type="Decimal" Precision="11" Scale="4" />
+          <Property Name="UUDFN02" Type="Decimal" Precision="11" Scale="4" />
+          <Property Name="UUDFN03" Type="Decimal" Precision="11" Scale="4" />
+          <Property Name="UFLAG01" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UFLAG02" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UFLAG03" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UUPLFILE1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UUPLFILE2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UTOKEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UUSRABR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UPLANT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UUEN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UWHS" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UACC00" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC01" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC02" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC03" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC04" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC05" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC06" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC07" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC08" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC09" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="UACC10" Type="Decimal" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="RFADJUNTO">
+          <Key>
+            <PropertyRef Name="FANUMREG" />
+          </Key>
+          <Property Name="FID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FANUMREG" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FAPROCNUM" Type="Int64" Nullable="false" />
+          <Property Name="FAPROCLIN" Type="Int64" Nullable="false" />
+          <Property Name="FACATEG01" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FACATEG02" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FACATEG03" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FADESCRIP" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FACRTUSR" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FACRTDAT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FAFILE" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FATITURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FAURL" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="STS01" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="STS02" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="STS03" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="STS04" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="STS05" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="FREFNUM" Type="Int64" />
+        </EntityType>
+        <EntityType Name="RFPARAM">
+          <Key>
+            <PropertyRef Name="CCTABL" />
+            <PropertyRef Name="CCCODE" />
+            <PropertyRef Name="CCCODE2" />
+            <PropertyRef Name="CCCODE3" />
+            <PropertyRef Name="CCCODE4" />
+            <PropertyRef Name="CCCODE5" />
+            <PropertyRef Name="CCCODEN" />
+            <PropertyRef Name="CCCODEN2" />
+          </Key>
+          <Property Name="CCNUM" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CCID" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CCTABL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CCCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CCCODE2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CCCODE3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CCCODE4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CCCODE5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CCCODEN" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="CCCODEN2" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="CCLANG" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CCALTC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCDESC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCSDSC" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CCNOT1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CCNOT2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CCUDC0" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC1" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC2" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC3" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC4" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC5" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC6" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC7" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC8" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDC9" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CCUDV1" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="CCUDV2" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="CCUDV3" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="CCUDV4" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="CCUDTS" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CCUDDT" Type="DateTime" Precision="0" />
+          <Property Name="CCRESV" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CCENDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CCENUS" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CCMNDT" Type="DateTime" Precision="3" />
+          <Property Name="CCMNUS" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CCNOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CFLAG1" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="CFLAG2" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="CFLAG3" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="SRGEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" />
+          <EntitySet Name="PanelAsistCarga" EntityType="Self.PanelAsistCarga" />
+          <EntitySet Name="RCAU" EntityType="Self.RCAU" />
+          <EntitySet Name="RFADJUNTO" EntityType="Self.RFADJUNTO" />
+          <EntitySet Name="RFPARAM" EntityType="Self.RFPARAM" />
+          <EntitySet Name="Proveedor" EntityType="SRGModel.Proveedor" />
+          <EntitySet Name="PanelAsistProceso" EntityType="SRGModel.PanelAsistProceso" />
+          <EntitySet Name="Contrato" EntityType="SRGModel.Contrato" />
+          <EntitySet Name="ContratoArea" EntityType="SRGModel.ContratoArea" />
+        </EntityContainer>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DV" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PanelAsistProceso">
+          <Key>
+            <PropertyRef Name="IdPanelAsistProceso" />
+          </Key>
+          <Property Name="IdPanelAsistProceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaCierra" Type="DateTime" Precision="3" />
+          <Property Name="Creador" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Solicitante" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="STS01" Type="Int16" Nullable="false" />
+          <Property Name="STS02" Type="Int16" Nullable="false" />
+          <Property Name="STS03" Type="Int16" Nullable="false" />
+          <Property Name="STS04" Type="Int16" Nullable="false" />
+          <Property Name="STS05" Type="Int16" Nullable="false" />
+          <Property Name="Asistente" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CodCentroCosto" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CodCuentaContable" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="NotaSolicitante" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NotaAprobador" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IdPanelAsistArea" Type="Int32" Nullable="false" />
+          <Property Name="DescripcionGastos" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NombreProveedor" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="VlrAntesIVA" Type="Double" />
+          <Property Name="NitProveedor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CorreoProveedor" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AsistenteCierra" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="NumPedidoSAP" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FechaMaximaRadicacion" Type="DateTime" Precision="3" />
+          <Property Name="NumeroReenvios" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Contrato">
+          <Key>
+            <PropertyRef Name="NContrato" />
+          </Key>
+          <Property Name="NContrato" Type="Int32" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NIT" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeTerminacion" Type="DateTime" Precision="3" />
+          <Property Name="DuracionDias" Type="Int32" />
+          <Property Name="ProrrogaAutomatica" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Ubicacion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ObjetoDelContrato" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ValorUsd" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ValorCop" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="PeriodicidadDelPago" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AplicaImpTimbre" Type="String" MaxLength="53" FixedLength="true" Unicode="true" />
+          <Property Name="Cuantia" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Observaciones" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="SeguimientoMensual" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FechaDePago" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="AreaSolicitante" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Inflacion" Type="String" MaxLength="85" FixedLength="false" Unicode="true" />
+          <Property Name="ComentarioContrato" Type="String" MaxLength="580" FixedLength="false" Unicode="true" />
+          <Property Name="STS01" Type="Int16" />
+          <Property Name="STS02" Type="Int16" />
+          <Property Name="STS03" Type="Int16" />
+          <Property Name="STS04" Type="Int16" />
+          <Property Name="STS05" Type="Int16" />
+        </EntityType>
+        <EntityType Name="ContratoArea">
+          <Key>
+            <PropertyRef Name="IdContratoArea" />
+          </Key>
+          <Property Name="IdContratoArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Responsables" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="CorreoResponsables" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SRGModelStoreContainer" CdmEntityContainer="SRGEntities">
+          <EntitySetMapping Name="PanelAsistArea">
+            <EntityTypeMapping TypeName="SRGModel.PanelAsistArea">
+              <MappingFragment StoreEntitySet="PanelAsistArea">
+                <ScalarProperty Name="IdPanelAsistArea" ColumnName="IdPanelAsistArea" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Responsables" ColumnName="Responsables" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PanelAsistCarga">
+            <EntityTypeMapping TypeName="SRGModel.PanelAsistCarga">
+              <MappingFragment StoreEntitySet="PanelAsistCarga">
+                <ScalarProperty Name="IdPanelAsistCarga" ColumnName="IdPanelAsistCarga" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Asistente" ColumnName="Asistente" />
+                <ScalarProperty Name="Carga01" ColumnName="Carga01" />
+                <ScalarProperty Name="Carga02" ColumnName="Carga02" />
+                <ScalarProperty Name="Carga03" ColumnName="Carga03" />
+                <ScalarProperty Name="Carga04" ColumnName="Carga04" />
+                <ScalarProperty Name="Carga05" ColumnName="Carga05" />
+                <ScalarProperty Name="Carga06" ColumnName="Carga06" />
+                <ScalarProperty Name="Carga07" ColumnName="Carga07" />
+                <ScalarProperty Name="Carga08" ColumnName="Carga08" />
+                <ScalarProperty Name="Carga09" ColumnName="Carga09" />
+                <ScalarProperty Name="Carga10" ColumnName="Carga10" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RCAU">
+            <EntityTypeMapping TypeName="SRGModel.RCAU">
+              <MappingFragment StoreEntitySet="RCAU">
+                <ScalarProperty Name="USTS" ColumnName="USTS" />
+                <ScalarProperty Name="UTIPO" ColumnName="UTIPO" />
+                <ScalarProperty Name="UUSR" ColumnName="UUSR" />
+                <ScalarProperty Name="UMOD" ColumnName="UMOD" />
+                <ScalarProperty Name="UGRP01" ColumnName="UGRP01" />
+                <ScalarProperty Name="UGRP02" ColumnName="UGRP02" />
+                <ScalarProperty Name="UGRP03" ColumnName="UGRP03" />
+                <ScalarProperty Name="UGRP" ColumnName="UGRP" />
+                <ScalarProperty Name="UTRA" ColumnName="UTRA" />
+                <ScalarProperty Name="UVEND" ColumnName="UVEND" />
+                <ScalarProperty Name="UPASS" ColumnName="UPASS" />
+                <ScalarProperty Name="UNOM" ColumnName="UNOM" />
+                <ScalarProperty Name="UEMAIL" ColumnName="UEMAIL" />
+                <ScalarProperty Name="UFECCAD" ColumnName="UFECCAD" />
+                <ScalarProperty Name="UDIAS" ColumnName="UDIAS" />
+                <ScalarProperty Name="UCATEG1" ColumnName="UCATEG1" />
+                <ScalarProperty Name="UCATEG2" ColumnName="UCATEG2" />
+                <ScalarProperty Name="UCATEG3" ColumnName="UCATEG3" />
+                <ScalarProperty Name="UCATEG4" ColumnName="UCATEG4" />
+                <ScalarProperty Name="UCATEG5" ColumnName="UCATEG5" />
+                <ScalarProperty Name="UVIAPAG" ColumnName="UVIAPAG" />
+                <ScalarProperty Name="UANILL" ColumnName="UANILL" />
+                <ScalarProperty Name="USFCNS" ColumnName="USFCNS" />
+                <ScalarProperty Name="UBODS" ColumnName="UBODS" />
+                <ScalarProperty Name="UQRY" ColumnName="UQRY" />
+                <ScalarProperty Name="UTU" ColumnName="UTU" />
+                <ScalarProperty Name="UEMAILBAK" ColumnName="UEMAILBAK" />
+                <ScalarProperty Name="UPERFIL" ColumnName="UPERFIL" />
+                <ScalarProperty Name="USTYLE" ColumnName="USTYLE" />
+                <ScalarProperty Name="USEPDEC" ColumnName="USEPDEC" />
+                <ScalarProperty Name="USEPLST" ColumnName="USEPLST" />
+                <ScalarProperty Name="UUPDDAT" ColumnName="UUPDDAT" />
+                <ScalarProperty Name="UINGR" ColumnName="UINGR" />
+                <ScalarProperty Name="UPRF400" ColumnName="UPRF400" />
+                <ScalarProperty Name="UNUMDOC" ColumnName="UNUMDOC" />
+                <ScalarProperty Name="UNUMTC" ColumnName="UNUMTC" />
+                <ScalarProperty Name="UBANCO" ColumnName="UBANCO" />
+                <ScalarProperty Name="UDIGVER" ColumnName="UDIGVER" />
+                <ScalarProperty Name="UUDFA01" ColumnName="UUDFA01" />
+                <ScalarProperty Name="UUDFA02" ColumnName="UUDFA02" />
+                <ScalarProperty Name="UUDFA03" ColumnName="UUDFA03" />
+                <ScalarProperty Name="UUDFN01" ColumnName="UUDFN01" />
+                <ScalarProperty Name="UUDFN02" ColumnName="UUDFN02" />
+                <ScalarProperty Name="UUDFN03" ColumnName="UUDFN03" />
+                <ScalarProperty Name="UFLAG01" ColumnName="UFLAG01" />
+                <ScalarProperty Name="UFLAG02" ColumnName="UFLAG02" />
+                <ScalarProperty Name="UFLAG03" ColumnName="UFLAG03" />
+                <ScalarProperty Name="UUPLFILE1" ColumnName="UUPLFILE1" />
+                <ScalarProperty Name="UUPLFILE2" ColumnName="UUPLFILE2" />
+                <ScalarProperty Name="UTOKEN" ColumnName="UTOKEN" />
+                <ScalarProperty Name="UUSRABR" ColumnName="UUSRABR" />
+                <ScalarProperty Name="UPLANT" ColumnName="UPLANT" />
+                <ScalarProperty Name="UUEN" ColumnName="UUEN" />
+                <ScalarProperty Name="UWHS" ColumnName="UWHS" />
+                <ScalarProperty Name="UACC00" ColumnName="UACC00" />
+                <ScalarProperty Name="UACC01" ColumnName="UACC01" />
+                <ScalarProperty Name="UACC02" ColumnName="UACC02" />
+                <ScalarProperty Name="UACC03" ColumnName="UACC03" />
+                <ScalarProperty Name="UACC04" ColumnName="UACC04" />
+                <ScalarProperty Name="UACC05" ColumnName="UACC05" />
+                <ScalarProperty Name="UACC06" ColumnName="UACC06" />
+                <ScalarProperty Name="UACC07" ColumnName="UACC07" />
+                <ScalarProperty Name="UACC08" ColumnName="UACC08" />
+                <ScalarProperty Name="UACC09" ColumnName="UACC09" />
+                <ScalarProperty Name="UACC10" ColumnName="UACC10" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RFADJUNTO">
+            <EntityTypeMapping TypeName="SRGModel.RFADJUNTO">
+              <MappingFragment StoreEntitySet="RFADJUNTO">
+                <ScalarProperty Name="FID" ColumnName="FID" />
+                <ScalarProperty Name="FANUMREG" ColumnName="FANUMREG" />
+                <ScalarProperty Name="FAPROCNUM" ColumnName="FAPROCNUM" />
+                <ScalarProperty Name="FAPROCLIN" ColumnName="FAPROCLIN" />
+                <ScalarProperty Name="FACATEG01" ColumnName="FACATEG01" />
+                <ScalarProperty Name="FACATEG02" ColumnName="FACATEG02" />
+                <ScalarProperty Name="FACATEG03" ColumnName="FACATEG03" />
+                <ScalarProperty Name="FADESCRIP" ColumnName="FADESCRIP" />
+                <ScalarProperty Name="FACRTUSR" ColumnName="FACRTUSR" />
+                <ScalarProperty Name="FACRTDAT" ColumnName="FACRTDAT" />
+                <ScalarProperty Name="FAFILE" ColumnName="FAFILE" />
+                <ScalarProperty Name="FATITURL" ColumnName="FATITURL" />
+                <ScalarProperty Name="FAURL" ColumnName="FAURL" />
+                <ScalarProperty Name="STS01" ColumnName="STS01" />
+                <ScalarProperty Name="STS02" ColumnName="STS02" />
+                <ScalarProperty Name="STS03" ColumnName="STS03" />
+                <ScalarProperty Name="STS04" ColumnName="STS04" />
+                <ScalarProperty Name="STS05" ColumnName="STS05" />
+                <ScalarProperty Name="FREFNUM" ColumnName="FREFNUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RFPARAM">
+            <EntityTypeMapping TypeName="SRGModel.RFPARAM">
+              <MappingFragment StoreEntitySet="RFPARAM">
+                <ScalarProperty Name="CCNUM" ColumnName="CCNUM" />
+                <ScalarProperty Name="CCID" ColumnName="CCID" />
+                <ScalarProperty Name="CCTABL" ColumnName="CCTABL" />
+                <ScalarProperty Name="CCCODE" ColumnName="CCCODE" />
+                <ScalarProperty Name="CCCODE2" ColumnName="CCCODE2" />
+                <ScalarProperty Name="CCCODE3" ColumnName="CCCODE3" />
+                <ScalarProperty Name="CCCODE4" ColumnName="CCCODE4" />
+                <ScalarProperty Name="CCCODE5" ColumnName="CCCODE5" />
+                <ScalarProperty Name="CCCODEN" ColumnName="CCCODEN" />
+                <ScalarProperty Name="CCCODEN2" ColumnName="CCCODEN2" />
+                <ScalarProperty Name="CCLANG" ColumnName="CCLANG" />
+                <ScalarProperty Name="CCALTC" ColumnName="CCALTC" />
+                <ScalarProperty Name="CCDESC" ColumnName="CCDESC" />
+                <ScalarProperty Name="CCSDSC" ColumnName="CCSDSC" />
+                <ScalarProperty Name="CCNOT1" ColumnName="CCNOT1" />
+                <ScalarProperty Name="CCNOT2" ColumnName="CCNOT2" />
+                <ScalarProperty Name="CCUDC0" ColumnName="CCUDC0" />
+                <ScalarProperty Name="CCUDC1" ColumnName="CCUDC1" />
+                <ScalarProperty Name="CCUDC2" ColumnName="CCUDC2" />
+                <ScalarProperty Name="CCUDC3" ColumnName="CCUDC3" />
+                <ScalarProperty Name="CCUDC4" ColumnName="CCUDC4" />
+                <ScalarProperty Name="CCUDC5" ColumnName="CCUDC5" />
+                <ScalarProperty Name="CCUDC6" ColumnName="CCUDC6" />
+                <ScalarProperty Name="CCUDC7" ColumnName="CCUDC7" />
+                <ScalarProperty Name="CCUDC8" ColumnName="CCUDC8" />
+                <ScalarProperty Name="CCUDC9" ColumnName="CCUDC9" />
+                <ScalarProperty Name="CCUDV1" ColumnName="CCUDV1" />
+                <ScalarProperty Name="CCUDV2" ColumnName="CCUDV2" />
+                <ScalarProperty Name="CCUDV3" ColumnName="CCUDV3" />
+                <ScalarProperty Name="CCUDV4" ColumnName="CCUDV4" />
+                <ScalarProperty Name="CCUDTS" ColumnName="CCUDTS" />
+                <ScalarProperty Name="CCUDDT" ColumnName="CCUDDT" />
+                <ScalarProperty Name="CCRESV" ColumnName="CCRESV" />
+                <ScalarProperty Name="CCENDT" ColumnName="CCENDT" />
+                <ScalarProperty Name="CCENUS" ColumnName="CCENUS" />
+                <ScalarProperty Name="CCMNDT" ColumnName="CCMNDT" />
+                <ScalarProperty Name="CCMNUS" ColumnName="CCMNUS" />
+                <ScalarProperty Name="CCNOTE" ColumnName="CCNOTE" />
+                <ScalarProperty Name="CFLAG1" ColumnName="CFLAG1" />
+                <ScalarProperty Name="CFLAG2" ColumnName="CFLAG2" />
+                <ScalarProperty Name="CFLAG3" ColumnName="CFLAG3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedor">
+            <EntityTypeMapping TypeName="SRGModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="DV" ColumnName="DV" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PanelAsistProceso">
+            <EntityTypeMapping TypeName="SRGModel.PanelAsistProceso">
+              <MappingFragment StoreEntitySet="PanelAsistProceso">
+                <ScalarProperty Name="NumeroReenvios" ColumnName="NumeroReenvios" />
+                <ScalarProperty Name="FechaMaximaRadicacion" ColumnName="FechaMaximaRadicacion" />
+                <ScalarProperty Name="NumPedidoSAP" ColumnName="NumPedidoSAP" />
+                <ScalarProperty Name="AsistenteCierra" ColumnName="AsistenteCierra" />
+                <ScalarProperty Name="CorreoProveedor" ColumnName="CorreoProveedor" />
+                <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
+                <ScalarProperty Name="VlrAntesIVA" ColumnName="VlrAntesIVA" />
+                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+                <ScalarProperty Name="DescripcionGastos" ColumnName="DescripcionGastos" />
+                <ScalarProperty Name="IdPanelAsistArea" ColumnName="IdPanelAsistArea" />
+                <ScalarProperty Name="NotaAprobador" ColumnName="NotaAprobador" />
+                <ScalarProperty Name="NotaSolicitante" ColumnName="NotaSolicitante" />
+                <ScalarProperty Name="CodCuentaContable" ColumnName="CodCuentaContable" />
+                <ScalarProperty Name="CodCentroCosto" ColumnName="CodCentroCosto" />
+                <ScalarProperty Name="Asistente" ColumnName="Asistente" />
+                <ScalarProperty Name="STS05" ColumnName="STS05" />
+                <ScalarProperty Name="STS04" ColumnName="STS04" />
+                <ScalarProperty Name="STS03" ColumnName="STS03" />
+                <ScalarProperty Name="STS02" ColumnName="STS02" />
+                <ScalarProperty Name="STS01" ColumnName="STS01" />
+                <ScalarProperty Name="Solicitante" ColumnName="Solicitante" />
+                <ScalarProperty Name="Creador" ColumnName="Creador" />
+                <ScalarProperty Name="FechaCierra" ColumnName="FechaCierra" />
+                <ScalarProperty Name="FechaCrea" ColumnName="FechaCrea" />
+                <ScalarProperty Name="IdPanelAsistProceso" ColumnName="IdPanelAsistProceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contrato">
+            <EntityTypeMapping TypeName="SRGModel.Contrato">
+              <MappingFragment StoreEntitySet="Contrato">
+                <ScalarProperty Name="STS05" ColumnName="STS05" />
+                <ScalarProperty Name="STS04" ColumnName="STS04" />
+                <ScalarProperty Name="STS03" ColumnName="STS03" />
+                <ScalarProperty Name="STS02" ColumnName="STS02" />
+                <ScalarProperty Name="STS01" ColumnName="STS01" />
+                <ScalarProperty Name="ComentarioContrato" ColumnName="ComentarioContrato" />
+                <ScalarProperty Name="Inflacion" ColumnName="Inflacion" />
+                <ScalarProperty Name="AreaSolicitante" ColumnName="AreaSolicitante" />
+                <ScalarProperty Name="FechaDePago" ColumnName="FechaDePago" />
+                <ScalarProperty Name="SeguimientoMensual" ColumnName="SeguimientoMensual" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Cuantia" ColumnName="Cuantia" />
+                <ScalarProperty Name="AplicaImpTimbre" ColumnName="AplicaImpTimbre" />
+                <ScalarProperty Name="PeriodicidadDelPago" ColumnName="PeriodicidadDelPago" />
+                <ScalarProperty Name="ValorCop" ColumnName="ValorCop" />
+                <ScalarProperty Name="ValorUsd" ColumnName="ValorUsd" />
+                <ScalarProperty Name="ObjetoDelContrato" ColumnName="ObjetoDelContrato" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="ProrrogaAutomatica" ColumnName="ProrrogaAutomatica" />
+                <ScalarProperty Name="DuracionDias" ColumnName="DuracionDias" />
+                <ScalarProperty Name="FechaDeTerminacion" ColumnName="FechaDeTerminacion" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="FechaDeInicio" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="NContrato" ColumnName="NContrato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContratoArea">
+            <EntityTypeMapping TypeName="SRGModel.ContratoArea">
+              <MappingFragment StoreEntitySet="ContratoArea">
+                <ScalarProperty Name="CorreoResponsables" ColumnName="CorreoResponsables" />
+                <ScalarProperty Name="Responsables" ColumnName="Responsables" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdContratoArea" ColumnName="IdContratoArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

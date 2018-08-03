@@ -1,0 +1,9 @@
+C:\Copia_Servidor\Proyectos\NATURA\PanelAsistentes\TokenGenerator\bin\Release\TokenGenerator.dll
+C:\Copia_Servidor\Proyectos\NATURA\PanelAsistentes\TokenGenerator\bin\Release\TokenGenerator.pdb
+C:\Copia_Servidor\Proyectos\NATURA\PanelAsistentes\TokenGenerator\bin\Release\TokenGenerator.xml
+C:\Copia_Servidor\Proyectos\NATURA\PanelAsistentes\TokenGenerator\obj\Release\TokenGenerator.Resources.resources
+C:\Copia_Servidor\Proyectos\NATURA\PanelAsistentes\TokenGenerator\obj\Release\TokenGenerator.vbproj.GenerateResource.cache
+C:\Copia_Servidor\Proyectos\NATURA\PanelAsistentes\TokenGenerator\obj\Release\TokenGenerator.vbproj.CoreCompileInputs.cache
+C:\Copia_Servidor\Proyectos\NATURA\PanelAsistentes\TokenGenerator\obj\Release\TokenGenerator.dll
+C:\Copia_Servidor\Proyectos\NATURA\PanelAsistentes\TokenGenerator\obj\Release\TokenGenerator.xml
+C:\Copia_Servidor\Proyectos\NATURA\PanelAsistentes\TokenGenerator\obj\Release\TokenGenerator.pdb

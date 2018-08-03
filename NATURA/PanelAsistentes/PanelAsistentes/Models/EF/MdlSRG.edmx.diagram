@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="41835d99b1a647869a39df2cde8ecc38" Name="Diagram1">
+        <EntityTypeShape EntityType="SRGModel.PanelAsistArea" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SRGModel.PanelAsistCarga" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SRGModel.RCAU" Width="1.5" PointX="12.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SRGModel.RFADJUNTO" Width="1.5" PointX="4.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SRGModel.RFPARAM" Width="1.5" PointX="8.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SRGModel.Proveedor" Width="1.5" PointX="10.5" PointY="0.5" />
+        <EntityTypeShape EntityType="SRGModel.PanelAsistProceso" Width="1.5" PointX="6.5" PointY="0.5" />
+        <EntityTypeShape EntityType="SRGModel.Contrato" Width="1.5" PointX="0.5" PointY="3" />
+        <EntityTypeShape EntityType="SRGModel.ContratoArea" Width="1.5" PointX="2.5" PointY="5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

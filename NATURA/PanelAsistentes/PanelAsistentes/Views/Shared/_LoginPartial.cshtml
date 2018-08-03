@@ -1,0 +1,8 @@
+﻿@if (SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario") != null)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li class="ubicaLogin">
+            @Html.ActionLink(SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario").UUSR + "-" + SessionManager.Get<PanelAsistentes.Models.EF.RCAU>("VarUsuario").UNOM, "", "")
+        </li>
+    </ul>
+}

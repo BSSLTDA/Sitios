@@ -1,0 +1,108 @@
+﻿@using PanelAsistentes.Models
+
+@{
+    ViewBag.Title = "Contrato";
+}
+<h2>@ViewBag.Title</h2>
+
+<div>
+    @(Html.EJ().Grid<MdlContrato>("Grid")
+                .Datasource(ds => ds.URL(@Url.Content("~/Contrato/DSContrato")).Adaptor(AdaptorType.UrlAdaptor))
+                .EnableAltRow()
+                .MinWidth(120)
+                .AllowScrolling()
+                .IsResponsive(true)
+                .EnableResponsiveRow(true)
+                .ScrollSettings(col => { col.Width("100%").Height("auto"); })
+                .ToolbarSettings(toolBar =>
+                    toolBar.ShowToolbar()                    
+                    .ToolbarItems(items =>
+                    {
+                        items.AddTool(ToolBarItems.ExcelExport);
+                    }))
+                .Mappers(map => map.ExportToExcelAction(@Url.Action("ExpToExc", "Contrato")))
+                .Locale("es-CO")
+                .PageSettings(p => { p.PageCount(7).PageSize(25); })
+                .AllowPaging()
+                .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+                .AllowFiltering()
+                .AllowSorting()
+                .AllowTextWrap()
+                .Columns(col =>
+                {
+                    col.Width(90).Field("NContrato").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(320).Field("RazonSocial").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(110).Field("NIT").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(110).Field("FechaDeInicio").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(150).Field("FechaDeTerminacion").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(120).Field("DuracionDias").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(150).Field("ProrrogaAutomatica").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(200).Field("Ubicacion").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(250).Field("ObjetoDelContrato").AllowTextWrap(true).HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(250).Field("ValorUsd").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(250).Field("ValorCop").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(250).Field("PeriodicidadDelPago").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(120).Field("AplicaImpTimbre").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(120).Field("Cuantia").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(200).Field("Observaciones").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(180).Field("SeguimientoMensual").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(130).Field("FechaDePago").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(130).Field("AreaSolicitante").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(130).Field("Inflacion").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                    col.Width(130).Field("ComentarioContrato").HeaderTextAlign(TextAlign.Center).Add();
+                    col.Field("STS01").Visible(false).Add();
+                    col.Field("STS02").Visible(false).Add();
+                    col.Field("STS03").Visible(false).Add();
+                    col.Field("STS04").Visible(false).Add();
+                    col.Field("STS05").Visible(false).Add();
+                    col.Field("IdArea").Visible(false).Add();
+
+                })
+                .ClientSideEvents(eve => eve.Create("Create"))
+    )    
+</div>
+
+<script>
+   
+    function Create(args) {
+        var tdStr = '';
+        tdStr = '<div>';
+        tdStr += '<div id="pagers" class="npag">';
+        tdStr += '<select onchange="sizeValChange(this)">';
+        tdStr += '<option>25</option>';
+        tdStr += '<option>50</option>';
+        tdStr += '<option>100</option>';
+        tdStr += '</select>';
+        tdStr += '</div>';
+        tdStr += '</div>';
+        $('#Grid div > div.e-pagercontainer').after(tdStr);
+    }
+
+    function checkNumericValue(value) {
+        var pagermodel = $("#Grid").ejGrid("getPager").ejPager("model");
+        return (value == "" || value == 0);
+    }
+
+    function setPageValue(id, val) {
+        $("#" + id).ejNumericTextbox("model").maxValue = val;
+    }
+
+    function sizeValChange(args) {
+        if (checkNumericValue(args.value))
+            return;
+        var model = $("#Grid").ejGrid("model");
+        var model1 = $("#Grid").ejGrid("getPager").ejPager("model");
+        var newLastPage = Math.ceil(model.pageSettings.totalRecordsCount / args.value);
+        $("#Grid").ejGrid({ "pageSettings": { pageSize: parseInt(args.value) } });
+        if (model1.pageCount > newLastPage)
+            $("#counttxt").ejNumericTextbox({ value: newLastPage });
+        else {
+            setPageValue("pagetxt", model1.totalPages);
+            $("#counttxt").ejNumericTextbox({ value: model1.pageCount });
+            flag = true;
+            $("#pagetxt").ejNumericTextbox({ value: model1.currentPage });
+            flag = false;
+        }
+    }    
+</script>
+

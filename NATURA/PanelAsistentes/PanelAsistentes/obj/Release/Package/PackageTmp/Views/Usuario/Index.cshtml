@@ -1,0 +1,475 @@
+﻿@using PanelAsistentes.Models.EF;
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div style="max-width:740px;">
+    @(Html.EJ().Grid<RCAU>("Grid")
+                        .Datasource(ds => ds.URL(@Url.Content("~/Usuario/DSUsuario")).Adaptor(AdaptorType.UrlAdaptor))
+                        .EnableAltRow()
+                        .MinWidth(120)
+                        .AllowScrolling()
+                        .IsResponsive(true)
+                        .EnableResponsiveRow(true)
+                        .ScrollSettings(col => { col.Width("100%").Height("auto"); })
+                        .ToolbarSettings(toolBar =>
+                            toolBar.ShowToolbar()
+                            .CustomToolbarItems(new List<object>() {
+        new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Agregar" },
+        new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Editar" },
+        new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" }
+                            })
+                            .ToolbarItems(items =>
+                            {
+                    //items.AddTool(ToolBarItems.ExcelExport);
+                }))                        
+                        .Locale("es-CO")
+                        .PageSettings(p => { p.PageCount(7).PageSize(25); })
+                        .AllowPaging()
+                        .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+                        .AllowFiltering()
+                        .AllowSorting()
+                        .Columns(col =>
+                        {
+                            col.Width(70).Field("Tipo").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                            col.Width(120).Field("UUSR").HeaderTextAlign(TextAlign.Center).Add();
+                            col.Width(250).Field("UNOM").HeaderTextAlign(TextAlign.Center).Add();
+                            col.Width(200).Field("UEMAIL").HeaderTextAlign(TextAlign.Center).Add();
+                            col.Width(100).Field("UGRP01").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                        })
+                        .ClientSideEvents(eve => eve.Create("Create").ToolbarClick("TBClick"))
+    )
+    <script type="text/x-jsrender" id="Agregar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="14" src='@Url.Content("~/Content/img/add.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Editar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="16" src='@Url.Content("~/Content/img/edit.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Eliminar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="14" src='@Url.Content("~/Content/img/delete.svg")' />
+        </a>
+    </script>    
+</div>
+
+<div class="alineadoCentro">
+    <div id="myModal" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Agregar Usuario</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label>Usuario(Cedula)</label>
+                            </td>
+                            <td>
+                                <input id="nCedula" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Nombre</label>
+                            </td>
+                            <td>
+                                <input id="nNombre" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Correo</label>
+                            </td>
+                            <td>
+                                <input id="nCorreo" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Tipo</label>
+                            </td>
+                            <td>
+                                <input name="tipo" type="radio" id="tipo-1" checked onchange="ActivaCargo(this)" /><label for="tipo-1" style="margin-right:5px;">Usuario</label>
+                                <input name="tipo" type="radio" id="tipo-2" onchange="ActivaCargo(this)" /><label for="tipo-2" style="margin-right:5px;">Asistente</label>
+                                <input name="tipo" type="radio" id="tipo-3" onchange="ActivaCargo(this)" /><label for="tipo-3">Jefe</label>
+                            </td>
+                        </tr>
+                        <tr id="fCargo" class="oculto">
+                            <td>
+                                <label>Carga</label>
+                            </td>
+                            <td>
+                                <table cellpadding="0" cellspacing="0" id="nCargo">
+                                    <tr>
+                                        <td id="1" onMouseOver="fondotd(this)" onclick="focustd(this)">10%</td>
+                                        <td id="2" onMouseOver="fondotd(this)" onclick="focustd(this)">20%</td>
+                                        <td id="3" onMouseOver="fondotd(this)" onclick="focustd(this)">30%</td>
+                                        <td id="4" onMouseOver="fondotd(this)" onclick="focustd(this)">40%</td>
+                                        <td id="5" onMouseOver="fondotd(this)" onclick="focustd(this)">50%</td>
+                                        <td id="6" onMouseOver="fondotd(this)" onclick="focustd(this)">60%</td>
+                                        <td id="7" onMouseOver="fondotd(this)" onclick="focustd(this)">70%</td>
+                                        <td id="8" onMouseOver="fondotd(this)" onclick="focustd(this)">80%</td>
+                                        <td id="9" onMouseOver="fondotd(this)" onclick="focustd(this)">90%</td>
+                                        <td id="10" onMouseOver="fondotd(this)" onclick="focustd(this)">100%</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="NuevoUsuario()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal2" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal2" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Editar Usuario</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label>Usuario(Cedula)</label>
+                            </td>
+                            <td>
+                                <label id="uCedula" style="font-weight:normal;"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Nombre</label>
+                            </td>
+                            <td>
+                                <input id="uNombre" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Correo</label>
+                            </td>
+                            <td>
+                                <input id="uCorreo" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Tipo</label>
+                            </td>
+                            <td>
+                                <input name="utipo" type="radio" id="utipo-1" checked onchange="ActivaCargoU(this)" /><label for="utipo-1" style="margin-right:5px;">Usuario</label>
+                                <input name="utipo" type="radio" id="utipo-2" onchange="ActivaCargoU(this)" /><label for="utipo-2" style="margin-right:5px;">Asistente</label>
+                                <input name="utipo" type="radio" id="utipo-3" onchange="ActivaCargoU(this)" /><label for="utipo-3">Jefe</label>
+                            </td>
+                        </tr>
+                        <tr id="fuCargo" class="oculto">
+                            <td>
+                                <label>Carga</label>
+                            </td>
+                            <td>
+                                <table cellpadding="0" cellspacing="0" id="uCargo">
+                                    <tr>
+                                        <td id="1-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">10%</td>
+                                        <td id="2-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">20%</td>
+                                        <td id="3-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">30%</td>
+                                        <td id="4-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">40%</td>
+                                        <td id="5-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">50%</td>
+                                        <td id="6-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">60%</td>
+                                        <td id="7-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">70%</td>
+                                        <td id="8-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">80%</td>
+                                        <td id="9-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">90%</td>
+                                        <td id="10-u" onMouseOver="fondotdu(this)" onclick="focustd(this)">100%</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="EditaUsuario()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal2" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var CargaSelesccionada = false;
+    var Carga = 0;
+    var urlDatos = '@Url.Content("~/Usuario/Datos")';
+    var urlNuevo = '@Url.Content("~/Usuario/Nuevo")';
+    var urlEdita = '@Url.Content("~/Usuario/Edita")';
+    var urlElimina = '@Url.Content("~/Usuario/Elimina")';
+    var idU = "";
+
+    function TBClick(args) {
+        if (args.itemIndex == "0" && args.itemName == "Agregar") {
+            $("#nCedula").val('');
+            $("#nNombre").val('');
+            $("#nCorreo").val('');
+            $("#tipo-1").prop('checked', true);
+            $("#tipo-2").prop('checked', false);
+            $("#tipo-3").prop('checked', false);
+            $("#fCargo").addClass("oculto");
+            $("#myModal").css("display", "block");
+        }
+        if (args.itemIndex == "1" && args.itemName == "Editar") {
+            if (args.model.selectedRowIndex != "-1") {
+                $("#uCedula").text(args.model.selectedRecords[0].UUSR);
+                $("#uNombre").val(args.model.selectedRecords[0].UNOM);
+                $("#uCorreo").val(args.model.selectedRecords[0].UEMAIL);
+                $("#utipo-1").prop('checked', false);
+                $("#utipo-2").prop('checked', false);
+                $("#utipo-3").prop('checked', false);
+                $("#fuCargo").addClass("oculto");
+                $("#utipo-1").prop('checked', true);
+                if (args.model.selectedRecords[0].UACC02 == 1) {
+                    $("#utipo-2").prop('checked', true);
+                    for (var i = 1; i <= 10; i++) {
+                        $("#" + i + "-u").removeClass("hoverCargo");
+                    }
+                    $("#fuCargo").removeClass("oculto");
+                    if (args.model.selectedRecords[0].UGRP01 != null) {
+                        for (var i = 1; i <= parseInt(args.model.selectedRecords[0].UGRP01.substring(0, (args.model.selectedRecords[0].UGRP01.length - 2))); i++) {
+                            $("#" + i + "-u").addClass("hoverCargo");
+                        }
+                    }
+                }
+                if (args.model.selectedRecords[0].UACC03 == 1) {
+                    $("#utipo-3").prop('checked', true);
+                }
+                $("#myModal2").css("display", "block");
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+        if (args.itemIndex == "2" && args.itemName == "Eliminar") {
+            if (args.model.selectedRowIndex != "-1") {
+                idU = args.model.selectedRecords[0].UUSR;
+                $("#myModMsgCon").css("display", "block");
+            }
+            else {
+                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+    }
+
+    function fondotd(mou) {
+        if (!CargaSelesccionada) {
+            Carga = mou.id;
+            for (var i = 1; i <= 10; i++) {
+                $("#" + i).removeClass("hoverCargo");
+            }
+
+            for (var i = 1; i <= mou.id; i++) {
+                $("#" + i).addClass("hoverCargo");
+            }
+        }
+    }
+
+    function fondotdu(mou) {
+        if (!CargaSelesccionada) {
+            Carga = mou.id.split('-')[0];
+            for (var i = 1; i <= 10; i++) {
+                $("#" + i + "-u").removeClass("hoverCargo");
+            }
+
+            for (var i = 1; i <= mou.id.split('-')[0]; i++) {
+                $("#" + i + "-u").addClass("hoverCargo");
+            }
+        }
+    }
+
+    function focustd(col) {
+        Carga = col.id.split('-')[0];
+        CargaSelesccionada = true;
+        console.log(Carga);
+        for (var i = 1; i <= 10; i++) {
+            $("#" + i).removeClass("hoverCargo");
+        }
+
+        for (var i = 1; i <= Carga; i++) {
+            $("#" + i).addClass("hoverCargo");
+        }
+        for (var i = 1; i <= 10; i++) {
+            $("#" + i + "-u").removeClass("hoverCargo");
+        }
+
+        for (var i = 1; i <= Carga; i++) {
+            $("#" + i + "-u").addClass("hoverCargo");
+        }
+    }
+
+    function ActivaCargo(Estoy) {
+        for (var i = 1; i <= 10; i++) {
+            $("#" + i).removeClass("hoverCargo");
+        }
+        $("#fCargo").addClass("oculto");
+        if (Estoy.id == "tipo-2"){
+            if (Estoy.checked) {
+                $("#fCargo").removeClass("oculto");
+            }
+        }
+    }
+
+    function ActivaCargoU(Estoy) {
+        for (var i = 1; i <= 10; i++) {
+            $("#" + i).removeClass("hoverCargo");
+        }
+        $("#fuCargo").addClass("oculto");
+        if (Estoy.id == "utipo-2") {
+            if (Estoy.checked) {
+                $("#fuCargo").removeClass("oculto");
+            }
+        }
+    }
+    
+    function NuevoUsuario() {
+        var continuar = true;
+        var tipo;
+        var radios = document.getElementsByName('tipo');        
+        if ($("#nCorreo").val().toUpperCase().indexOf("@@NATURA.NET") == -1) {
+            continuar = false;
+            $("#LblMsg").text("Correo invalido");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continuar) {
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    tipo = radios[i].id.split('-')[1];
+                }
+            }
+            $.ajax({
+                type: "POST",
+                url: urlNuevo,
+                data: { Usr: $("#nCedula").val(), Nme: $("#nNombre").val(), Eml: $("#nCorreo").val(), Tpo: tipo, CargaUsr: Carga },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == 'OK') {
+                        gridObj = $("#Grid").data("ejGrid");
+                        gridObj.refreshContent();
+                        $("#myModal").css("display", "none");
+                    }
+                    else {
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                    }                                        
+                }
+            });
+        }
+    }
+
+    function EditaUsuario() {
+        var continuar = true;
+        var tipo;
+        var radios = document.getElementsByName('utipo');
+        console.log($("#uCorreo").val().toUpperCase());
+        if ($("#uCorreo").val().toUpperCase().indexOf("@@NATURA.NET") == -1) {
+            continuar = false;
+            $("#LblMsg").text("Correo invalido");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continuar) {
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    tipo = radios[i].id.split('-')[1];
+                    console.log(tipo);
+                    if (tipo != 2) {
+                        Carga = 0;
+                    }
+                }
+            }
+            $.ajax({
+                type: "POST",
+                url: urlEdita,
+                data: { Usr: $("#uCedula").text(), Nme: $("#uNombre").val(), Eml: $("#uCorreo").val(), Tpo: tipo, CargaUsr: Carga },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {                    
+                    if (result.result == 'OK') {
+                        gridObj = $("#Grid").data("ejGrid");
+                        gridObj.refreshContent();
+                        $("#myModal2").css("display", "none");
+                    }
+                    else {
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                    }
+                }
+            });
+        }
+    }
+
+    function ConfirmaDel() {
+        $.ajax({
+            type: "POST",
+            url: urlElimina,
+            data: { Id: idU },
+            cache: true,
+            dataType: 'json',
+            success: function (result) {
+                if (result.result == "OK") {
+                    gridObj = $("#Grid").data("ejGrid");
+                    gridObj.refreshContent();
+                    $("#myModMsgCon").css("display", "none");
+                } else {
+                    $("#LblMsg").text(result.result);
+                    $("#myModMsg").css("display", "block");
+                }                
+            }
+        });
+    }
+</script>
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+
+<script>
+    $("#myModal").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal").click(function () {
+        $("#myModal").css("display", "none");
+    });
+    $("#cancelModal").click(function () {
+        $("#myModal").css("display", "none");
+    });
+
+    $("#myModal2").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal2").click(function () {
+        $("#myModal2").css("display", "none");
+    });
+    $("#cancelModal2").click(function () {
+        $("#myModal2").css("display", "none");
+    });
+</script>

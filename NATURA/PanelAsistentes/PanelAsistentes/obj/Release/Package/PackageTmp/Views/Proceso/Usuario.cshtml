@@ -1,0 +1,908 @@
+﻿@using PanelAsistentes.Models.EF;
+
+@{
+    ViewBag.Title = "Procesos";
+}
+<script src="~/Scripts/dropzone/dropzone.js"></script>
+<link href="~/Scripts/dropzone/dropzone.css" rel="stylesheet" />
+<script src="~/Scripts/dropzone/JSDropZone.js"></script>
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    @(Html.EJ().Grid<PanelAsistProceso>("Grid")
+                                                        .Datasource(ds => ds.URL(@Url.Content("~/Proceso/DSProcesoUsr")).Adaptor(AdaptorType.UrlAdaptor))
+                                                        .EnableAltRow()
+                                                        .MinWidth(120)
+                                                        .AllowScrolling()
+                                                        .IsResponsive(true)
+                                                        .EnableResponsiveRow(true)
+                                                        .ScrollSettings(col => { col.Width("100%").Height("auto"); })
+                                                        .ToolbarSettings(toolBar =>
+                                                            toolBar.ShowToolbar()
+                                                            .CustomToolbarItems(new List<object>() {
+        new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Agregar" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Adjuntar" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" }
+                                                            }))
+
+                                                        .Locale("es-CO")
+                                                        .PageSettings(p => { p.PageCount(7).PageSize(25); })
+                                                        .AllowPaging()
+                                                        .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+                                                        .AllowFiltering()
+                                                        .AllowSorting()
+                                                        .Columns(col =>
+                                                        {
+                                                            col.Width(50).Template("#TmpAdjunto").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(70).Field("IdPanelAsistProceso").TextAlign(TextAlign.Left).HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(80).Field("Estado").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(110).Field("FechaCrea").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(110).Field("FechaCierra").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(150).Field("FechaMaximaRadicacion").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(280).Field("Creador").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(280).Field("Solicitante").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(280).Field("Asistente").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(250).Field("CodCentroCosto").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(250).Field("CodCuentaContable").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(250).Field("NotaSolicitante").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(250).Field("Area").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(250).Field("DescripcionGastos").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(120).Field("VlrAntesIVA").Format("{0:N0}").TextAlign(TextAlign.Right).HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(250).Field("NombreProveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(150).Field("NitProveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(200).Field("CorreoProveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(130).Field("NumPedidoSAP").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(130).Field("NumeroReenvios").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Field("STS01").Visible(false).Add();
+                                                            col.Field("STS02").Visible(false).Add();
+                                                            col.Field("STS03").Visible(false).Add();
+                                                            col.Field("STS04").Visible(false).Add();
+                                                            col.Field("STS05").Visible(false).Add();
+                                                        })
+                                                        .ClientSideEvents(eve => eve.Create("Create").QueryCellInfo("QCInfo").RecordDoubleClick("RDClick").ToolbarClick("TBClick"))
+    )
+    <script type="text/x-jsrender" id="Agregar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="14" src='@Url.Content("~/Content/img/add.svg")' onclick="Agregar()" />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Adjuntar">
+        <a id="aCustomAdj" class="iconCus">
+            <img width="18" src='@Url.Content("~/Content/img/adjuntar2.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Reenviar">
+        <a id="aCustomRee" class="iconCus">
+            <img width="20" src='@Url.Content("~/Content/img/mail.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="TmpAdjunto">
+        {{if Adjunto != null }}
+        {{if Adjunto.includes("|")}}
+        <a id="{{:Adjunto}}" name="{{:AdjuntoNme}}" onclick="AbreAdjunto(this)">
+            <img width="20" src='@Url.Content("~/Content/img/pdflist.svg")' />
+        </a>
+        {{else}}
+        <a href="{{:Adjunto}}" target="_blank">
+            <img width="20" src='@Url.Content("~/Content/img/pdf2.svg")' />
+        </a>
+        {{/if}}
+        {{/if}}
+    </script>
+</div>
+
+<div class="alineadoCentro">
+    <div id="myModal" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Agregar Proceso</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label>Solicitante</label>
+                            </td>
+                            <td>
+                                <input id="nSolicitante" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Centro de costos</label>
+                            </td>
+                            <td>
+                                <input id="nIdCentroCosto" type="hidden" />
+                                <input id="nCentroCosto" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Cuenta contable</label>
+                            </td>
+                            <td>
+                                <input id="nIdCuentaContable" type="hidden" />
+                                <input id="nCuentaContable" class="ctext" disabled />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Notas</label>
+                            </td>
+                            <td style="width:350px;">
+                                <textarea id="nNota" class="ctext"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Area</label>
+                            </td>
+                            <td>
+                                <input id="nIdArea" type="hidden" />
+                                <input id="nArea" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Descripción gastos</label>
+                            </td>
+                            <td>
+                                <input id="nDescGastos" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Vlr. antes de IVA</label>
+                            </td>
+                            <td>
+                                <input id="nVlrAntesIVA" class="ctext" onkeypress = "return isNumberKey(event)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Nombre proveedor</label>
+                            </td>
+                            <td>
+                                <input id="nNmeProveedor" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Nit proveedor</label>
+                            </td>
+                            <td>
+                                <input id="nNitProveedor" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Correo proveedor</label>
+                            </td>
+                            <td>
+                                <input type="email" id="nMailProveedor" class="ctext" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="NuevoProceso()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal2" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal2" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Agregar Proceso</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                Su solicitud ha sido procesada con el # P<span id="NumProceso" style="font-weight:bold;">01</span>, y asignada a la asistente <span id="NmeAsistente" style="font-weight:bold;"></span> con los siguientes datos:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Centro de Costos </label>
+                            </td>
+                            <td>
+                                <span id="CC"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Cuenta Contable</label>
+                            </td>
+                            <td>
+                                <span id="CtaC"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Descripción de gasto</label>
+                            </td>
+                            <td>
+                                <span id="DG"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Vlr. antes IVA</label>
+                            </td>
+                            <td>
+                                <span id="VAI"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Proveedor</label>
+                            </td>
+                            <td>
+                                <span id="Prov"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Observaciones</label>
+                            </td>
+                            <td>
+                                <span id="Obs"></span>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelModal2" type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal3" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal3" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Detalle Proceso</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+
+                        <tbody>
+                            <tr>
+                                <th>N° Proceso</th>
+                                <td id="tdNProceso"></td>
+                                <th>Estado</th>
+                                <td id="tdEstado"></td>
+                            </tr>
+                            <tr>
+                                <th>Creada</th>
+                                <td id="tdCreada"></td>
+                                <th>Procesada</th>
+                                <td id="tdProcesada"></td>
+                            </tr>
+                            <tr>
+                                <th>Fec. Max. Radicación</th>
+                                <td id="tdFecMaxRad"></td>
+                                <th>Creador</th>
+                                <td id="tdCreador"></td>
+                            </tr>
+                            <tr>
+                                <th>Solicitante</th>
+                                <td id="tdSolicitante"></td>
+                                <th>Asistente</th>
+                                <td id="tdAsistente"></td>
+                            </tr>
+                            <tr>
+                                <th>Centro de Costo</th>
+                                <td id="tdCentroCosto"></td>
+                                <th>Cuenta Contable</th>
+                                <td id="tdCtaContable"></td>
+                            </tr>
+                            <tr>
+                                <th>Nota</th>
+                                <td id="tdNota"></td>
+                                <th>Area</th>
+                                <td id="tdArea"></td>
+                            </tr>
+                            <tr>
+                                <th>Descripción gastos</th>
+                                <td id="tdDescGastos"></td>
+                                <th>Vlr. antes IVA</th>
+                                <td id="tdVAI"></td>                                
+                            </tr>
+                            <tr>
+                                <th>Nombre Proveedor</th>
+                                <td id="tdNombreProv"></td>
+                                <th>Nit Proveedor</th>
+                                <td id="tdNitProv"></td>                                
+                            </tr>
+                            <tr>
+                                <th> Correo Proveedor</th>
+                                <td id="tdMailProv"></td>
+                                <th>N° Ped. SAP</th>
+                                <td id="tdNPedSAP"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal4" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal4" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Archivos adjuntos</h4>
+                </div>
+                <div id="AdjuntosBody" class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal5" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal5" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Agregar Adjunto</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td colspan="2">
+                                <div id="dropzone">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="FinalizaAdjunto()" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal6" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal6" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Detalle Correo</h4>
+                </div>
+                <div id="BodyReenvia" class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button id="BtnReenvia" type="button" class="btn btn-primary oculto" onclick="ReenviaCorreo()" data-dismiss="modal">Reenviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var urlSave = '@Url.Content("~/Proceso/SaveProcess")';
+     var imgPdf = '@Url.Content("~/Content/img/pdf2.svg")';
+    var urlAction = '@Url.Content("~/Proceso/SaveFile")';
+    var urlCorreo = '@Url.Content("~/Proceso/CorreoProceso")';
+    var urlReenviaCorreo = '@Url.Content("~/Proceso/ReenviarCorreo")';
+    var Id = 0;
+    var ConteoAdjunto = 0;
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function FinalizaAdjunto() {
+        console.log(ConteoAdjunto);
+        if (ConteoAdjunto > 0) {
+            var gridObj = $("#Grid").data("ejGrid");
+            gridObj.refreshContent();
+            $("#myModal5").css("display", "none");
+            $("#myModal2").css("display", "block");
+            ConteoAdjunto = 0;
+        } else {
+            $("#LblMsg").text("No se ha adjuntado ningun archivo");
+            $("#myModMsg").css("display", "block");
+        }
+    }
+
+    function PedirAdjunto(IdPro) {
+        $("#dropzone").empty();
+        var frmUpl = '<form id="nUpload"><div class="dz-default dz-message"><span>Ponga los archivos aqui.</span></div></form>';
+        $("#dropzone").append(frmUpl);
+        var cont = document.getElementById("nUpload");
+        var myDropzone = new Dropzone(cont, {
+            url: urlAction + "/" + IdPro,
+            //thumbnailWidth: 80,
+            //thumbnailHeight: 80,
+            //parallelUploads: 20,
+            previewsContainer: "#nUpload",
+            success: function (file, done) {
+                console.log("file");
+                console.log(file);
+                console.log("done");
+                console.log(done);
+                if (file.status == "success") {
+                    ConteoAdjunto += 1;
+                    console.log("success");
+
+                }
+
+            }
+            //accept: function (file, done) {
+            //    console.log(file);
+            //    if (file.name == "justinbieber.jpg") {
+            //        done("Naha, you don't.");
+            //    }
+            //    else { done(); }
+            //}
+        });
+        $("#nUpload").addClass("dropzone needsclick");
+
+        $("#myModal5").css("display", "block");
+        $('body').css('overflow', 'hidden');
+    }
+
+    function ReenviaCorreo() {
+        $("#fondo").removeClass("oculto");
+        $.ajax({
+            type: "POST",
+            url: urlReenviaCorreo,
+            data: { IdProceso: Id },
+            cache: true,
+            dataType: 'json',
+            success: function (result) {
+                if (result.result == "OK") {
+                    $("#fondo").addClass("oculto");
+                    gridObj = $("#Grid").data("ejGrid");
+                    gridObj.refreshContent();
+
+                    $("#myModal6").css("display", "none");
+                } else {
+                    $("#fondo").addClass("oculto");
+                    $("#LblMsg").text(result.result);
+                    $("#myModMsg").css("display", "block");
+                    $("#myModMsg").css("z-index", "999");
+                }
+            }
+        });
+    }
+
+    function TBClick(sender) {
+        if (sender.itemIndex == "1" && sender.itemName == "Adjuntar") {
+            if (sender.model.selectedRowIndex != "-1") {
+                if (sender.model.selectedRecords.length == 1) {
+                    $("#cerrarModal5").removeClass("oculto");
+                    PedirAdjunto(sender.model.selectedRecords[0].IdPanelAsistProceso);
+                } else {
+                    $("#LblMsg").text("Solo se permite un registro");
+                    $("#myModMsg").css("display", "block");
+                }
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#myModMsg").css("display", "block");
+            }
+        }
+        if (sender.itemIndex == "2" && sender.itemName == "Reenviar") {
+            if (sender.model.selectedRowIndex != "-1") {
+                if (sender.model.selectedRecords.length == 1) {
+                    Id = sender.model.selectedRecords[0].IdPanelAsistProceso;
+                    $("#BodyReenvia").load(urlCorreo + "/" + sender.model.selectedRecords[0].IdPanelAsistProceso);
+                    $("#myModal6").css("display", "block");
+                    $('body').css('overflow', 'hidden');
+                    $(".modal-body").css("max-height", ($(window).height() - 100) + "px");
+                    if (sender.model.selectedRecords[0].STS02 == 1 || sender.model.selectedRecords[0].STS04 == 1) {
+                        $("#BtnReenvia").removeClass("oculto");
+                    } else {
+                        $("#BtnReenvia").addClass("oculto");
+                    }
+                } else {
+                    $("#LblMsg").text("Solo se permite un registro");
+                    $("#myModMsg").css("display", "block");
+                }
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#myModMsg").css("display", "block");
+            }
+        }
+    }
+
+    function AbreAdjunto(args) {
+        console.log(args);
+        
+        var tbl = '';
+        $("#AdjuntosBody").empty();
+        tbl = '<table>';
+        for (var i = 0; i < args.id.split("|").length; i++) {
+            tbl += '<tr>';
+            tbl += '<td>';
+            tbl += '<a href="' + args.id.split("|")[i] + '" target="_blank">';
+            tbl += '<img width="40" src="' + imgPdf + '" />';
+            tbl += '</a>';
+            tbl += '</td>';            
+            tbl += '<td>';
+            tbl += args.name.split("|")[i];
+            tbl += '</td>';
+            tbl += '</tr>';
+        }
+        tbl += '</table>';
+        
+        $("#AdjuntosBody").append(tbl);
+        $("#myModal4").css("display", "block");
+    }
+
+    function RDClick(args) {
+        $("#tdNProceso").text(args.data.IdPanelAsistProceso);
+        $("#tdEstado").text(args.data.Estado);
+        $("#tdCreada").text(args.data.FechaCreacion);
+        $("#tdProcesada").text(args.data.FechaFinalizacion);
+        $("#tdFecMaxRad").text(args.data.FechaRadicacion);
+        $("#tdCreador").text(args.data.Creador);
+        $("#tdSolicitante").text(args.data.Solicitante);
+        $("#tdAsistente").text(args.data.Asistente);
+        $("#tdCentroCosto").text(args.data.CodCentroCosto);
+        $("#tdCtaContable").text(args.data.CodCuentaContable);
+        $("#tdNota").text(args.data.NotaSolicitante);
+        $("#tdArea").text(args.data.Area);
+        $("#tdDescGastos").text(args.data.DescripcionGastos);
+        $("#tdVAI").text(args.data.VlrAntesIVA);
+        $("#tdNombreProv").text(args.data.NombreProveedor);
+        
+        $("#tdNitProv").text(args.data.NitProveedor);
+        $("#tdMailProv").text(args.data.CorreoProveedor);
+        $("#tdNPedSAP").text(args.data.NumPedidoSAP);
+        $("#myModal3").css("display", "block");
+    }
+
+    function Create(args) {
+        var tdStr = '';
+        tdStr = '<div>';
+        tdStr += '<div id="pagers" class="npag">';
+        tdStr += '<select onchange="sizeValChange(this)">';
+        tdStr += '<option>25</option>';
+        tdStr += '<option>50</option>';
+        tdStr += '<option>100</option>';
+        tdStr += '</select>';
+        tdStr += '</div>';
+        tdStr += '</div>';
+        $('#Grid div > div.e-pagercontainer').after(tdStr);
+    }
+
+    function checkNumericValue(value) {
+        var pagermodel = $("#Grid").ejGrid("getPager").ejPager("model");
+        return (value == "" || value == 0);
+    }
+
+    function setPageValue(id, val) {
+        $("#" + id).ejNumericTextbox("model").maxValue = val;
+    }
+
+    function sizeValChange(args) {
+        if (checkNumericValue(args.value))
+            return;
+        var model = $("#Grid").ejGrid("model");
+        var model1 = $("#Grid").ejGrid("getPager").ejPager("model");
+        var newLastPage = Math.ceil(model.pageSettings.totalRecordsCount / args.value);
+        $("#Grid").ejGrid({ "pageSettings": { pageSize: parseInt(args.value) } });
+        if (model1.pageCount > newLastPage)
+            $("#counttxt").ejNumericTextbox({ value: newLastPage });
+        else {
+            setPageValue("pagetxt", model1.totalPages);
+            $("#counttxt").ejNumericTextbox({ value: model1.pageCount });
+            flag = true;
+            $("#pagetxt").ejNumericTextbox({ value: model1.currentPage });
+            flag = false;
+        }
+    }
+
+    function Agregar() {
+        $("#nCentroCosto").val('');
+        $("#nIdCentroCosto").val('');
+        $("#nCuentaContable").val('');
+        $("#nIdCuentaContable").val('');
+        $("#nNota").val('');
+        $("#nArea").val('');
+        $("#nIdArea").val('');
+        $("#nDescGastos").val('');
+        $("#nNmeProveedor").val('');        
+        $("#nNitProveedor").val('');
+        $("#nMailProveedor").val('');
+        $("#nSolicitante").val('');
+    
+        //$("#nUpload").removeClass("dz-started");
+        //$("#nUpload").text('');
+        //$("#nUpload").append('<div class="dz-default dz-message"><span>Ponga los archivos aqui.</span></div>');
+        
+        $("#myModal").css("display", "block");
+        $('body').css('overflow', 'hidden');
+        $(".modal-body").css("max-height", ($(window).height() - 130) + "px");
+    }
+
+    function NuevoProceso() {
+        $("#fondo").removeClass("oculto");
+        var continuar = true;
+
+        if ($("#nIdCentroCosto").val() == "" || $("#nIdCuentaContable").val() == "" || $("#nIdArea").val() == "" || $("#nDescGastos").val() == "" || $("#nNmeProveedor").val() == "" || $("#nNitProveedor").val() == "") {
+            $("#fondo").addClass("oculto");
+            continuar = false;
+            $("#LblMsg").text("Faltan datos por llenar");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continuar) {
+            if ($("#nSolicitante").val() != "") {
+                if (!$("#nSolicitante").val().includes("-")) {
+                    $("#fondo").addClass("oculto");
+                    continuar = false;
+                    $("#LblMsg").text("El solicitante no es valido");
+                    $("#myModMsg").css("display", "block");
+                    $("#myModMsg").css("z-index", "999");
+                }
+            }
+        }
+
+        if (continuar){
+            $.ajax({
+                type: "POST",
+                url: urlSave,
+                data: { CentroCosto: $("#nIdCentroCosto").val(), CuentaContable: $("#nIdCuentaContable").val(), Nota: $("#nNota").val(), Area: $("#nIdArea").val(), DescGastos: $("#nDescGastos").val(), NmeProveedor: $("#nNmeProveedor").val(), NitProveedor: $("#nNitProveedor").val(), MailProveedor: $("#nMailProveedor").val(), Solicitante: $("#nSolicitante").val().split('-')[0].trim(), VlrAntesIva: $("#nVlrAntesIVA").val() },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == "OK") {
+                        $("#fondo").addClass("oculto");
+                        //gridObj = $("#Grid").data("ejGrid");
+                        //gridObj.refreshContent();
+                        $("#myModal").css("display", "none");                        
+                        $("#NumProceso").text(result.idp);
+                        $("#NmeAsistente").text(result.asi);
+                        $("#CC").text($("#nCentroCosto").val());
+                        $("#CtaC").text($("#nCuentaContable").val());
+                        $("#DG").text($("#nDescGastos").val());
+                        $("#VAI").text($("#nVlrAntesIVA").val());
+                        $("#Prov").text($("#nNmeProveedor").val());
+                        
+                        $("#Obs").text($("#nNota").val());
+                        $("#cerrarModal5").addClass("oculto");
+                        PedirAdjunto(result.idp);
+                        //$("#myModal2").css("display", "block");
+                    } else {
+                        $("#fondo").addClass("oculto");
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                        $("#myModMsg").css("z-index", "999");
+                    }
+                }
+            });
+        }
+    }
+
+    function QCInfo(args) {
+        if (args.column.field == "STS03" && args.data.STS03 == 1) {
+            args.cell.style.color = "red";
+        }
+    }
+</script>
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+
+<script>
+    $("#myModal").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal").click(function () {
+        $("#myModal").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+    $("#cancelModal").click(function () {
+        $("#myModal").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+
+    $("#myModal2").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal2").click(function () {
+        $("#myModal2").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+    $("#cancelModal2").click(function () {
+        $("#myModal2").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+
+    $("#myModal3").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal3").click(function () {
+        $("#myModal3").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+
+    $("#myModal4").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal4").click(function () {
+        $("#myModal4").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+
+    $("#myModal5").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal5").click(function () {
+        $("#myModal5").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+    $("#cancelModal5").click(function () {
+        $("#myModal5").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+
+    $("#myModal6").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal6").click(function () {
+        $("#myModal6").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+
+    var AutoCentroCosto = '@Url.Content("~/Proceso/CentroCostoComplete")';
+    var AutoCuentaContable = '@Url.Content("~/Proceso/CuentaContableComplete")';
+    var AutoArea = '@Url.Content("~/Proceso/AreaComplete")';
+    var AutoSolicitante = '@Url.Content("~/Proceso/SolicitanteComplete")';
+
+    $(document).ready(function () {
+        $("input:text").focus(function () { $(this).select(); });
+
+        $("#nCentroCosto").autocomplete({
+            source: function (request, response) {
+                $("#nIdCentroCosto").val('');
+                $("#nCuentaContable").attr("disabled", "disabled");
+                $.ajax({
+                    url: AutoCentroCosto,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CCCODE + ' - ' + item.CCDESC, id: item.CCCODE };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nCentroCosto").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nCentroCosto").val(ui.item.label);
+                $("#nIdCentroCosto").val(ui.item.id);
+                $("#nCuentaContable").removeAttr("disabled");                
+                return false;
+            },
+            change: function (event, ui) {
+                if ($("#nIdCentroCosto").val() == "") {
+                    $("#nCentroCosto").val('');
+                }
+                return false;
+            }
+        });
+        $("#nCuentaContable").autocomplete({
+            source: function (request, response) {
+                $("#nIdCuentaContable").val('');
+                $.ajax({
+                    url: AutoCuentaContable,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term, CC: $("#nIdCentroCosto").val()  },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CCDESC, id: item.CCCODE2 };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nCuentaContable").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nCuentaContable").val(ui.item.label);
+                $("#nIdCuentaContable").val(ui.item.id);
+                return false;
+            },
+            change: function (event, ui) {
+                if ($("#nIdCuentaContable").val() == "") {
+                    $("#nCuentaContable").val('');
+                }
+                return false;
+            }
+        });
+        $("#nArea").autocomplete({
+            source: function (request, response) {
+                $("#nIdArea").val('');
+                $.ajax({
+                    url: AutoArea,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Descripcion, id: item.IdPanelAsistArea };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nArea").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nArea").val(ui.item.label);
+                $("#nIdArea").val(ui.item.id);
+                return false;
+            },
+            change: function (event, ui) {
+                if ($("#nIdArea").val() == "") {
+                    $("#nArea").val('');
+                }
+                return false;
+            }
+        });
+        $("#nSolicitante").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: AutoSolicitante,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.UUSR.trim() + " - " + item.UNOM };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nSolicitante").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nSolicitante").val(ui.item.label);
+                return false;
+            }
+        });
+    })
+</script>

@@ -1,0 +1,141 @@
+﻿@model PanelAsistentes.Models.EF.PanelAsistProceso
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Solicitud generada</title>
+</head>
+<body style="margin: 0; padding: 0;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="800" style="border-collapse: collapse;">
+        <tbody>
+            <tr>
+                <td align="center" bgcolor="#F1A831" style="padding: 20px 0 25px 0;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <img src="http://201.234.71.92/BSSCommon/menu/images/natura.png" alt="Natura" width="70" style="display: block;">
+                                </td>
+                                <td style="text-align: center; color: #fff; font-family: Arial, sans-serif; font-size: 28px;">
+                                    Panel de Ordenes de Compra
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;"><b>Solicitud de Proceso</b></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px 0 30px 0;color: #153643; font-family: Arial, sans-serif; font-size: 12px;">
+                                    @if (Model != null)
+                                    {
+                                        <p>
+                                            La solicitud con el <b># P</b><b>@Model.IdPanelAsistProceso</b>, y asignada a la asistente <b>@Model.Asistente</b> ha sido
+
+                                            @if (Model.STS03 == 1)
+                                            {
+                                                <b> Rechazada </b>
+                                            }
+                                            else if (Model.STS02 == 1)
+                                            {
+                                                <b> Procesada </b>
+                                            }
+                                            else if (Model.STS01 == 1)
+                                            {
+                                                <b> Creada </b>
+                                            }
+
+                                        </p>
+                                    }
+                                    <br>
+
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            @if (Model != null)
+                                            {
+                                                if (Model.NumPedidoSAP != null)
+                                                {
+                                                    <tr valign="top"><td style="width: 140px;"><b>N° Pedido Creado</b></td><td>@Model.NumPedidoSAP</td></tr>
+                                                }
+
+                                                <tr valign="top"><td style="width:150px;"><b>Centro de Costos</b></td><td>@Model.CodCentroCosto</td></tr>
+                                                <tr valign="top"><td style="width:150px;"><b>Cuenta Contable</b></td><td>@Model.CodCuentaContable</td></tr>
+                                                <tr valign="top"><td style="width:150px;"><b>Descripcion del Gasto</b></td><td>@Model.DescripcionGastos</td></tr>
+                                                <tr valign="top"><td style="width:150px;"><b>Valor antes de IVA</b></td><td>@Model.VlrAntesIVA</td></tr>
+                                                <tr valign="top"><td style="width:150px;"><b>Proveedor</b></td><td>@Model.NombreProveedor</td></tr>
+
+                                                if (Model.STS02 == 1)
+                                                {
+                                                    <tr valign="top"><td style="width: 180px;"><b>Fecha maxima de radicación</b></td><td>@String.Format("{0:yyyy-MM-dd}", @Model.FechaMaximaRadicacion)</td></tr>
+                                                }
+                                                if (Model.STS02 == 1 || Model.STS03 == 1)
+                                                {
+                                                    <tr valign="top">
+                                                        <td>
+                                                            @if (Model.STS03 == 1)
+                                                            {
+                                                                <b>Motivo Rechazo</b>
+                                                            }
+                                                            else
+                                                            {
+                                                                <b>Observaciones</b>
+                                                            }
+                                                        </td>
+                                                        <td>@Model.NotaAprobador</td>
+                                                    </tr>
+                                                }
+                                                else
+                                                {
+                                                    <tr valign="top"><td><b>Observaciones</b></td><td>@Model.NotaSolicitante</td></tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#323232" style="padding: 30px 30px 30px 30px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="75%" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;">
+                                    ® InfoNatura 2018<br>
+                                </td>
+                                <td align="right">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

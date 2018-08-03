@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InfoNaturaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RMAILX">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Name="LID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LMOD" Type="nvarchar" MaxLength="25" />
+          <Property Name="LREF" Type="nvarchar" MaxLength="50" />
+          <Property Name="LASUNTO" Type="nvarchar" MaxLength="100" />
+          <Property Name="LENVIA" Type="nvarchar" MaxLength="150" />
+          <Property Name="LPARA" Type="nvarchar" MaxLength="2000" />
+          <Property Name="LCOPIA" Type="nvarchar" MaxLength="2000" />
+          <Property Name="LBCC" Type="nvarchar" MaxLength="150" />
+          <Property Name="LCUERPO" Type="nvarchar(max)" />
+          <Property Name="LADJUNTOS" Type="nvarchar(max)" />
+          <Property Name="LURL" Type="nvarchar" MaxLength="2000" />
+          <Property Name="LTITURL" Type="nvarchar" MaxLength="250" />
+          <Property Name="LENVIADO" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS01" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS02" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS03" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS04" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS05" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LCRTDAT" Type="datetime" Nullable="false" />
+          <Property Name="LUPDDAT" Type="datetime" />
+          <Property Name="LMSGERR" Type="nvarchar(max)" />
+          <Property Name="LKEY" Type="nvarchar" MaxLength="50" />
+          <Property Name="LCATALOGO" Type="nchar" MaxLength="20" />
+          <Property Name="LSMTPHOST" Type="nvarchar" MaxLength="250" />
+          <Property Name="LSMTPUSERNAME" Type="nvarchar" MaxLength="250" />
+          <Property Name="LSMTPPASSWORD" Type="nvarchar" MaxLength="250" />
+          <Property Name="LFPROXIMA" Type="datetime" />
+          <Property Name="LSQL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="InfoNaturaModelStoreContainer">
+          <EntitySet Name="RMAILX" EntityType="Self.RMAILX" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InfoNaturaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RMAILX">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Name="LID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LMOD" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LREF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LASUNTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LENVIA" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LPARA" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LCOPIA" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LBCC" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LCUERPO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LADJUNTOS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LURL" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LTITURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LENVIADO" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS01" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS02" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS03" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS04" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LSTS05" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LCRTDAT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LUPDDAT" Type="DateTime" Precision="3" />
+          <Property Name="LMSGERR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LKEY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LCATALOGO" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="LSMTPHOST" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LSMTPUSERNAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LSMTPPASSWORD" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LFPROXIMA" Type="DateTime" Precision="3" />
+          <Property Name="LSQL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="InfoNaturaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RMAILX" EntityType="Self.RMAILX" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InfoNaturaModelStoreContainer" CdmEntityContainer="InfoNaturaEntities">
+          <EntitySetMapping Name="RMAILX">
+            <EntityTypeMapping TypeName="InfoNaturaModel.RMAILX">
+              <MappingFragment StoreEntitySet="RMAILX">
+                <ScalarProperty Name="LID" ColumnName="LID" />
+                <ScalarProperty Name="LMOD" ColumnName="LMOD" />
+                <ScalarProperty Name="LREF" ColumnName="LREF" />
+                <ScalarProperty Name="LASUNTO" ColumnName="LASUNTO" />
+                <ScalarProperty Name="LENVIA" ColumnName="LENVIA" />
+                <ScalarProperty Name="LPARA" ColumnName="LPARA" />
+                <ScalarProperty Name="LCOPIA" ColumnName="LCOPIA" />
+                <ScalarProperty Name="LBCC" ColumnName="LBCC" />
+                <ScalarProperty Name="LCUERPO" ColumnName="LCUERPO" />
+                <ScalarProperty Name="LADJUNTOS" ColumnName="LADJUNTOS" />
+                <ScalarProperty Name="LURL" ColumnName="LURL" />
+                <ScalarProperty Name="LTITURL" ColumnName="LTITURL" />
+                <ScalarProperty Name="LENVIADO" ColumnName="LENVIADO" />
+                <ScalarProperty Name="LSTS01" ColumnName="LSTS01" />
+                <ScalarProperty Name="LSTS02" ColumnName="LSTS02" />
+                <ScalarProperty Name="LSTS03" ColumnName="LSTS03" />
+                <ScalarProperty Name="LSTS04" ColumnName="LSTS04" />
+                <ScalarProperty Name="LSTS05" ColumnName="LSTS05" />
+                <ScalarProperty Name="LCRTDAT" ColumnName="LCRTDAT" />
+                <ScalarProperty Name="LUPDDAT" ColumnName="LUPDDAT" />
+                <ScalarProperty Name="LMSGERR" ColumnName="LMSGERR" />
+                <ScalarProperty Name="LKEY" ColumnName="LKEY" />
+                <ScalarProperty Name="LCATALOGO" ColumnName="LCATALOGO" />
+                <ScalarProperty Name="LSMTPHOST" ColumnName="LSMTPHOST" />
+                <ScalarProperty Name="LSMTPUSERNAME" ColumnName="LSMTPUSERNAME" />
+                <ScalarProperty Name="LSMTPPASSWORD" ColumnName="LSMTPPASSWORD" />
+                <ScalarProperty Name="LFPROXIMA" ColumnName="LFPROXIMA" />
+                <ScalarProperty Name="LSQL" ColumnName="LSQL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

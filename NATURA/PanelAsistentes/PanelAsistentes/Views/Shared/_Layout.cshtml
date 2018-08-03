@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Panel de Ordenes de Compra</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/ej/web/material/ej.web.all.min.css")
+    @*@Scripts.Render("~/Scripts/jquery-3.1.1.min.js")*@
+    @Scripts.Render("~/Scripts/jquery-2.1.4.min.js")
+    @Scripts.Render("~/Scripts/jsrender.min.js")
+    @Scripts.Render("~/Scripts/ej/ej.web.all.min.js")
+    @Scripts.Render("~/Scripts/menumaker.min.js")
+    @Scripts.Render("~/Scripts/script.js")
+    @Scripts.Render("~/Scripts/JSGrid.js")
+    @Styles.Render("~/Content/bssMenu.css")
+    @Styles.Render("~/Content/StyleModalDragDrop.css")
+    @Styles.Render("~/Content/StyleGrid.css")
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <div id="HMENU">
+        @Html.Action("Index", "Menu")
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer style="font-size:.8em;">
+        <div class="container body-content">
+            <hr />
+            <p><span><img src="~/Content/img/LogoBSS.png" width="60" style="margin-top:-20px;margin-right:5px;" /></span>Desarrollado por BSS Ltda.&copy; @DateTime.Now.Year - Panel de Ordenes de Compra</p>
+        </div>
+    </footer>
+
+    <div class="alineadoCentro">
+        <div id="fondo" class="foscuro oculto">
+            <div class="contespera">
+                <div>
+                    <img src="~/Content/img/25.gif" />
+                </div>
+                @*<div>CARGANDO ...</div>*@
+            </div>
+        </div>
+        <div id="myModMsg" class="modalu">
+            <div class="fondomodal">
+            </div>
+            <div class="modal-dialogu">
+                <div class="modal-content fondoBody">
+                    <div class="modal-header">
+                        <button id="cerrarModMsg" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Panel de Ordenes de Compra</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label id="LblMsg" style="margin-top:20px;"></label>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cancelModMsg" type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myModMsgCon" class="modalu">
+            <div class="fondomodal">
+            </div>
+            <div class="modal-dialogu">
+                <div class="modal-content fondoBody">
+                    <div class="modal-header">
+                        <button id="cerrarModMsgCon" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Panel de Ordenes de Compra</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <label>Esta seguro de eliminar el registro seleccionado</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="ConfirmaDel()" data-dismiss="modal">Aceptar</button>
+                        <button id="cancelModMsgCon" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.EJ().ScriptManager()
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+
+        $("#myModMsg").draggable({
+            handle: ".modal-header"
+        });
+        $("#cerrarModMsg").click(function () {
+            $("#myModMsg").css("display", "none");
+        });
+        $("#cancelModMsg").click(function () {
+            $("#myModMsg").css("display", "none");
+        });
+
+        $("#myModMsgCon").draggable({
+            handle: ".modal-header"
+        });
+        $("#cerrarModMsgCon").click(function () {
+            $("#myModMsgCon").css("display", "none");
+        });
+        $("#cancelModMsgCon").click(function () {
+            $("#myModMsgCon").css("display", "none");
+        });
+
+        $(window).resize(function () {
+            $(".modal-body").css("max-height", ($(window).height() - 150) + "px");
+        });
+
+    </script>
+</body>
+</html>

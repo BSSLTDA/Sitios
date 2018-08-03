@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InfoNaturaModelStoreContainer" CdmEntityContainer="InfoNaturaEntities">
+    <EntitySetMapping Name="RMAILX">
+      <EntityTypeMapping TypeName="InfoNaturaModel.RMAILX">
+        <MappingFragment StoreEntitySet="RMAILX">
+          <ScalarProperty Name="LID" ColumnName="LID" />
+          <ScalarProperty Name="LMOD" ColumnName="LMOD" />
+          <ScalarProperty Name="LREF" ColumnName="LREF" />
+          <ScalarProperty Name="LASUNTO" ColumnName="LASUNTO" />
+          <ScalarProperty Name="LENVIA" ColumnName="LENVIA" />
+          <ScalarProperty Name="LPARA" ColumnName="LPARA" />
+          <ScalarProperty Name="LCOPIA" ColumnName="LCOPIA" />
+          <ScalarProperty Name="LBCC" ColumnName="LBCC" />
+          <ScalarProperty Name="LCUERPO" ColumnName="LCUERPO" />
+          <ScalarProperty Name="LADJUNTOS" ColumnName="LADJUNTOS" />
+          <ScalarProperty Name="LURL" ColumnName="LURL" />
+          <ScalarProperty Name="LTITURL" ColumnName="LTITURL" />
+          <ScalarProperty Name="LENVIADO" ColumnName="LENVIADO" />
+          <ScalarProperty Name="LSTS01" ColumnName="LSTS01" />
+          <ScalarProperty Name="LSTS02" ColumnName="LSTS02" />
+          <ScalarProperty Name="LSTS03" ColumnName="LSTS03" />
+          <ScalarProperty Name="LSTS04" ColumnName="LSTS04" />
+          <ScalarProperty Name="LSTS05" ColumnName="LSTS05" />
+          <ScalarProperty Name="LCRTDAT" ColumnName="LCRTDAT" />
+          <ScalarProperty Name="LUPDDAT" ColumnName="LUPDDAT" />
+          <ScalarProperty Name="LMSGERR" ColumnName="LMSGERR" />
+          <ScalarProperty Name="LKEY" ColumnName="LKEY" />
+          <ScalarProperty Name="LCATALOGO" ColumnName="LCATALOGO" />
+          <ScalarProperty Name="LSMTPHOST" ColumnName="LSMTPHOST" />
+          <ScalarProperty Name="LSMTPUSERNAME" ColumnName="LSMTPUSERNAME" />
+          <ScalarProperty Name="LSMTPPASSWORD" ColumnName="LSMTPPASSWORD" />
+          <ScalarProperty Name="LFPROXIMA" ColumnName="LFPROXIMA" />
+          <ScalarProperty Name="LSQL" ColumnName="LSQL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

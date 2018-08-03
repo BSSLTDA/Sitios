@@ -1,0 +1,696 @@
+﻿@using PanelAsistentes.Models.EF;
+
+@{
+    ViewBag.Title = "Procesos";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    @(Html.EJ().Grid<PanelAsistProceso>("Grid")
+                                                                .Datasource(ds => ds.URL(@Url.Content("~/Proceso/DSProcesoAst")).Adaptor(AdaptorType.UrlAdaptor))
+                                                                .EnableAltRow()
+                                                                .MinWidth(120)
+                                                                .AllowScrolling()
+                                                                .IsResponsive(true)
+                                                                .EnableResponsiveRow(true)
+                                                                .ScrollSettings(col => { col.Width("100%").Height("auto"); })
+                                                                .ToolbarSettings(toolBar =>
+                                                                    toolBar.ShowToolbar()
+                                                                    .CustomToolbarItems(new List<object>() {
+    new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Creado" },
+    new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Rechazar" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" }
+                                                                    }))
+
+                                                                .Locale("es-CO")
+                                                                .PageSettings(p => { p.PageCount(7).PageSize(25); })
+                                                                .AllowPaging()
+                                                                .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+                                                                .AllowFiltering()
+                                                                .AllowSorting()
+                                                                .Columns(col =>
+                                                                {
+                                                                    col.Width(50).Template("#TmpAdjunto").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(70).Field("IdPanelAsistProceso").TextAlign(TextAlign.Left).HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(80).Field("Estado").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(110).Field("FechaCrea").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(110).Field("FechaCierra").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(150).Field("FechaMaximaRadicacion").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(280).Field("Creador").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(280).Field("Solicitante").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(280).Field("Asistente").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(250).Field("CodCentroCosto").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(250).Field("CodCuentaContable").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(250).Field("NotaSolicitante").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(250).Field("Area").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(250).Field("DescripcionGastos").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(120).Field("VlrAntesIVA").Format("{0:N0}").TextAlign(TextAlign.Right).HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(250).Field("NombreProveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(150).Field("NitProveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(200).Field("CorreoProveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(130).Field("NumPedidoSAP").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(130).Field("NumeroReenvios").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Field("STS01").Visible(false).Add();
+                                                                    col.Field("STS02").Visible(false).Add();
+                                                                    col.Field("STS03").Visible(false).Add();
+                                                                    col.Field("STS04").Visible(false).Add();
+                                                                    col.Field("STS05").Visible(false).Add();
+                                                                })
+                                                                .ClientSideEvents(eve => eve.Create("Create").QueryCellInfo("QCInfo").ToolbarClick("TBClick").RecordDoubleClick("RDClick"))
+    )
+    <script type="text/x-jsrender" id="Creado">
+        <a id="aCustomLib" class="iconCus">
+            <img width="14" src='@Url.Content("~/Content/img/edit.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Rechazar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="14" src='@Url.Content("~/Content/img/rechazar_doc.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Reenviar">
+        <a id="aCustomRee" class="iconCus">
+            <img width="20" src='@Url.Content("~/Content/img/mail.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="TmpAdjunto">
+        {{if Adjunto != null }}
+        {{if Adjunto.includes("|")}}
+        <a id="{{:Adjunto}}" name="{{:AdjuntoNme}}" onclick="AbreAdjunto(this)">
+            <img width="20" src='@Url.Content("~/Content/img/pdflist.svg")' />
+        </a>
+        {{else}}
+        <a href="{{:Adjunto}}" target="_blank">
+            <img width="20" src='@Url.Content("~/Content/img/pdf2.svg")' />
+        </a>
+        {{/if}}
+        {{/if}}
+    </script>
+</div>
+
+<div class="alineadoCentro">
+    <div id="myModal" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Rechazar</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td><label>Observación</label></td>
+                            <td>
+                                <textarea id="rObservacion" class="ctext"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="ProcesoRechazado()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal2" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal2" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Pedido Creado</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td><label>Número Pedido SAP</label></td>
+                            <td>
+                                <input id="cNumero" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Fecha Maxima radicación</label></td>
+                            <td>
+                                <input id="cFecha" placeholder="2018-01-01" class="ctext" readonly="readonly" />
+                                @*@Html.EJ().DatePicker("cFecha").Locale("es-CO").WatermarkText("Seleccione fecha").ButtonText("Hoy").Value(DateTime.Now).DateFormat("yyyy-MM-dd").CssClass("fechas")*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Observación</label></td>
+                            <td style="width:320px">
+                                <textarea id="cObservacion" class="ctext"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="ProcesoCreado()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal2" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal3" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal3" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Detalle Proceso</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+
+                        <tbody>
+                            <tr>
+                                <th>N° Proceso</th>
+                                <td id="tdNProceso"></td>
+                                <th>Estado</th>
+                                <td id="tdEstado"></td>
+                            </tr>
+                            <tr>
+                                <th>Creada</th>
+                                <td id="tdCreada"></td>
+                                <th>Procesada</th>
+                                <td id="tdProcesada"></td>
+                            </tr>
+                            <tr>
+                                <th>Fec. Max. Radicación</th>
+                                <td id="tdFecMaxRad"></td>
+                                <th>Creador</th>
+                                <td id="tdCreador"></td>
+                            </tr>
+                            <tr>
+                                <th>Solicitante</th>
+                                <td id="tdSolicitante"></td>
+                                <th>Asistente</th>
+                                <td id="tdAsistente"></td>
+                            </tr>
+                            <tr>
+                                <th>Centro de Costo</th>
+                                <td id="tdCentroCosto"></td>
+                                <th>Cuenta Contable</th>
+                                <td id="tdCtaContable"></td>
+                            </tr>
+                            <tr>
+                                <th>Nota</th>
+                                <td id="tdNota"></td>
+                                <th>Area</th>
+                                <td id="tdArea"></td>
+                            </tr>
+                            <tr>
+                                <th>Descripción gastos</th>
+                                <td id="tdDescGastos"></td>
+                                <th>Vlr. antes IVA</th>
+                                <td id="tdVAI"></td>
+                            </tr>
+                            <tr>
+                                <th>Nombre Proveedor</th>
+                                <td id="tdNombreProv"></td>
+                                <th>Nit Proveedor</th>
+                                <td id="tdNitProv"></td>
+                            </tr>
+                            <tr>
+                                <th> Correo Proveedor</th>
+                                <td id="tdMailProv"></td>
+                                <th>N° Ped. SAP</th>
+                                <td id="tdNPedSAP"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal4" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal4" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Archivos adjuntos</h4>
+                </div>
+                <div id="AdjuntosBody" class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal6" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal6" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Detalle Correo</h4>
+                </div>
+                <div id="BodyReenvia" class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button id="BtnReenvia" type="button" class="btn btn-primary oculto" onclick="ReenviaCorreo()" data-dismiss="modal">Reenviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var urlRechazar = '@Url.Content("~/Proceso/RefuseProcess")';
+    var urlFinalizar = '@Url.Content("~/Proceso/EndProcess")';   
+    var idProc = "";
+    var imgPdf = '@Url.Content("~/Content/img/pdf2.svg")';
+    var urlCorreo = '@Url.Content("~/Proceso/CorreoProceso")';
+    var urlReenviaCorreo = '@Url.Content("~/Proceso/ReenviarCorreo")';
+
+    function ReenviaCorreo() {
+        $("#fondo").removeClass("oculto");
+        $.ajax({
+            type: "POST",
+            url: urlReenviaCorreo,
+            data: { IdProceso: idProc },
+            cache: true,
+            dataType: 'json',
+            success: function (result) {
+                if (result.result == "OK") {
+                    $("#fondo").addClass("oculto");
+                    gridObj = $("#Grid").data("ejGrid");
+                    gridObj.refreshContent();
+
+                    $("#myModal6").css("display", "none");
+                } else {
+                    $("#fondo").addClass("oculto");
+                    $("#LblMsg").text(result.result);
+                    $("#myModMsg").css("display", "block");
+                    $("#myModMsg").css("z-index", "999");
+                }
+            }
+        });
+    }
+
+    function AbreAdjunto(args) {
+        console.log(args);        
+        var tbl = '';
+        $("#AdjuntosBody").empty();
+        tbl = '<table>';
+        for (var i = 0; i < args.id.split("|").length; i++) {
+            tbl += '<tr>';
+            tbl += '<td>';
+            tbl += '<a href="' + args.id.split("|")[i] + '" target="_blank">';
+            tbl += '<img width="40" src="' + imgPdf + '" />';
+            tbl += '</a>';
+            tbl += '</td>';            
+            tbl += '<td>';
+            tbl += args.name.split("|")[i];
+            tbl += '</td>';
+            tbl += '</tr>';
+        }
+        tbl += '</table>';
+        
+        $("#AdjuntosBody").append(tbl);
+        $("#myModal4").css("display", "block");
+    }
+
+    function RDClick(args) {
+        $("#tdNProceso").text(args.data.IdPanelAsistProceso);
+        $("#tdEstado").text(args.data.Estado);
+        $("#tdCreada").text(args.data.FechaCreacion);
+        $("#tdProcesada").text(args.data.FechaFinalizacion);
+        $("#tdFecMaxRad").text(args.data.FechaRadicacion);
+        $("#tdCreador").text(args.data.Creador);
+        $("#tdSolicitante").text(args.data.Solicitante);
+        $("#tdAsistente").text(args.data.Asistente);
+        $("#tdCentroCosto").text(args.data.CodCentroCosto);
+        $("#tdCtaContable").text(args.data.CodCuentaContable);
+        $("#tdNota").text(args.data.NotaSolicitante);
+        $("#tdArea").text(args.data.Area);
+        $("#tdDescGastos").text(args.data.DescripcionGastos);
+        $("#tdVAI").text(args.data.VlrAntesIVA);
+        $("#tdNombreProv").text(args.data.NombreProveedor);
+        
+        $("#tdNitProv").text(args.data.NitProveedor);
+        $("#tdMailProv").text(args.data.CorreoProveedor);
+        $("#tdNPedSAP").text(args.data.NumPedidoSAP);
+        $("#myModal3").css("display", "block");
+    }
+
+    function TBClick(args) {
+        if (args.itemIndex == "0" && args.itemName == "Creado") {
+            if (args.model.selectedRowIndex != "-1") {
+                idProc = args.model.selectedRecords[0].IdPanelAsistProceso;
+                $("#cNumero").val('');
+                $("#cFecha").val('');
+                $("#cObservacion").val('');
+                $("#myModal2").css("display", "block");
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+                $("#cancelModMsg").focus();
+            }
+        }
+        if (args.itemIndex == "1" && args.itemName == "Rechazar") {
+            if (args.model.selectedRowIndex != "-1") {
+                idProc = args.model.selectedRecords[0].IdPanelAsistProceso;
+                $("#rObservacion").val('');
+                $("#myModal").css("display", "block");
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+                $("#cancelModMsg").focus();
+            }
+        }
+        if (args.itemIndex == "2" && args.itemName == "Reenviar") {
+            if (args.model.selectedRowIndex != "-1") {
+                if (args.model.selectedRecords.length == 1) {
+                    idProc = args.model.selectedRecords[0].IdPanelAsistProceso;
+                    $("#BodyReenvia").load(urlCorreo + "/" + args.model.selectedRecords[0].IdPanelAsistProceso);
+                    $("#myModal6").css("display", "block");
+                    $('body').css('overflow', 'hidden');
+                    $(".modal-body").css("max-height", ($(window).height() - 100) + "px");
+                    if (args.model.selectedRecords[0].STS02 == 1 || args.model.selectedRecords[0].STS04 == 1) {
+                        $("#BtnReenvia").removeClass("oculto");
+                    } else {
+                        $("#BtnReenvia").addClass("oculto");
+                    }
+                } else {
+                    $("#LblMsg").text("Solo se permite un registro");
+                    $("#myModMsg").css("display", "block");
+                }
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#myModMsg").css("display", "block");
+            }
+        }
+    }
+
+    function Create(args) {
+        var tdStr = '';
+        tdStr = '<div>';
+        tdStr += '<div id="pagers" class="npag">';
+        tdStr += '<select onchange="sizeValChange(this)">';
+        tdStr += '<option>25</option>';
+        tdStr += '<option>50</option>';
+        tdStr += '<option>100</option>';
+        tdStr += '</select>';
+        tdStr += '</div>';
+        tdStr += '</div>';
+        $('#Grid div > div.e-pagercontainer').after(tdStr);
+    }
+
+    function checkNumericValue(value) {
+        var pagermodel = $("#Grid").ejGrid("getPager").ejPager("model");
+        return (value == "" || value == 0);
+    }
+
+    function setPageValue(id, val) {
+        $("#" + id).ejNumericTextbox("model").maxValue = val;
+    }
+
+    function sizeValChange(args) {
+        if (checkNumericValue(args.value))
+            return;
+        var model = $("#Grid").ejGrid("model");
+        var model1 = $("#Grid").ejGrid("getPager").ejPager("model");
+        var newLastPage = Math.ceil(model.pageSettings.totalRecordsCount / args.value);
+        $("#Grid").ejGrid({ "pageSettings": { pageSize: parseInt(args.value) } });
+        if (model1.pageCount > newLastPage)
+            $("#counttxt").ejNumericTextbox({ value: newLastPage });
+        else {
+            setPageValue("pagetxt", model1.totalPages);
+            $("#counttxt").ejNumericTextbox({ value: model1.pageCount });
+            flag = true;
+            $("#pagetxt").ejNumericTextbox({ value: model1.currentPage });
+            flag = false;
+        }
+    }
+
+    function QCInfo(args) {
+        if (args.column.field == "STS03" && args.data.STS03 == 1) {
+            args.cell.style.color = "red";
+        }
+    }
+
+    function ProcesoRechazado() {
+        var continua = true;
+
+        if ($("#rObservacion").val() == ""){
+            continua = false;
+            $("#LblMsg").text("La observación es obligatoria");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+            $("#cancelModMsg").focus();
+        }
+
+        if (continua){
+            $.ajax({
+                type: "POST",
+                url: urlRechazar,
+                data: { Nota: $("#rObservacion").val(), IdProceso: idProc },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == "OK") {
+                        gridObj = $("#Grid").data("ejGrid");
+                        gridObj.refreshContent();
+                        $("#myModal").css("display", "none");
+                    } else {
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                        $("#myModMsg").css("z-index", "999");
+                        $("#cancelModMsg").focus();
+                    }
+                }
+            });
+        }
+    }
+
+    function ProcesoCreado() {
+        var continuar = true;
+        if ($("#cNumero").val() == ""){
+            $("#LblMsg").text("El Número Pedido SAP es obligatorio");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+            $("#cancelModMsg").focus();
+        }
+
+        if (!continuar){
+            if ($("#cFecha").val() == ""){
+                $("#LblMsg").text("La fecha maxima de radicación es obligatoria");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+                $("#cancelModMsg").focus();
+            }
+        }
+
+        if (continuar){
+            $.ajax({
+                type: "POST",
+                url: urlFinalizar,
+                data: { Numero: $("#cNumero").val(), Fecha: $("#cFecha").val(), Nota: $("#cObservacion").val(), IdProceso: idProc },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == "OK") {
+                        gridObj = $("#Grid").data("ejGrid");
+                        gridObj.refreshContent();
+                        $("#myModal2").css("display", "none");
+                        
+                    } else {
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                        $("#myModMsg").css("z-index", "999");
+                        $("#cancelModMsg").focus();
+                    }
+                }
+            });
+        }
+    }
+    
+</script>
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+
+<script>
+
+    $("#myModal").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal").click(function () {
+        $("#myModal").css("display", "none");
+    });
+    $("#cancelModal").click(function () {
+        $("#myModal").css("display", "none");
+    });
+
+    $("#myModal2").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal2").click(function () {
+        $("#myModal2").css("display", "none");
+    });
+    $("#cancelModal2").click(function () {
+        $("#myModal2").css("display", "none");
+    });
+
+    $("#myModal3").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal3").click(function () {
+        $("#myModal3").css("display", "none");
+    });
+
+    $("#myModal4").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal4").click(function () {
+        $("#myModal4").css("display", "none");
+    });
+
+    $("#myModal6").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal6").click(function () {
+        $("#myModal6").css("display", "none");
+        $('body').css('overflow', 'auto');
+    });
+
+    var AutoCentroCosto = '@Url.Content("~/Proceso/CentroCostoComplete")';
+    var AutoCuentaContable = '@Url.Content("~/Proceso/CuentaContableComplete")';
+    var AutoArea = '@Url.Content("~/Proceso/AreaComplete")';
+    var AutoSolicitante = '@Url.Content("~/Proceso/SolicitanteComplete")';
+
+    $(document).ready(function () {
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '&#x3c;Ant',
+            nextText: 'Sig&#x3e;',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+                'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacute;rcoles', 'Jueves', 'Viernes', 'S&aacute;bado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mi&eacute;', 'Juv', 'Vie', 'S&aacute;b'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'S&aacute;'],
+            weekHeader: 'Sm',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+        $("#cFecha").datepicker({
+            appendText: ' Haga click para introducir una fecha', changeMonth: true,
+            changeYear: true });
+        $("input:text").focus(function () { $(this).select(); });
+
+        $("#nCentroCosto").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: AutoCentroCosto,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CCCODE + ' - ' + item.CCDESC, id: item.CCCODE };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nCentroCosto").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nCentroCosto").val(ui.item.label);
+                $("#nIdCentroCosto").val(ui.item.id);
+                return false;
+            }
+        });
+        $("#nCuentaContable").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: AutoCuentaContable,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CCDESC, id: item.CCCODE2 };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nCuentaContable").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nCuentaContable").val(ui.item.label);
+                $("#nIdCuentaContable").val(ui.item.id);
+                return false;
+            }
+        });
+        $("#nArea").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: AutoArea,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Descripcion, id: item.IdPanelAsistArea };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nArea").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nArea").val(ui.item.label);
+                $("#nIdArea").val(ui.item.id);
+                return false;
+            }
+        });
+        $("#nSolicitante").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: AutoSolicitante,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.UUSR.trim() + " - " + item.UNOM };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nSolicitante").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nSolicitante").val(ui.item.label);
+                return false;
+            }
+        });
+    })
+</script>

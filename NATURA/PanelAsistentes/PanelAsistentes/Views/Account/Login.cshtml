@@ -1,0 +1,104 @@
+﻿@model PanelAsistentes.Models.MdlLogin
+
+@{
+    ViewBag.Title = "Iniciar Sesión";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            <h4>Digite un Usuario y contraseña para Iniciar Sesión.</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.User, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10" style="margin-bottom:5px;">
+                    @Html.TextBoxFor(m => m.User, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.User, "", new { @class = "text-danger", @onkeypress = "return PresionaTecla(event)" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10" style="margin-bottom:5px;">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @onkeypress = "return PresionaTecla(event)" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="cursor:pointer">                    
+                    <a onclick="Olvide()">Olvide mi contraseña</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" onclick="Inicia()" value="Iniciar Sesión" class="btn btn-default" />
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    var urlLogin = '@Url.Content("~/Account/Logueo")';
+    var urlRecupera = '@Url.Content("~/Account/OlvidePass")';
+    var urlInicio = '@Url.Content("~/")';    
+    var urlContratos = '@Url.Content("~/Contrato/Index")';
+    var urlPUsuario = '@Url.Content("~/Proceso/Usuario")';
+    var urlPJefe = '@Url.Content("~/Proceso/Index")';
+    var urlPAsistente = '@Url.Content("~/Proceso/Asistente")';
+
+    function Inicia() {
+        $("#fondo").removeClass("oculto");
+        var array = {
+            User: $("#User").val(),
+            Password: $("#Password").val()
+        };        
+        $.ajax({
+            type: "POST",
+            url: urlLogin,
+            data: { model: array, returnUrl: null, donde: null },
+            cache: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.result == 'OK') {
+                    //$("#fondo").addClass("oculto");
+                    //window.location.href = urlInicio;
+                    switch (result.Tipo){
+                        case "ASISTENTE":
+                            window.location.href = urlPAsistente;
+                            break;
+                        case "JEFE":
+                            window.location.href = urlPJefe;
+                            break;
+                        case "SRGUSR":
+                            window.location.href = urlPUsuario;
+                            break;
+                        case "JURIDICO":
+                            window.location.href = urlContratos;
+                            break;
+                    }
+                }
+                else {
+                    $("#fondo").addClass("oculto");
+                    $("#LblMsg").text(result.result);
+                    $("#myModMsg").css("display", "block");
+                    $("#myModMsg").css("z-index", "999");
+                }
+            }
+        });
+    }
+
+    function Olvide() {
+        window.location.href = urlRecupera;
+    }
+
+    function PresionaTecla(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode == 13) {
+            Inicia();
+        }
+        return true;
+    }
+</script>

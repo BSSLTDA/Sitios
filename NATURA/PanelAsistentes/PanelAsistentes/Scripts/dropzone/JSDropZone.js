@@ -1,0 +1,10 @@
+﻿Dropzone.prototype.defaultOptions.dictDefaultMessage = "Ponga los archivos aqui.";
+Dropzone.prototype.defaultOptions.dictFallbackMessage = "Su navegador no soporta la carga de archivos de arrastrar y soltar.";
+Dropzone.prototype.defaultOptions.dictFallbackText = "Por favor , utilice el formulario de reserva de abajo para subir sus archivos al igual que en los viejos tiempos.";
+Dropzone.prototype.defaultOptions.dictFileTooBig = "El archivo es muy grande ({{filesize}}MiB). Tamaño maximo= {{maxFilesize}}MiB.";
+Dropzone.prototype.defaultOptions.dictInvalidFileType = "No se puede cargar este tipo de archivo.";
+Dropzone.prototype.defaultOptions.dictResponseError = "El servidor respondio con el siguiente código {{statusCode}}.";
+Dropzone.prototype.defaultOptions.dictCancelUpload = "Cancelar Carga";
+Dropzone.prototype.defaultOptions.dictCancelUploadConfirmation = "¿Está seguro de cancelar el cargue?";
+Dropzone.prototype.defaultOptions.dictRemoveFile = "Eliminar archivo";
+Dropzone.prototype.defaultOptions.dictMaxFilesExceeded = "No se puede cargar más archivos.";

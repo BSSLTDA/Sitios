@@ -1,0 +1,39 @@
+﻿
+@{
+                ViewBag.Title = "Index";
+}
+
+<h2>Enviar Correo</h2>
+
+<form method="post" enctype="multipart/form-data" style="width:600px;">
+    <div>
+        <label>Receiver Email </label>
+        <input class="form-control" type="email" name="para" placeholder="Email" />
+    </div>
+    <br />
+    <div>
+        <label>Subject </label>
+        <input class="form-control" type="text" name="asunto" placeholder="Subject" />
+    </div>
+    <br />
+    <div>
+        <label>Message </label>
+        <br />
+        <textarea style="width:600px;height:150px;" name="mensaje" placeholder="Escriba su mensaje"></textarea>
+    </div>
+    <br />
+    <div>
+        <input type="file" class="btn btn-default" name="fichero" />
+    </div>
+    <br />
+    <div>
+        <button id="enviar" class="btn btn-primary" type="submit">Enviar Correo</button>
+    </div>
+</form>
+<h3 style="color:blue;">
+    @ViewBag.Mensaje
+</h3>
+
+<h3 style="color:red;">
+    @ViewBag.Error
+</h3>

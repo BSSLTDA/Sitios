@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SRGModelStoreContainer" CdmEntityContainer="SRGEntities">
+    <EntitySetMapping Name="PanelAsistArea">
+      <EntityTypeMapping TypeName="SRGModel.PanelAsistArea">
+        <MappingFragment StoreEntitySet="PanelAsistArea">
+          <ScalarProperty Name="IdPanelAsistArea" ColumnName="IdPanelAsistArea" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Responsables" ColumnName="Responsables" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PanelAsistCarga">
+      <EntityTypeMapping TypeName="SRGModel.PanelAsistCarga">
+        <MappingFragment StoreEntitySet="PanelAsistCarga">
+          <ScalarProperty Name="IdPanelAsistCarga" ColumnName="IdPanelAsistCarga" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Asistente" ColumnName="Asistente" />
+          <ScalarProperty Name="Carga01" ColumnName="Carga01" />
+          <ScalarProperty Name="Carga02" ColumnName="Carga02" />
+          <ScalarProperty Name="Carga03" ColumnName="Carga03" />
+          <ScalarProperty Name="Carga04" ColumnName="Carga04" />
+          <ScalarProperty Name="Carga05" ColumnName="Carga05" />
+          <ScalarProperty Name="Carga06" ColumnName="Carga06" />
+          <ScalarProperty Name="Carga07" ColumnName="Carga07" />
+          <ScalarProperty Name="Carga08" ColumnName="Carga08" />
+          <ScalarProperty Name="Carga09" ColumnName="Carga09" />
+          <ScalarProperty Name="Carga10" ColumnName="Carga10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RCAU">
+      <EntityTypeMapping TypeName="SRGModel.RCAU">
+        <MappingFragment StoreEntitySet="RCAU">
+          <ScalarProperty Name="USTS" ColumnName="USTS" />
+          <ScalarProperty Name="UTIPO" ColumnName="UTIPO" />
+          <ScalarProperty Name="UUSR" ColumnName="UUSR" />
+          <ScalarProperty Name="UMOD" ColumnName="UMOD" />
+          <ScalarProperty Name="UGRP01" ColumnName="UGRP01" />
+          <ScalarProperty Name="UGRP02" ColumnName="UGRP02" />
+          <ScalarProperty Name="UGRP03" ColumnName="UGRP03" />
+          <ScalarProperty Name="UGRP" ColumnName="UGRP" />
+          <ScalarProperty Name="UTRA" ColumnName="UTRA" />
+          <ScalarProperty Name="UVEND" ColumnName="UVEND" />
+          <ScalarProperty Name="UPASS" ColumnName="UPASS" />
+          <ScalarProperty Name="UNOM" ColumnName="UNOM" />
+          <ScalarProperty Name="UEMAIL" ColumnName="UEMAIL" />
+          <ScalarProperty Name="UFECCAD" ColumnName="UFECCAD" />
+          <ScalarProperty Name="UDIAS" ColumnName="UDIAS" />
+          <ScalarProperty Name="UCATEG1" ColumnName="UCATEG1" />
+          <ScalarProperty Name="UCATEG2" ColumnName="UCATEG2" />
+          <ScalarProperty Name="UCATEG3" ColumnName="UCATEG3" />
+          <ScalarProperty Name="UCATEG4" ColumnName="UCATEG4" />
+          <ScalarProperty Name="UCATEG5" ColumnName="UCATEG5" />
+          <ScalarProperty Name="UVIAPAG" ColumnName="UVIAPAG" />
+          <ScalarProperty Name="UANILL" ColumnName="UANILL" />
+          <ScalarProperty Name="USFCNS" ColumnName="USFCNS" />
+          <ScalarProperty Name="UBODS" ColumnName="UBODS" />
+          <ScalarProperty Name="UQRY" ColumnName="UQRY" />
+          <ScalarProperty Name="UTU" ColumnName="UTU" />
+          <ScalarProperty Name="UEMAILBAK" ColumnName="UEMAILBAK" />
+          <ScalarProperty Name="UPERFIL" ColumnName="UPERFIL" />
+          <ScalarProperty Name="USTYLE" ColumnName="USTYLE" />
+          <ScalarProperty Name="USEPDEC" ColumnName="USEPDEC" />
+          <ScalarProperty Name="USEPLST" ColumnName="USEPLST" />
+          <ScalarProperty Name="UUPDDAT" ColumnName="UUPDDAT" />
+          <ScalarProperty Name="UINGR" ColumnName="UINGR" />
+          <ScalarProperty Name="UPRF400" ColumnName="UPRF400" />
+          <ScalarProperty Name="UNUMDOC" ColumnName="UNUMDOC" />
+          <ScalarProperty Name="UNUMTC" ColumnName="UNUMTC" />
+          <ScalarProperty Name="UBANCO" ColumnName="UBANCO" />
+          <ScalarProperty Name="UDIGVER" ColumnName="UDIGVER" />
+          <ScalarProperty Name="UUDFA01" ColumnName="UUDFA01" />
+          <ScalarProperty Name="UUDFA02" ColumnName="UUDFA02" />
+          <ScalarProperty Name="UUDFA03" ColumnName="UUDFA03" />
+          <ScalarProperty Name="UUDFN01" ColumnName="UUDFN01" />
+          <ScalarProperty Name="UUDFN02" ColumnName="UUDFN02" />
+          <ScalarProperty Name="UUDFN03" ColumnName="UUDFN03" />
+          <ScalarProperty Name="UFLAG01" ColumnName="UFLAG01" />
+          <ScalarProperty Name="UFLAG02" ColumnName="UFLAG02" />
+          <ScalarProperty Name="UFLAG03" ColumnName="UFLAG03" />
+          <ScalarProperty Name="UUPLFILE1" ColumnName="UUPLFILE1" />
+          <ScalarProperty Name="UUPLFILE2" ColumnName="UUPLFILE2" />
+          <ScalarProperty Name="UTOKEN" ColumnName="UTOKEN" />
+          <ScalarProperty Name="UUSRABR" ColumnName="UUSRABR" />
+          <ScalarProperty Name="UPLANT" ColumnName="UPLANT" />
+          <ScalarProperty Name="UUEN" ColumnName="UUEN" />
+          <ScalarProperty Name="UWHS" ColumnName="UWHS" />
+          <ScalarProperty Name="UACC00" ColumnName="UACC00" />
+          <ScalarProperty Name="UACC01" ColumnName="UACC01" />
+          <ScalarProperty Name="UACC02" ColumnName="UACC02" />
+          <ScalarProperty Name="UACC03" ColumnName="UACC03" />
+          <ScalarProperty Name="UACC04" ColumnName="UACC04" />
+          <ScalarProperty Name="UACC05" ColumnName="UACC05" />
+          <ScalarProperty Name="UACC06" ColumnName="UACC06" />
+          <ScalarProperty Name="UACC07" ColumnName="UACC07" />
+          <ScalarProperty Name="UACC08" ColumnName="UACC08" />
+          <ScalarProperty Name="UACC09" ColumnName="UACC09" />
+          <ScalarProperty Name="UACC10" ColumnName="UACC10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RFADJUNTO">
+      <EntityTypeMapping TypeName="SRGModel.RFADJUNTO">
+        <MappingFragment StoreEntitySet="RFADJUNTO">
+          <ScalarProperty Name="FID" ColumnName="FID" />
+          <ScalarProperty Name="FANUMREG" ColumnName="FANUMREG" />
+          <ScalarProperty Name="FAPROCNUM" ColumnName="FAPROCNUM" />
+          <ScalarProperty Name="FAPROCLIN" ColumnName="FAPROCLIN" />
+          <ScalarProperty Name="FACATEG01" ColumnName="FACATEG01" />
+          <ScalarProperty Name="FACATEG02" ColumnName="FACATEG02" />
+          <ScalarProperty Name="FACATEG03" ColumnName="FACATEG03" />
+          <ScalarProperty Name="FADESCRIP" ColumnName="FADESCRIP" />
+          <ScalarProperty Name="FACRTUSR" ColumnName="FACRTUSR" />
+          <ScalarProperty Name="FACRTDAT" ColumnName="FACRTDAT" />
+          <ScalarProperty Name="FAFILE" ColumnName="FAFILE" />
+          <ScalarProperty Name="FATITURL" ColumnName="FATITURL" />
+          <ScalarProperty Name="FAURL" ColumnName="FAURL" />
+          <ScalarProperty Name="STS01" ColumnName="STS01" />
+          <ScalarProperty Name="STS02" ColumnName="STS02" />
+          <ScalarProperty Name="STS03" ColumnName="STS03" />
+          <ScalarProperty Name="STS04" ColumnName="STS04" />
+          <ScalarProperty Name="STS05" ColumnName="STS05" />
+          <ScalarProperty Name="FREFNUM" ColumnName="FREFNUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RFPARAM">
+      <EntityTypeMapping TypeName="SRGModel.RFPARAM">
+        <MappingFragment StoreEntitySet="RFPARAM">
+          <ScalarProperty Name="CCNUM" ColumnName="CCNUM" />
+          <ScalarProperty Name="CCID" ColumnName="CCID" />
+          <ScalarProperty Name="CCTABL" ColumnName="CCTABL" />
+          <ScalarProperty Name="CCCODE" ColumnName="CCCODE" />
+          <ScalarProperty Name="CCCODE2" ColumnName="CCCODE2" />
+          <ScalarProperty Name="CCCODE3" ColumnName="CCCODE3" />
+          <ScalarProperty Name="CCCODE4" ColumnName="CCCODE4" />
+          <ScalarProperty Name="CCCODE5" ColumnName="CCCODE5" />
+          <ScalarProperty Name="CCCODEN" ColumnName="CCCODEN" />
+          <ScalarProperty Name="CCCODEN2" ColumnName="CCCODEN2" />
+          <ScalarProperty Name="CCLANG" ColumnName="CCLANG" />
+          <ScalarProperty Name="CCALTC" ColumnName="CCALTC" />
+          <ScalarProperty Name="CCDESC" ColumnName="CCDESC" />
+          <ScalarProperty Name="CCSDSC" ColumnName="CCSDSC" />
+          <ScalarProperty Name="CCNOT1" ColumnName="CCNOT1" />
+          <ScalarProperty Name="CCNOT2" ColumnName="CCNOT2" />
+          <ScalarProperty Name="CCUDC0" ColumnName="CCUDC0" />
+          <ScalarProperty Name="CCUDC1" ColumnName="CCUDC1" />
+          <ScalarProperty Name="CCUDC2" ColumnName="CCUDC2" />
+          <ScalarProperty Name="CCUDC3" ColumnName="CCUDC3" />
+          <ScalarProperty Name="CCUDC4" ColumnName="CCUDC4" />
+          <ScalarProperty Name="CCUDC5" ColumnName="CCUDC5" />
+          <ScalarProperty Name="CCUDC6" ColumnName="CCUDC6" />
+          <ScalarProperty Name="CCUDC7" ColumnName="CCUDC7" />
+          <ScalarProperty Name="CCUDC8" ColumnName="CCUDC8" />
+          <ScalarProperty Name="CCUDC9" ColumnName="CCUDC9" />
+          <ScalarProperty Name="CCUDV1" ColumnName="CCUDV1" />
+          <ScalarProperty Name="CCUDV2" ColumnName="CCUDV2" />
+          <ScalarProperty Name="CCUDV3" ColumnName="CCUDV3" />
+          <ScalarProperty Name="CCUDV4" ColumnName="CCUDV4" />
+          <ScalarProperty Name="CCUDTS" ColumnName="CCUDTS" />
+          <ScalarProperty Name="CCUDDT" ColumnName="CCUDDT" />
+          <ScalarProperty Name="CCRESV" ColumnName="CCRESV" />
+          <ScalarProperty Name="CCENDT" ColumnName="CCENDT" />
+          <ScalarProperty Name="CCENUS" ColumnName="CCENUS" />
+          <ScalarProperty Name="CCMNDT" ColumnName="CCMNDT" />
+          <ScalarProperty Name="CCMNUS" ColumnName="CCMNUS" />
+          <ScalarProperty Name="CCNOTE" ColumnName="CCNOTE" />
+          <ScalarProperty Name="CFLAG1" ColumnName="CFLAG1" />
+          <ScalarProperty Name="CFLAG2" ColumnName="CFLAG2" />
+          <ScalarProperty Name="CFLAG3" ColumnName="CFLAG3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proveedor">
+      <EntityTypeMapping TypeName="SRGModel.Proveedor">
+        <MappingFragment StoreEntitySet="Proveedor">
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="DV" ColumnName="DV" />
+          <ScalarProperty Name="Nit" ColumnName="Nit" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PanelAsistProceso">
+      <EntityTypeMapping TypeName="SRGModel.PanelAsistProceso">
+        <MappingFragment StoreEntitySet="PanelAsistProceso">
+          <ScalarProperty Name="NumeroReenvios" ColumnName="NumeroReenvios" />
+          <ScalarProperty Name="FechaMaximaRadicacion" ColumnName="FechaMaximaRadicacion" />
+          <ScalarProperty Name="NumPedidoSAP" ColumnName="NumPedidoSAP" />
+          <ScalarProperty Name="AsistenteCierra" ColumnName="AsistenteCierra" />
+          <ScalarProperty Name="CorreoProveedor" ColumnName="CorreoProveedor" />
+          <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
+          <ScalarProperty Name="VlrAntesIVA" ColumnName="VlrAntesIVA" />
+          <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+          <ScalarProperty Name="DescripcionGastos" ColumnName="DescripcionGastos" />
+          <ScalarProperty Name="IdPanelAsistArea" ColumnName="IdPanelAsistArea" />
+          <ScalarProperty Name="NotaAprobador" ColumnName="NotaAprobador" />
+          <ScalarProperty Name="NotaSolicitante" ColumnName="NotaSolicitante" />
+          <ScalarProperty Name="CodCuentaContable" ColumnName="CodCuentaContable" />
+          <ScalarProperty Name="CodCentroCosto" ColumnName="CodCentroCosto" />
+          <ScalarProperty Name="Asistente" ColumnName="Asistente" />
+          <ScalarProperty Name="STS05" ColumnName="STS05" />
+          <ScalarProperty Name="STS04" ColumnName="STS04" />
+          <ScalarProperty Name="STS03" ColumnName="STS03" />
+          <ScalarProperty Name="STS02" ColumnName="STS02" />
+          <ScalarProperty Name="STS01" ColumnName="STS01" />
+          <ScalarProperty Name="Solicitante" ColumnName="Solicitante" />
+          <ScalarProperty Name="Creador" ColumnName="Creador" />
+          <ScalarProperty Name="FechaCierra" ColumnName="FechaCierra" />
+          <ScalarProperty Name="FechaCrea" ColumnName="FechaCrea" />
+          <ScalarProperty Name="IdPanelAsistProceso" ColumnName="IdPanelAsistProceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contrato">
+      <EntityTypeMapping TypeName="SRGModel.Contrato">
+        <MappingFragment StoreEntitySet="Contrato">
+          <ScalarProperty Name="STS05" ColumnName="STS05" />
+          <ScalarProperty Name="STS04" ColumnName="STS04" />
+          <ScalarProperty Name="STS03" ColumnName="STS03" />
+          <ScalarProperty Name="STS02" ColumnName="STS02" />
+          <ScalarProperty Name="STS01" ColumnName="STS01" />
+          <ScalarProperty Name="ComentarioContrato" ColumnName="ComentarioContrato" />
+          <ScalarProperty Name="Inflacion" ColumnName="Inflacion" />
+          <ScalarProperty Name="AreaSolicitante" ColumnName="AreaSolicitante" />
+          <ScalarProperty Name="FechaDePago" ColumnName="FechaDePago" />
+          <ScalarProperty Name="SeguimientoMensual" ColumnName="SeguimientoMensual" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="Cuantia" ColumnName="Cuantia" />
+          <ScalarProperty Name="AplicaImpTimbre" ColumnName="AplicaImpTimbre" />
+          <ScalarProperty Name="PeriodicidadDelPago" ColumnName="PeriodicidadDelPago" />
+          <ScalarProperty Name="ValorCop" ColumnName="ValorCop" />
+          <ScalarProperty Name="ValorUsd" ColumnName="ValorUsd" />
+          <ScalarProperty Name="ObjetoDelContrato" ColumnName="ObjetoDelContrato" />
+          <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+          <ScalarProperty Name="ProrrogaAutomatica" ColumnName="ProrrogaAutomatica" />
+          <ScalarProperty Name="DuracionDias" ColumnName="DuracionDias" />
+          <ScalarProperty Name="FechaDeTerminacion" ColumnName="FechaDeTerminacion" />
+          <ScalarProperty Name="FechaDeInicio" ColumnName="FechaDeInicio" />
+          <ScalarProperty Name="NIT" ColumnName="NIT" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="NContrato" ColumnName="NContrato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContratoArea">
+      <EntityTypeMapping TypeName="SRGModel.ContratoArea">
+        <MappingFragment StoreEntitySet="ContratoArea">
+          <ScalarProperty Name="CorreoResponsables" ColumnName="CorreoResponsables" />
+          <ScalarProperty Name="Responsables" ColumnName="Responsables" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdContratoArea" ColumnName="IdContratoArea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
