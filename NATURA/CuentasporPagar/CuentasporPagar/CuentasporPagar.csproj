@@ -182,7 +182,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EF\CxPAsistentes.cs">
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
@@ -194,6 +193,21 @@
     </Compile>
     <Compile Include="Models\EF\CxPRegimen.cs">
       <DependentUpon>MdlSRG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\MdlInfoNatura.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MdlInfoNatura.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\MdlInfoNatura.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MdlInfoNatura.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\MdlInfoNatura.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MdlInfoNatura.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\MdlSRG.Context.cs">
       <AutoGen>True</AutoGen>
@@ -219,8 +233,13 @@
     <Compile Include="Models\EF\RCAU.cs">
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\EF\RMAILX.cs">
+      <DependentUpon>MdlInfoNatura.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FuncionesComunes.cs" />
+    <Compile Include="Models\MdlCambioPass.cs" />
+    <Compile Include="Models\MdlLogin.cs" />
+    <Compile Include="Models\MdlRecuperaUsr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionManager.cs" />
     <Compile Include="Startup.cs" />
@@ -515,6 +534,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\EF\MdlInfoNatura.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MdlInfoNatura.edmx</DependentUpon>
+      <LastGenOutput>MdlInfoNatura.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EF\MdlInfoNatura.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MdlInfoNatura.edmx</DependentUpon>
+      <LastGenOutput>MdlInfoNatura.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\EF\MdlSRG.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MdlSRG.edmx</DependentUpon>
@@ -573,6 +602,13 @@
     <Content Include="Models\EF\MdlSRG.edmx.diagram">
       <DependentUpon>MdlSRG.edmx</DependentUpon>
     </Content>
+    <EntityDeploy Include="Models\EF\MdlInfoNatura.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MdlInfoNatura.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EF\MdlInfoNatura.edmx.diagram">
+      <DependentUpon>MdlInfoNatura.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ej\ej.globalize.min.js" />
@@ -615,22 +651,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -641,6 +661,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Concepto\Index.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

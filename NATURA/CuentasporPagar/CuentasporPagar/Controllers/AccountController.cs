@@ -6,16 +6,13 @@
 // applicable laws. 
 #endregion
 using System;
-using System.Globalization;
 using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using CuentasporPagar.Models;
+using CuentasporPagar.Models.EF;
+using System.Configuration;
+using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace CuentasporPagar.Controllers
 {
@@ -115,7 +112,7 @@ namespace CuentasporPagar.Controllers
             {
                 return View(Mdl);
             }
-            var res = new Respuesta();
+            string res = "";
 
             var eRCAU = ValidaCorreoExistente(Mdl.Email);
 
@@ -148,21 +145,20 @@ namespace CuentasporPagar.Controllers
                 }
                 else if (eRCAU.Count() > 1)
                 {
-                    res.Resultado = "Existe mas de un usuario con el mismo correo</br>Comuniquese con tecnologia para solucionar el problema";
+                    res = "Existe mas de un usuario con el mismo correo</br>Comuniquese con tecnologia para solucionar el problema";
                 }
                 else
                 {
-                    res.Resultado = "El correo no existe";
+                    res = "El correo no existe";
                 }
             }
 
 
-            return Json(new { result = res.Resultado });
+            return Json(new { result = res });
         }
 
         public List<RCAU> ValidaCorreoExistente(string Correo)
         {
-            TokenGenerator.Generator gen = new TokenGenerator.Generator();
             var res = new List<RCAU>();
             try
             {
@@ -171,7 +167,7 @@ namespace CuentasporPagar.Controllers
                 {
                     if (eRCAU.Count == 1)
                     {
-                        eRCAU[0].UTOKEN = gen.Token();
+                        eRCAU[0].UTOKEN = Guid.NewGuid().ToString();
                         db.Entry(eRCAU[0]).State = EntityState.Modified;
                         db.SaveChanges();
                     }
