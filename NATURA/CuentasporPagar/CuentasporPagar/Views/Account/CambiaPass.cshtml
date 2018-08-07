@@ -1,0 +1,79 @@
+﻿@model CuentasporPagar.Models.MdlCambioPass
+
+@{
+    ViewBag.Title = "Cambio de contraseña";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.HiddenFor(m => m.Token)
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            <h4>Digite contraseña para modificar.</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10" style="margin-bottom:5px;">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10" style="margin-bottom:5px;">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" onclick="Cambia()" value="Cambiar Contraseña" class="btn btn-default" />
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    var urlCambia = '@Url.Content("~/Account/ActualizaPass")';
+    var urlInicio = '@Url.Content("~/")';
+
+    function Cambia() {
+        var continua = true;
+
+        if ($("#Password").val() != $("#ConfirmPassword").val()){
+            continua = false;
+            $("#LblMsg").text("El campo contraseña y confirmar contraseña no coinciden");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continua) {
+            var mdlJs = {
+                Password: $("#Password").val(),
+                ConfirmPassword: $("#ConfirmPassword").val(),
+                Token: $("#Token").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: urlCambia,
+                data: { model: mdlJs },
+                cache: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == 'OK') {
+                        window.location.href = urlInicio;
+                    }
+                    else {
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                        $("#myModMsg").css("z-index", "999");
+                    }
+                }
+            });
+        }
+    }
+</script>

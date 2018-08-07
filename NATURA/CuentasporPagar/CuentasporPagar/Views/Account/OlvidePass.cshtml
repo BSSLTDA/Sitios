@@ -1,0 +1,69 @@
+﻿@model CuentasporPagar.Models.MdlRecuperaUsr
+
+@{
+    ViewBag.Title = "Recuperar Contraseña";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            <h4>Digite correo registrado para recuperar contraseña.</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10" style="margin-bottom:5px;">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" onclick="Recuperar()" value="Recuperar" class="btn btn-default" />
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    var urlRecupera = '@Url.Content("~/Account/Recuperar")';
+    var urlInicio = '@Url.Content("~/")';
+
+    function Recuperar() {
+        var continua = true;
+        var modeloJS = { Email: "" };
+
+        if ($("#Email").val().toUpperCase().indexOf("@@NATURA.NET") == -1) {
+            continuar = false;
+            $("#LblMsg").text("Correo invalido");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continua) {
+            modeloJS.Email = $("#Email").val();
+            $.ajax({
+                type: "POST",
+                url: urlRecupera,
+                data: { Mdl: modeloJS },
+                cache: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == 'OK') {
+                        $("#fondo").addClass("oculto");
+                        window.location.href = urlInicio;
+                    }
+                    else {
+                        $("#LblMsg").append(result.result);
+                        $("#myModMsg").css("display", "block");
+                        $("#myModMsg").css("z-index", "999");
+                    }
+                }
+            });
+        }
+    }
+
+</script>

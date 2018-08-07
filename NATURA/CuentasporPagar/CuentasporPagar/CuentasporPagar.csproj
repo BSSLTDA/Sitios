@@ -662,6 +662,9 @@
     <Content Include="Views\Concepto\Index.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\CambiaPass.cshtml" />
+    <Content Include="Views\Account\CorreoPass.cshtml" />
+    <Content Include="Views\Account\OlvidePass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
