@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InfoNaturaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="RMAILX">
+    <Key>
+      <PropertyRef Name="LID" />
+    </Key>
+    <Property Name="LID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LMOD" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="LREF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LASUNTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LENVIA" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LPARA" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="LCOPIA" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="LBCC" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LCUERPO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LADJUNTOS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LURL" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="LTITURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LENVIADO" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="LSTS01" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="LSTS02" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="LSTS03" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="LSTS04" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="LSTS05" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="LCRTDAT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LUPDDAT" Type="DateTime" Precision="3" />
+    <Property Name="LMSGERR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LKEY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LCATALOGO" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="LSMTPHOST" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LSMTPUSERNAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LSMTPPASSWORD" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LFPROXIMA" Type="DateTime" Precision="3" />
+    <Property Name="LSQL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="InfoNaturaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="RMAILX" EntityType="Self.RMAILX" />
+  </EntityContainer>
+</Schema>

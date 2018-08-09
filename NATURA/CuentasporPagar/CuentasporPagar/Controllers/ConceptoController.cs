@@ -24,18 +24,19 @@ namespace CuentasporPagar.Controllers
             return View();
         }
 
-        public ActionResult Nuevo(string Des)
+        public ActionResult Nuevo(string Codigo, string Nombre)
         {
             string Respu = "";
-            var nPanelAsistArea = new PanelAsistArea()
+            var nCxPConcepto = new CxPConceptos()
             {
-                Descripcion = Des
+                Nombre = Nombre,
+                Codigo = Codigo
             };
             try
             {
-                db.PanelAsistArea.Add(nPanelAsistArea);
+                db.CxPConceptos.Add(nCxPConcepto);
                 db.SaveChanges();
-                SessionManager.Set("DArea", db.PanelAsistArea);
+                SessionManager.Set("DConcepto", db.CxPConceptos);
                 Respu = "OK";
             }
             catch (Exception ex)
@@ -45,19 +46,20 @@ namespace CuentasporPagar.Controllers
             return Json(new { result = Respu });
         }
 
-        public ActionResult Editar(string Des, string IdArea)
+        public ActionResult Editar(int IdCxPConcepto, string Codigo, string Nombre)
         {
             string Respu = "";
-            var uPanelAsistArea = new PanelAsistArea()
+            var uCxPConceptos = new CxPConceptos()
             {
-                Descripcion = Des,
-                IdPanelAsistArea = int.Parse(IdArea)
+                Codigo = Codigo,
+                IdCxPConcepto = IdCxPConcepto,
+                Nombre = Nombre
             };
             try
             {
-                db.Entry(uPanelAsistArea).State = EntityState.Modified;
+                db.Entry(uCxPConceptos).State = EntityState.Modified;
                 db.SaveChanges();
-                SessionManager.Set("DArea", db.PanelAsistArea);
+                SessionManager.Set("DConcepto", db.CxPConceptos);
                 Respu = "OK";
             }
             catch (Exception ex)
@@ -70,13 +72,12 @@ namespace CuentasporPagar.Controllers
         public ActionResult Eliminar(string Id)
         {
             string Respu = "";
-            //var res = new List<PanelAsistArea>();
             try
             {
-                var rPanelAsistArea = db.PanelAsistArea.Find(int.Parse(Id));
-                db.PanelAsistArea.Remove(rPanelAsistArea);
+                var rCxPConceptos = db.CxPConceptos.Find(int.Parse(Id));
+                db.CxPConceptos.Remove(rCxPConceptos);
                 db.SaveChanges();
-                SessionManager.Set("DArea", db.PanelAsistArea);
+                SessionManager.Set("DConcepto", db.CxPConceptos);
                 Respu = "OK";
             }
             catch (Exception ex)

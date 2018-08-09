@@ -251,7 +251,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             $.ajax({
                 type: "POST",
                 url: urlEdita,
-                data: { IdCxPConcepto: $("IdCxPConcepto").val(), Codigo: $("#uCodigo").val(), Nombre: $("#uNombre").val(), IdArea: idCC },
+                data: { IdCxPConcepto: idCC, Codigo: $("#uCodigo").val(), Nombre: $("#uNombre").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {

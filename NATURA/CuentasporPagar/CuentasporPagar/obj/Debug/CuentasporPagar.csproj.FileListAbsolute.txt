@@ -252,7 +252,8 @@ C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPag
 C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.ExcelToPDFConverter.Base.xml
 C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.PivotAnalysis.Base.xml
 C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.OfficeChart.Base.xml
-C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.csprojResolveAssemblyReference.cache
 C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.csproj.CoreCompileInputs.cache
 C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.dll
 C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.pdb
+C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.csprojAssemblyReference.cache
+C:\Users\ARodriguez\Documents\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.csproj.CopyComplete
