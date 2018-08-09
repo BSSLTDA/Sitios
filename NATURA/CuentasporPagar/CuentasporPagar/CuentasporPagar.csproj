@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Regimen\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\RegimenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -525,6 +527,9 @@
     <Content Include="Content\ej\web\responsive-css\ejgrid.responsive.css" />
     <Content Include="Content\ej\web\ribbon-css\ej.icons.css" />
     <Content Include="Content\Img\25.gif" />
+    <Content Include="Content\Img\add.svg" />
+    <Content Include="Content\Img\delete.svg" />
+    <Content Include="Content\Img\edit.svg" />
     <Content Include="Content\Img\LogoBSS.svg" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery2-ui.css" />
