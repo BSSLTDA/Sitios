@@ -5,7 +5,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,6 +21,10 @@ namespace CuentasporPagar.Controllers
         // GET: Concepto
         public ActionResult Index()
         {
+            if (SessionManager.Get<RCAU>("VarUsuario") == null)
+            {
+                return RedirectToAction("Login", "Account", new { donde = Url.Action("Index", "Concepto") });
+            }
             List<CxPConceptos> lmCxPConceptos = db.CxPConceptos.ToList();
             SessionManager.Set("DConcepto", lmCxPConceptos);
             return View();
@@ -27,6 +33,7 @@ namespace CuentasporPagar.Controllers
         public ActionResult Nuevo(string Codigo, string Nombre)
         {
             string Respu = "";
+            StringBuilder Error = new StringBuilder();
             var nCxPConcepto = new CxPConceptos()
             {
                 Nombre = Nombre,
@@ -36,12 +43,29 @@ namespace CuentasporPagar.Controllers
             {
                 db.CxPConceptos.Add(nCxPConcepto);
                 db.SaveChanges();
-                SessionManager.Set("DConcepto", db.CxPConceptos);
+                SessionManager.Set("DConcepto", db.CxPConceptos.ToList());
                 Respu = "OK";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                Respu = "ERROR: " + Error.ToString();
             }
             catch (Exception ex)
             {
-                Respu = "ERROR: " + ex.ToString();
+                Respu = "ERROR: " + ex.ToString() + ((ex.InnerException != null) ? ex.InnerException.ToString() : "");
             }
             return Json(new { result = Respu });
         }
@@ -59,7 +83,7 @@ namespace CuentasporPagar.Controllers
             {
                 db.Entry(uCxPConceptos).State = EntityState.Modified;
                 db.SaveChanges();
-                SessionManager.Set("DConcepto", db.CxPConceptos);
+                SessionManager.Set("DConcepto", db.CxPConceptos.ToList());
                 Respu = "OK";
             }
             catch (Exception ex)
@@ -77,7 +101,7 @@ namespace CuentasporPagar.Controllers
                 var rCxPConceptos = db.CxPConceptos.Find(int.Parse(Id));
                 db.CxPConceptos.Remove(rCxPConceptos);
                 db.SaveChanges();
-                SessionManager.Set("DConcepto", db.CxPConceptos);
+                SessionManager.Set("DConcepto", db.CxPConceptos.ToList());
                 Respu = "OK";
             }
             catch (Exception ex)

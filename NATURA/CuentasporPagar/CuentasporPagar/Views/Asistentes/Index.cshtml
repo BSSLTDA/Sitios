@@ -1,0 +1,325 @@
+﻿@using CuentasporPagar.Models.EF;
+
+@{
+    ViewBag.Title = "Asistentes";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div style="max-width:500px;">
+    @(Html.EJ().Grid<CxPAsistentes>("Grid")
+                                                        .Datasource(ds => ds.URL(@Url.Content("~/Asistentes/DSAsistentes")).Adaptor(AdaptorType.UrlAdaptor))
+                                                        .EnableAltRow()
+                                                        .MinWidth(120)
+                                                        .AllowScrolling()
+                                                        .IsResponsive(true)
+                                                        .EnableResponsiveRow(true)
+                                                        .ScrollSettings(col => { col.Width("100%").Height("auto"); })
+                                                        .ToolbarSettings(toolBar =>
+                                                            toolBar.ShowToolbar()
+                                                            .CustomToolbarItems(new List<object>() {
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Agregar" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Editar" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" }
+                                                            })
+                                                            .ToolbarItems(items =>
+                                                            {
+                                                            }))
+                                                        .Locale("es-CO")
+                                                        .PageSettings(p => { p.PageCount(7).PageSize(25); })
+                                                        .AllowPaging()
+                                                        .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+                                                        .AllowFiltering()
+                                                        .AllowSorting()
+                                                        .Columns(col =>
+                                                        {
+                                                            col.Width(250).Field("Nombre").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(250).Field("Email").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Field("IdCxPAsistentes").Visible(false).Add();
+                                                        })
+                                                        .ClientSideEvents(eve => eve.Create("Create").ToolbarClick("TBClick"))
+    )
+    <script type="text/x-jsrender" id="Agregar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="14" src='@Url.Content("~/Content/img/add.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Editar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="16" src='@Url.Content("~/Content/img/edit.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Eliminar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="14" src='@Url.Content("~/Content/img/delete.svg")' />
+        </a>
+    </script>
+</div>
+
+<div class="alineadoCentro">
+    <div id="myModal" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Agregar Asistentes</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label>Nombre</label>
+                            </td>
+                            <td>
+                                <input id="nNombre" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Email</label>
+                            </td>
+                            <td>
+                                <input id="nEmail" class="ctext" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="Save()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal2" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal2" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Editar Asistentes</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label>Nombre</label>
+                            </td>
+                            <td>
+                                <input id="uNombre" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Email</label>
+                            </td>
+                            <td>
+                                <input id="uEmail" class="ctext" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="Update()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal2" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal3" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal3" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Eliminar Asistentes</h4>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de eliminar el registro seleccionado
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="Delete()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal3" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var Carga = 0;
+    var urlNuevo = '@Url.Content("~/Asistentes/Nuevo")';
+    var urlEdita = '@Url.Content("~/Asistentes/Editar")';
+    var urlElimina = '@Url.Content("~/Asistentes/Eliminar")';
+    var idCC = "";
+
+    function TBClick(args) {
+        if (args.itemIndex == "0" && args.itemName == "Agregar") {
+            $("#nNombre").val('');
+            $("#nEmail").val('');
+            $("#myModal").css("display", "block");
+        }
+        if (args.itemIndex == "1" && args.itemName == "Editar") {
+            if (args.model.selectedRowIndex != "-1") {
+                $("#uNombre").val(args.model.selectedRecords[0].Nombre);
+                $("#uEmail").val(args.model.selectedRecords[0].Email);
+                idCC = args.model.selectedRecords[0].IdCxPAsistentes;
+                $("#myModal2").css("display", "block");
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+        if (args.itemIndex == "2" && args.itemName == "Eliminar") {
+            if (args.model.selectedRowIndex != "-1") {
+                idCC = args.model.selectedRecords[0].IdCxPAsistentes;
+                $("#myModal3").css("display", "block");
+            }
+            else {
+                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+    }
+
+    function Save() {
+        var continuar = true;
+
+        if ($("#nNombre").val() == "") {
+            continuar = false;
+            $("#LblMsg").text("El campo 'Nombre' es obligatorio");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continuar) {
+            if ($("#nEmail").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Email' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            $.ajax({
+                type: "POST",
+                url: urlNuevo,
+                data: { Nombre: $("#nNombre").val(), Email: $("#nEmail").val() },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == "OK") {
+                        gridObj = $("#Grid").data("ejGrid");
+                        gridObj.refreshContent();
+                        $("#myModal").css("display", "none");
+                    } else {
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                    }
+                }
+            });
+        }
+    }
+
+    function Update() {
+        var continuar = true;
+
+        if ($("#uNombre").val() == "") {
+            continuar = false;
+            $("#LblMsg").text("El campo 'Nombre' es obligatorio");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continuar) {
+            if ($("#uEmail").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Email' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            $.ajax({
+                type: "POST",
+                url: urlEdita,
+                data: { IdCxPAsistentes: idCC, Nombre: $("#uNombre").val(), Email: $("#uEmail").val() },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == "OK") {
+                        gridObj = $("#Grid").data("ejGrid");
+                        gridObj.refreshContent();
+                        $("#myModal2").css("display", "none");
+                    } else {
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                    }
+                }
+            });
+        }
+    }
+
+    function Delete() {
+        $.ajax({
+            type: "POST",
+            url: urlElimina,
+            data: { Id: idCC },
+            cache: true,
+            dataType: 'json',
+            success: function (result) {
+                if (result.result == "OK") {
+                    gridObj = $("#Grid").data("ejGrid");
+                    gridObj.refreshContent();
+                    $("#myModal3").css("display", "none");
+                } else {
+                    $("#LblMsg").text(result.result);
+                    $("#myModMsg").css("display", "block");
+                }
+            }
+        });
+    }
+</script>
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+
+<script>
+    $("#myModal").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal").click(function () {
+        $("#myModal").css("display", "none");
+    });
+    $("#cancelModal").click(function () {
+        $("#myModal").css("display", "none");
+    });
+
+    $("#myModal2").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal2").click(function () {
+        $("#myModal2").css("display", "none");
+    });
+    $("#cancelModal2").click(function () {
+        $("#myModal2").css("display", "none");
+    });
+
+    $("#myModal3").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal3").click(function () {
+        $("#myModal3").css("display", "none");
+    });
+    $("#cancelModal3").click(function () {
+        $("#myModal3").css("display", "none");
+    });
+</script>

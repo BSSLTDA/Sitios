@@ -1,14 +1,14 @@
 ﻿@using CuentasporPagar.Models.EF
 
 @{
-    ViewBag.Title = "Regimen";
+    ViewBag.Title = "Régimen";
 }
 
 <h2>@ViewBag.Title</h2>
 
 <div style="max-width:500px;">
     @(Html.EJ().Grid<CxPRegimen>("Grid")
-                                                        .Datasource(ds => ds.URL(@Url.Content("~/Concepto/DSRegimen")).Adaptor(AdaptorType.UrlAdaptor))
+                                                        .Datasource(ds => ds.URL(@Url.Content("~/Regimen/DSRegimen")).Adaptor(AdaptorType.UrlAdaptor))
                                                         .EnableAltRow()
                                                         .MinWidth(120)
                                                         .AllowScrolling()
@@ -63,18 +63,10 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             <div class="modal-content fondoBody">
                 <div class="modal-header">
                     <button id="cerrarModal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Agregar Area</h4>
+                    <h4 class="modal-title">Agregar Régimen</h4>
                 </div>
                 <div class="modal-body">
                     <table width="100%">
-                        <tr>
-                            <td>
-                                <label>Código</label>
-                            </td>
-                            <td>
-                                <input id="nCodigo" class="ctext" />
-                            </td>
-                        </tr>
                         <tr>
                             <td>
                                 <label>Nombre</label>
@@ -99,18 +91,10 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             <div class="modal-content fondoBody">
                 <div class="modal-header">
                     <button id="cerrarModal2" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Editar Area</h4>
+                    <h4 class="modal-title">Editar Régimen</h4>
                 </div>
                 <div class="modal-body">
                     <table width="100%">
-                        <tr>
-                            <td>
-                                <label>Código</label>
-                            </td>
-                            <td>
-                                <input id="uCodigo" class="ctext" />
-                            </td>
-                        </tr>
                         <tr>
                             <td>
                                 <label>Nombre</label>
@@ -135,7 +119,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             <div class="modal-content fondoBody">
                 <div class="modal-header">
                     <button id="cerrarModal3" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Eliminar Area</h4>
+                    <h4 class="modal-title">Eliminar Régimen</h4>
                 </div>
                 <div class="modal-body">
                     Esta seguro de eliminar el registro seleccionado
@@ -201,7 +185,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             $.ajax({
                 type: "POST",
                 url: urlNuevo,
-                data: { Nombre: $("#nNombre") },
+                data: { Nombre: $("#nNombre").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {

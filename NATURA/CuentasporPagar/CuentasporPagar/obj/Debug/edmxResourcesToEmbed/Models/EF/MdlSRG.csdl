@@ -76,6 +76,8 @@
     <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" />
     <EntitySet Name="PanelAsistProceso" EntityType="Self.PanelAsistProceso" />
     <EntitySet Name="RCAU" EntityType="SRGModel.RCAU" />
+    <EntitySet Name="RFPARAM" EntityType="SRGModel.RFPARAM" />
+    <EntitySet Name="RFADJUNTO" EntityType="SRGModel.RFADJUNTO" />
   </EntityContainer>
   <EntityType Name="RCAU">
     <Key>
@@ -146,5 +148,82 @@
     <Property Name="UACC08" Type="Decimal" Precision="1" Scale="0" />
     <Property Name="UACC09" Type="Decimal" Precision="1" Scale="0" />
     <Property Name="UACC10" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="RFPARAM">
+    <Key>
+      <PropertyRef Name="CCTABL" />
+      <PropertyRef Name="CCCODE" />
+      <PropertyRef Name="CCCODE2" />
+      <PropertyRef Name="CCCODE3" />
+      <PropertyRef Name="CCCODE4" />
+      <PropertyRef Name="CCCODE5" />
+      <PropertyRef Name="CCCODEN" />
+      <PropertyRef Name="CCCODEN2" />
+    </Key>
+    <Property Name="CCNUM" Type="Decimal" Nullable="false" Precision="8" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CCID" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="CCTABL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CCCODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CCCODE2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CCCODE3" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CCCODE4" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CCCODE5" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CCCODEN" Type="Decimal" Nullable="false" Precision="11" Scale="0" />
+    <Property Name="CCCODEN2" Type="Decimal" Nullable="false" Precision="11" Scale="0" />
+    <Property Name="CCLANG" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CCALTC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CCDESC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CCSDSC" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CCNOT1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CCNOT2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CCUDC0" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDC1" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDC2" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDC3" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDC4" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDC5" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDC6" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDC7" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDC8" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDC9" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+    <Property Name="CCUDV1" Type="Decimal" Precision="15" Scale="5" />
+    <Property Name="CCUDV2" Type="Decimal" Precision="15" Scale="5" />
+    <Property Name="CCUDV3" Type="Decimal" Precision="15" Scale="5" />
+    <Property Name="CCUDV4" Type="Decimal" Precision="15" Scale="5" />
+    <Property Name="CCUDTS" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CCUDDT" Type="DateTime" Precision="0" />
+    <Property Name="CCRESV" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
+    <Property Name="CCENDT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CCENUS" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="CCMNDT" Type="DateTime" Precision="3" />
+    <Property Name="CCMNUS" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="CCNOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CFLAG1" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="CFLAG2" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="CFLAG3" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RFADJUNTO">
+    <Key>
+      <PropertyRef Name="FANUMREG" />
+    </Key>
+    <Property Name="FID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="FANUMREG" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FAPROCNUM" Type="Int64" Nullable="false" />
+    <Property Name="FAPROCLIN" Type="Int64" Nullable="false" />
+    <Property Name="FACATEG01" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FACATEG02" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FACATEG03" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FADESCRIP" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="FACRTUSR" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="FACRTDAT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FAFILE" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FATITURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="FAURL" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="STS01" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="STS02" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="STS03" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="STS04" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="STS05" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="FREFNUM" Type="Int64" />
   </EntityType>
 </Schema>

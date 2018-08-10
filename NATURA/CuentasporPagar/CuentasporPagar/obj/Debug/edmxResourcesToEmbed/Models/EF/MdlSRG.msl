@@ -146,5 +146,77 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="RFPARAM">
+      <EntityTypeMapping TypeName="SRGModel.RFPARAM">
+        <MappingFragment StoreEntitySet="RFPARAM">
+          <ScalarProperty Name="CFLAG3" ColumnName="CFLAG3" />
+          <ScalarProperty Name="CFLAG2" ColumnName="CFLAG2" />
+          <ScalarProperty Name="CFLAG1" ColumnName="CFLAG1" />
+          <ScalarProperty Name="CCNOTE" ColumnName="CCNOTE" />
+          <ScalarProperty Name="CCMNUS" ColumnName="CCMNUS" />
+          <ScalarProperty Name="CCMNDT" ColumnName="CCMNDT" />
+          <ScalarProperty Name="CCENUS" ColumnName="CCENUS" />
+          <ScalarProperty Name="CCENDT" ColumnName="CCENDT" />
+          <ScalarProperty Name="CCRESV" ColumnName="CCRESV" />
+          <ScalarProperty Name="CCUDDT" ColumnName="CCUDDT" />
+          <ScalarProperty Name="CCUDTS" ColumnName="CCUDTS" />
+          <ScalarProperty Name="CCUDV4" ColumnName="CCUDV4" />
+          <ScalarProperty Name="CCUDV3" ColumnName="CCUDV3" />
+          <ScalarProperty Name="CCUDV2" ColumnName="CCUDV2" />
+          <ScalarProperty Name="CCUDV1" ColumnName="CCUDV1" />
+          <ScalarProperty Name="CCUDC9" ColumnName="CCUDC9" />
+          <ScalarProperty Name="CCUDC8" ColumnName="CCUDC8" />
+          <ScalarProperty Name="CCUDC7" ColumnName="CCUDC7" />
+          <ScalarProperty Name="CCUDC6" ColumnName="CCUDC6" />
+          <ScalarProperty Name="CCUDC5" ColumnName="CCUDC5" />
+          <ScalarProperty Name="CCUDC4" ColumnName="CCUDC4" />
+          <ScalarProperty Name="CCUDC3" ColumnName="CCUDC3" />
+          <ScalarProperty Name="CCUDC2" ColumnName="CCUDC2" />
+          <ScalarProperty Name="CCUDC1" ColumnName="CCUDC1" />
+          <ScalarProperty Name="CCUDC0" ColumnName="CCUDC0" />
+          <ScalarProperty Name="CCNOT2" ColumnName="CCNOT2" />
+          <ScalarProperty Name="CCNOT1" ColumnName="CCNOT1" />
+          <ScalarProperty Name="CCSDSC" ColumnName="CCSDSC" />
+          <ScalarProperty Name="CCDESC" ColumnName="CCDESC" />
+          <ScalarProperty Name="CCALTC" ColumnName="CCALTC" />
+          <ScalarProperty Name="CCLANG" ColumnName="CCLANG" />
+          <ScalarProperty Name="CCCODEN2" ColumnName="CCCODEN2" />
+          <ScalarProperty Name="CCCODEN" ColumnName="CCCODEN" />
+          <ScalarProperty Name="CCCODE5" ColumnName="CCCODE5" />
+          <ScalarProperty Name="CCCODE4" ColumnName="CCCODE4" />
+          <ScalarProperty Name="CCCODE3" ColumnName="CCCODE3" />
+          <ScalarProperty Name="CCCODE2" ColumnName="CCCODE2" />
+          <ScalarProperty Name="CCCODE" ColumnName="CCCODE" />
+          <ScalarProperty Name="CCTABL" ColumnName="CCTABL" />
+          <ScalarProperty Name="CCID" ColumnName="CCID" />
+          <ScalarProperty Name="CCNUM" ColumnName="CCNUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RFADJUNTO">
+      <EntityTypeMapping TypeName="SRGModel.RFADJUNTO">
+        <MappingFragment StoreEntitySet="RFADJUNTO">
+          <ScalarProperty Name="FREFNUM" ColumnName="FREFNUM" />
+          <ScalarProperty Name="STS05" ColumnName="STS05" />
+          <ScalarProperty Name="STS04" ColumnName="STS04" />
+          <ScalarProperty Name="STS03" ColumnName="STS03" />
+          <ScalarProperty Name="STS02" ColumnName="STS02" />
+          <ScalarProperty Name="STS01" ColumnName="STS01" />
+          <ScalarProperty Name="FAURL" ColumnName="FAURL" />
+          <ScalarProperty Name="FATITURL" ColumnName="FATITURL" />
+          <ScalarProperty Name="FAFILE" ColumnName="FAFILE" />
+          <ScalarProperty Name="FACRTDAT" ColumnName="FACRTDAT" />
+          <ScalarProperty Name="FACRTUSR" ColumnName="FACRTUSR" />
+          <ScalarProperty Name="FADESCRIP" ColumnName="FADESCRIP" />
+          <ScalarProperty Name="FACATEG03" ColumnName="FACATEG03" />
+          <ScalarProperty Name="FACATEG02" ColumnName="FACATEG02" />
+          <ScalarProperty Name="FACATEG01" ColumnName="FACATEG01" />
+          <ScalarProperty Name="FAPROCLIN" ColumnName="FAPROCLIN" />
+          <ScalarProperty Name="FAPROCNUM" ColumnName="FAPROCNUM" />
+          <ScalarProperty Name="FANUMREG" ColumnName="FANUMREG" />
+          <ScalarProperty Name="FID" ColumnName="FID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

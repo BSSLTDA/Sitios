@@ -30,11 +30,11 @@ namespace CuentasporPagar.Controllers
             try
             {
                 mRCAU = db.RCAU.Where(m => m.UUSR == model.User && m.USTS == "A").SingleOrDefault();
-                if (res != null)
+                if (mRCAU != null)
                 {
                     if (mRCAU.UPASS == model.Password)
                     {
-                        SessionManager.Set("VarUsuario", res);
+                        SessionManager.Set("VarUsuario", mRCAU);
                         res = "OK";
                     }
                     else

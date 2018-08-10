@@ -138,6 +138,83 @@
     <Property Name="UACC09" Type="decimal" Precision="1" Scale="0" />
     <Property Name="UACC10" Type="decimal" Precision="1" Scale="0" />
   </EntityType>
+  <EntityType Name="RFADJUNTO">
+    <Key>
+      <PropertyRef Name="FANUMREG" />
+    </Key>
+    <Property Name="FID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="FANUMREG" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FAPROCNUM" Type="bigint" Nullable="false" />
+    <Property Name="FAPROCLIN" Type="bigint" Nullable="false" />
+    <Property Name="FACATEG01" Type="nvarchar" MaxLength="50" />
+    <Property Name="FACATEG02" Type="nvarchar" MaxLength="50" />
+    <Property Name="FACATEG03" Type="nvarchar" MaxLength="50" />
+    <Property Name="FADESCRIP" Type="nvarchar" MaxLength="2000" Nullable="false" />
+    <Property Name="FACRTUSR" Type="nvarchar" MaxLength="25" />
+    <Property Name="FACRTDAT" Type="datetime" Nullable="false" />
+    <Property Name="FAFILE" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="FATITURL" Type="nvarchar" MaxLength="250" />
+    <Property Name="FAURL" Type="nvarchar" MaxLength="2000" />
+    <Property Name="STS01" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="STS02" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="STS03" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="STS04" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="STS05" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="FREFNUM" Type="bigint" />
+  </EntityType>
+  <EntityType Name="RFPARAM">
+    <Key>
+      <PropertyRef Name="CCTABL" />
+      <PropertyRef Name="CCCODE" />
+      <PropertyRef Name="CCCODE2" />
+      <PropertyRef Name="CCCODE3" />
+      <PropertyRef Name="CCCODE4" />
+      <PropertyRef Name="CCCODE5" />
+      <PropertyRef Name="CCCODEN" />
+      <PropertyRef Name="CCCODEN2" />
+    </Key>
+    <Property Name="CCNUM" Type="decimal" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CCID" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="CCTABL" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CCCODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CCCODE2" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CCCODE3" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CCCODE4" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CCCODE5" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CCCODEN" Type="decimal" Precision="11" Scale="0" Nullable="false" />
+    <Property Name="CCCODEN2" Type="decimal" Precision="11" Scale="0" Nullable="false" />
+    <Property Name="CCLANG" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="CCALTC" Type="nvarchar" MaxLength="50" />
+    <Property Name="CCDESC" Type="nvarchar" MaxLength="50" />
+    <Property Name="CCSDSC" Type="nvarchar" MaxLength="150" />
+    <Property Name="CCNOT1" Type="nvarchar" MaxLength="250" />
+    <Property Name="CCNOT2" Type="nvarchar" MaxLength="250" />
+    <Property Name="CCUDC0" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDC1" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDC2" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDC3" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDC4" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDC5" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDC6" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDC7" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDC8" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDC9" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CCUDV1" Type="decimal" Precision="15" Scale="5" />
+    <Property Name="CCUDV2" Type="decimal" Precision="15" Scale="5" />
+    <Property Name="CCUDV3" Type="decimal" Precision="15" Scale="5" />
+    <Property Name="CCUDV4" Type="decimal" Precision="15" Scale="5" />
+    <Property Name="CCUDTS" Type="datetime" Nullable="false" />
+    <Property Name="CCUDDT" Type="date" />
+    <Property Name="CCRESV" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="CCENDT" Type="datetime" Nullable="false" />
+    <Property Name="CCENUS" Type="nvarchar" MaxLength="25" />
+    <Property Name="CCMNDT" Type="datetime" />
+    <Property Name="CCMNUS" Type="nvarchar" MaxLength="25" />
+    <Property Name="CCNOTE" Type="nvarchar(max)" />
+    <Property Name="CFLAG1" Type="nchar" MaxLength="1" />
+    <Property Name="CFLAG2" Type="nchar" MaxLength="1" />
+    <Property Name="CFLAG3" Type="nchar" MaxLength="1" />
+  </EntityType>
   <EntityContainer Name="SRGModelStoreContainer">
     <EntitySet Name="CxPAsistentes" EntityType="Self.CxPAsistentes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CxPConceptos" EntityType="Self.CxPConceptos" Schema="dbo" store:Type="Tables" />
@@ -146,5 +223,7 @@
     <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PanelAsistProceso" EntityType="Self.PanelAsistProceso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RCAU" EntityType="Self.RCAU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RFADJUNTO" EntityType="Self.RFADJUNTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RFPARAM" EntityType="Self.RFPARAM" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

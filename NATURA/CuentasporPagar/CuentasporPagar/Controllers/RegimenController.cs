@@ -19,6 +19,10 @@ namespace CuentasporPagar.Controllers
         // GET: Regimen
         public ActionResult Index()
         {
+            if (SessionManager.Get<RCAU>("VarUsuario") == null)
+            {
+                return RedirectToAction("Login", "Account", new { donde = Url.Action("Index", "Regimen") });
+            }
             List<CxPRegimen> lmCxPRegimen = db.CxPRegimen.ToList();
             SessionManager.Set("DRegimen", lmCxPRegimen);
             return View();
@@ -35,7 +39,7 @@ namespace CuentasporPagar.Controllers
             {
                 db.CxPRegimen.Add(nCxPRegimen);
                 db.SaveChanges();
-                SessionManager.Set("DRegimen", db.CxPRegimen);
+                SessionManager.Set("DRegimen", db.CxPRegimen.ToList());
                 Respu = "OK";
             }
             catch (Exception ex)
@@ -57,7 +61,7 @@ namespace CuentasporPagar.Controllers
             {
                 db.Entry(uCxPRegimen).State = EntityState.Modified;
                 db.SaveChanges();
-                SessionManager.Set("DRegimen", db.CxPRegimen);
+                SessionManager.Set("DRegimen", db.CxPRegimen.ToList());
                 Respu = "OK";
             }
             catch (Exception ex)
@@ -75,7 +79,7 @@ namespace CuentasporPagar.Controllers
                 var rCxPRegimen = db.CxPRegimen.Find(int.Parse(Id));
                 db.CxPRegimen.Remove(rCxPRegimen);
                 db.SaveChanges();
-                SessionManager.Set("DRegimen", db.CxPRegimen);
+                SessionManager.Set("DRegimen", db.CxPRegimen.ToList());
                 Respu = "OK";
             }
             catch (Exception ex)

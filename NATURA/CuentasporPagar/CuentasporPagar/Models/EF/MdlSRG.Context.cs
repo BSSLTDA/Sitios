@@ -32,5 +32,8 @@ namespace CuentasporPagar.Models.EF
         public virtual DbSet<PanelAsistArea> PanelAsistArea { get; set; }
         public virtual DbSet<PanelAsistProceso> PanelAsistProceso { get; set; }
         public virtual DbSet<RCAU> RCAU { get; set; }
+        public virtual DbSet<RFPARAM> RFPARAM { get; set; }
+        public virtual DbSet<RFADJUNTO> RFADJUNTO { get; set; }
+        public virtual DbSet<CxPProceso> CxPProceso { get; set; }
     }
 }

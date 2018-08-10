@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CPProceso\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -175,9 +176,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AsistentesController.cs" />
     <Compile Include="Controllers\ConceptoController.cs" />
+    <Compile Include="Controllers\CXPProcesoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImpuestosController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ProcesoController.cs" />
     <Compile Include="Controllers\RegimenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -189,6 +194,9 @@
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\CxPImpuestos.cs">
+      <DependentUpon>MdlSRG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\CxPProceso.cs">
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\CxPRegimen.cs">
@@ -231,6 +239,12 @@
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\RCAU.cs">
+      <DependentUpon>MdlSRG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\RFADJUNTO.cs">
+      <DependentUpon>MdlSRG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\RFPARAM.cs">
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\RMAILX.cs">
@@ -669,6 +683,10 @@
     <Content Include="Views\Account\CorreoPass.cshtml" />
     <Content Include="Views\Account\OlvidePass.cshtml" />
     <Content Include="Views\Regimen\Index.cshtml" />
+    <Content Include="Views\Asistentes\Index.cshtml" />
+    <Content Include="Views\Impuestos\Index.cshtml" />
+    <Content Include="Views\Proceso\Index.cshtml" />
+    <Content Include="Views\CXPProceso\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
