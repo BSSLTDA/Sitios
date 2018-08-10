@@ -1,10 +1,10 @@
 ﻿@model CuentasporPagar.Models.MdlLogin
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Iniciar Sesión";
 }
 
-<h2>Login</h2>
+<h2>@ViewBag.Title</h2>
 
 <div class="row">
     <div class="col-md-8">
@@ -64,21 +64,21 @@
             success: function (result) {
                 if (result.result == 'OK') {
                     //$("#fondo").addClass("oculto");
-                    //window.location.href = urlInicio;
-                    switch (result.Tipo){
-                        case "ASISTENTE":
-                            window.location.href = urlPAsistente;
-                            break;
-                        case "JEFE":
-                            window.location.href = urlPJefe;
-                            break;
-                        case "SRGUSR":
-                            window.location.href = urlPUsuario;
-                            break;
-                        case "JURIDICO":
-                            window.location.href = urlContratos;
-                            break;
-                    }
+                    window.location.href = urlInicio;
+                    //switch (result.Tipo){
+                    //    case "ASISTENTE":
+                    //        window.location.href = urlPAsistente;
+                    //        break;
+                    //    case "JEFE":
+                    //        window.location.href = urlPJefe;
+                    //        break;
+                    //    case "SRGUSR":
+                    //        window.location.href = urlPUsuario;
+                    //        break;
+                    //    case "JURIDICO":
+                    //        window.location.href = urlContratos;
+                    //        break;
+                    //}
                 }
                 else {
                     $("#fondo").addClass("oculto");

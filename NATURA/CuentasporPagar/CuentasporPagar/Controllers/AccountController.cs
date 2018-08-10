@@ -1,10 +1,3 @@
-#region Copyright Syncfusion Inc. 2001-2017.
-// Copyright Syncfusion Inc. 2001-2017. All rights reserved.
-// Use of this code is subject to the terms of our license.
-// A copy of the current license can be obtained at any time by e-mailing
-// licensing@syncfusion.com. Any infringement will be prosecuted under
-// applicable laws. 
-#endregion
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -13,10 +6,11 @@ using CuentasporPagar.Models.EF;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Text;
 
 namespace CuentasporPagar.Controllers
-{
-    [Authorize]
+{    
     public class AccountController : Controller
     {
         FuncionesComunes fc = new FuncionesComunes();
@@ -30,60 +24,77 @@ namespace CuentasporPagar.Controllers
 
         public JsonResult Logueo(MdlLogin model, string returnUrl, string donde)
         {
-            var res = new RCAU();
-            var resu = "";
-
+            RCAU mRCAU = new RCAU();
+            string res = "";
+            StringBuilder Error = new StringBuilder();
             try
             {
-                res = db.RCAU.Where(m => m.UUSR == model.User && m.USTS == "A" && (m.UTIPO == "POOLASISTENTE" || (m.UMOD == "SRGUSR" || m.UMOD == "ASISTENTE"))).SingleOrDefault();
+                mRCAU = db.RCAU.Where(m => m.UUSR == model.User && m.USTS == "A").SingleOrDefault();
                 if (res != null)
                 {
-                    if (res.UPASS == model.Password)
+                    if (mRCAU.UPASS == model.Password)
                     {
                         SessionManager.Set("VarUsuario", res);
-                        resu = "OK";
+                        res = "OK";
                     }
                     else
                     {
-                        resu = "La contraseña es incorrecta";
+                        res = "La contraseña es incorrecta";
                     }
                 }
                 else
                 {
-                    resu = "Usuario no existe";
+                    res = "Usuario no existe";
                 }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }                
+                res = "ERROR: " + Error.ToString();
             }
             catch (Exception ex)
             {
-                //res = "ERROR: " + ex.Message;
+                res = "ERROR: " + ex.ToString() + ((ex.InnerException != null) ? ex.InnerException.ToString() : "");
             }
 
             var tipousr = "";
-            if (resu == "OK")
-            {
-                if (res.UACC01 == null || res.UACC01 == 1)
-                {
-                    tipousr = "SRGUSR";
-                }
+            //if (resu == "OK")
+            //{
+            //    if (res.UACC01 == null || res.UACC01 == 1)
+            //    {
+            //        tipousr = "SRGUSR";
+            //    }
 
-                if (res.UACC02 == 1)
-                {
-                    tipousr = "ASISTENTE";
-                }
+            //    if (res.UACC02 == 1)
+            //    {
+            //        tipousr = "ASISTENTE";
+            //    }
 
-                if (res.UACC03 == 1)
-                {
-                    tipousr = "JEFE";
-                }
+            //    if (res.UACC03 == 1)
+            //    {
+            //        tipousr = "JEFE";
+            //    }
 
-                if (res.UACC04 == 1)
-                {
-                    tipousr = "JURIDICO";
-                }
-            }
+            //    if (res.UACC04 == 1)
+            //    {
+            //        tipousr = "JURIDICO";
+            //    }
+            //}
 
 
-            return Json(new { result = resu, redir = donde, Tipo = tipousr });
+            return Json(new { result = res, redir = donde, Tipo = tipousr });
         }
 
         public ActionResult LogOff()
