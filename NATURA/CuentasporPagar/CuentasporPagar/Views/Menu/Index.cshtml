@@ -22,7 +22,8 @@
             </li>
             @if (SessionManager.Get<CuentasporPagar.Models.EF.RCAU>("VarUsuario") != null)
             {
-                <li>@Html.ActionLink("Contratos", "Index", "Contrato")</li>
+                <li>@Html.ActionLink("Conceptos", "Index", "Concepto")</li>
+                <li>@Html.ActionLink("Regimen", "Index", "Regimen")</li>
                 <li>@Html.ActionLink("Salir", "LogOff", "Account")</li>
             }
             else
