@@ -78,6 +78,7 @@
     <EntitySet Name="RCAU" EntityType="SRGModel.RCAU" />
     <EntitySet Name="RFPARAM" EntityType="SRGModel.RFPARAM" />
     <EntitySet Name="RFADJUNTO" EntityType="SRGModel.RFADJUNTO" />
+    <EntitySet Name="CxPProceso" EntityType="SRGModel.CxPProceso" />
   </EntityContainer>
   <EntityType Name="RCAU">
     <Key>
@@ -225,5 +226,31 @@
     <Property Name="STS04" Type="Decimal" Precision="1" Scale="0" />
     <Property Name="STS05" Type="Decimal" Precision="1" Scale="0" />
     <Property Name="FREFNUM" Type="Int64" />
+  </EntityType>
+  <EntityType Name="CxPProceso">
+    <Key>
+      <PropertyRef Name="IdCxPProceso" />
+    </Key>
+    <Property Name="IdCxPProceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NitProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NombreProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NPedidoSAP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NFactura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FechaMaxRadicacion" Type="DateTime" Precision="3" />
+    <Property Name="FechaRadicacion" Type="DateTime" Precision="3" />
+    <Property Name="FechaFactura" Type="DateTime" Precision="3" />
+    <Property Name="Valor" Type="Double" />
+    <Property Name="ValorTotal" Type="Double" />
+    <Property Name="Moneda" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="CategorizacionFactura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CentroCostos" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="CuentaContable" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IdArea" Type="Int32" />
+    <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
+    <Property Name="NombreRecibe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FechaRecepcion" Type="DateTime" Precision="3" />
+    <Property Name="NHojaServicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

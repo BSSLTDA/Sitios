@@ -1,0 +1,343 @@
+﻿@using CuentasporPagar.Models.EF;
+
+@{
+    ViewBag.Title = "Hoja de Servicio";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    @(Html.EJ().Grid<CxPProceso>("Grid")
+                                                                               .Datasource(ds => ds.URL(@Url.Content("~/CXPProceso/DSCXPProceso")).Adaptor(AdaptorType.UrlAdaptor))
+                                                                               .EnableAltRow()
+                                                                               .MinWidth(120)
+                                                                               .AllowScrolling()
+                                                                               .IsResponsive(true)
+                                                                               .EnableResponsiveRow(true)
+                                                                               .ScrollSettings(col => { col.Width("100%").Height("auto"); })
+                                                                               .ToolbarSettings(toolBar =>
+                                                                                   toolBar.ShowToolbar()
+                                                                                   .CustomToolbarItems(new List<object>() {
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Agregar" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Editar" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" }
+                                                                                   })
+                                                                                   .ToolbarItems(items =>
+                                                                                   {
+                                                                                   }))
+                                                                               .Locale("es-CO")
+                                                                               .PageSettings(p => { p.PageCount(7).PageSize(25); })
+                                                                               .AllowPaging()
+                                                                               .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+                                                                               .AllowFiltering()
+                                                                               .AllowSorting()
+                                                                               .Columns(col =>
+                                                                               {
+                                                                                   col.Width(100).Field("NitProveedor").HeaderText("NIT Proveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("NombreProveedor").HeaderText("Nombre Proveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("EmailProveedor").HeaderText("Email").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("NPedidoSAP").HeaderText("Número SAP").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("NFactura").HeaderText("Nùmero Factura").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("FechaRadicacion").HeaderText("Fecha de Radicado").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("FechaMaxRadicacion").HeaderText("Fecha Máx. Radicado").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("FechaFactura").HeaderText("Fecha Factura").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("Valor").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("ValorTotal").HeaderText("Total").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("Moneda").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("CategorizacionFactura").HeaderText("Categorización").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("Observaciones").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("CentroCosto").HeaderText("Centro de Costo").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("CuentaContable").HeaderText("Cuenta Contable").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("IdArea").HeaderText("Area").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("FechaEntrega").HeaderText("Fecha Entrega").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("NombreRecibido").HeaderText("Recibido por").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("FechaRecepcion").HeaderText("Fecha Recepción").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Width(100).Field("NHojaServicio").HeaderText("Número Hoja de Servicio").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                   col.Field("IdCxPProceso").Visible(false).Add();
+                                                                               })
+                                                                               .ClientSideEvents(eve => eve.Create("Create").ToolbarClick("TBClick"))
+    )
+    <script type="text/x-jsrender" id="Agregar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="14" src='@Url.Content("~/Content/img/add.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Editar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="16" src='@Url.Content("~/Content/img/edit.svg")' />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Eliminar">
+        <a id="aCustomLib" class="iconCus">
+            <img width="14" src='@Url.Content("~/Content/img/delete.svg")' />
+        </a>
+    </script>
+</div>
+
+<div class="alineadoCentro">
+    <div id="myModal" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Agregar Hoja de Servicios</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label>Fecha de Recepcion</label>
+                            </td>
+                            <td>
+                                <input id="nFechaRecepcion" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Número de Hoja de Servicios</label>
+                            </td>
+                            <td>
+                                <input id="nNHojaServicio" class="ctext" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="Save()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal2" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal2" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Editar Hoja de Servicios</h4>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label>Fecha de Recepcion</label>
+                            </td>
+                            <td>
+                                <input id="uFechaRecepcion" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Número de Hoja de Servicios</label>
+                            </td>
+                            <td>
+                                <input id="uNHojaServicio" class="ctext" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="Update()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal2" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal3" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal3" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Eliminar Hoja de Servicios</h4>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de eliminar el registro seleccionado
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="Delete()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal3" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var Carga = 0;
+    var urlNuevo = '@Url.Content("~/CXPProceso/NuevoPaso3")';
+    var urlEdita = '@Url.Content("~/CXPProceso/EditarPaso5")';
+    var urlElimina = '@Url.Content("~/CXPProceso/Eliminar")';
+    var idCC = "";
+
+    function TBClick(args) {
+        if (args.itemIndex == "0" && args.itemName == "Agregar") {
+            $("#nFechaRecepcion").val('');
+            $("#nNHojaServicio").val('');
+            $("#myModal").css("display", "block");
+        }
+        if (args.itemIndex == "1" && args.itemName == "Editar") {
+            if (args.model.selectedRowIndex != "-1") {
+                $("#uFechaRecepcion").val(args.model.selectedRecords[0].FechaRecepcion);
+                $("#uNHojaServicio").val(args.model.selectedRecords[0].NHojaServicio);
+                idCC = args.model.selectedRecords[0].IdCxPProceso;
+                $("#myModal2").css("display", "block");
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningún registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+        if (args.itemIndex == "2" && args.itemName == "Eliminar") {
+            if (args.model.selectedRowIndex != "-1") {
+                idCC = args.model.selectedRecords[0].IdCxPProceso;
+                $("#myModal3").css("display", "block");
+            }
+            else {
+                $("#LblMsg").text("No se ha seleccionado ningún registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+    }
+
+    function Save() {
+        var continuar = true;
+
+        if ($("#nFechaRecepcion").val() == "") {
+            continuar = false;
+            $("#LblMsg").text("El campo 'Fecha de Recepcion' es obligatorio");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continuar) {
+            if ($("#nNHojaServicio").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Número de Hoja de Servicios' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            $.ajax({
+                type: "POST",
+                url: urlNuevo,
+                data: { FechaRecepcion: $("#nFechaRecepcion").val(), NHojaServicio: $("#nNHojaServicio").val() },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == "OK") {
+                        gridObj = $("#Grid").data("ejGrid");
+                        gridObj.refreshContent();
+                        $("#myModal").css("display", "none");
+                    } else {
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                    }
+                }
+            });
+        }
+    }
+
+    function Update() {
+        var continuar = true;
+
+        if ($("#uFechaRecepcion").val() == "") {
+            continuar = false;
+            $("#LblMsg").text("El campo 'Fecha de Recepcion' es obligatorio");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continuar) {
+            if ($("#uNHojaServicio").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Número de Hoja de Servicios' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            $.ajax({
+                type: "POST",
+                url: urlEdita,
+                data: { IdCxPProceso: idCC, FechaRecepcion: $("#nFechaRecepcion").val(), NHojaServicio: $("#nNHojaServicio").val() },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == "OK") {
+                        gridObj = $("#Grid").data("ejGrid");
+                        gridObj.refreshContent();
+                        $("#myModal2").css("display", "none");
+                    } else {
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                    }
+                }
+            });
+        }
+    }
+
+    function Delete() {
+        $.ajax({
+            type: "POST",
+            url: urlElimina,
+            data: { Id: idCC },
+            cache: true,
+            dataType: 'json',
+            success: function (result) {
+                if (result.result == "OK") {
+                    gridObj = $("#Grid").data("ejGrid");
+                    gridObj.refreshContent();
+                    $("#myModal3").css("display", "none");
+                } else {
+                    $("#LblMsg").text(result.result);
+                    $("#myModMsg").css("display", "block");
+                }
+            }
+        });
+    }
+</script>
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+
+<script>
+    $("#myModal").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal").click(function () {
+        $("#myModal").css("display", "none");
+    });
+    $("#cancelModal").click(function () {
+        $("#myModal").css("display", "none");
+    });
+
+    $("#myModal2").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal2").click(function () {
+        $("#myModal2").css("display", "none");
+    });
+    $("#cancelModal2").click(function () {
+        $("#myModal2").css("display", "none");
+    });
+
+    $("#myModal3").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal3").click(function () {
+        $("#myModal3").css("display", "none");
+    });
+    $("#cancelModal3").click(function () {
+        $("#myModal3").css("display", "none");
+    });
+</script>

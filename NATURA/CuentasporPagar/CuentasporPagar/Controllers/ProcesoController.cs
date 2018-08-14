@@ -27,6 +27,82 @@ namespace CuentasporPagar.Controllers
             return View();
         }
 
+        private List<RFPARAM> ListCTACProceso(string prefix, string Codigo)
+        {
+            var res = new List<RFPARAM>();
+            prefix = prefix.ToUpper();
+
+            try
+            {
+                var query = from p in db.RFPARAM
+                            join p2 in db.RFPARAM on p.CCCODE2 equals p2.CCCODE
+                            where new { cc = p.CCTABL, ctaa = p2.CCTABL, cod = p.CCCODE } ==
+                            new { cc = "CC_CTA", ctaa = "CUENTA", cod = Codigo }
+                            select new MdlRFPARAM()
+                            {
+                                CCCODE = p.CCCODE,
+                                CCDESC = p2.CCCODE + " " + p2.CCDESC,
+                                CCCODE2 = p.CCCODE2
+                            };
+                var lista = query.ToList();
+                var query2 = query.Where(m => (m.CCDESC.ToUpper()).Contains(prefix)).Take(12).ToList();
+                foreach (var item in query2)
+                {
+                    var nRFPARAM = new RFPARAM()
+                    {
+                        CCCODE = item.CCCODE,
+                        CCCODE2 = item.CCCODE2,
+                        CCDESC = item.CCDESC
+                    };
+                    res.Add(nRFPARAM);
+                }
+            }
+            catch (Exception ex)
+            {
+                string err = ex.Message;
+            }
+            return res;
+        }
+
+        private List<RFPARAM> ListCCProceso(string prefix)
+        {
+            var res = new List<RFPARAM>();
+            prefix = prefix.ToUpper();
+
+            try
+            {
+                var query = db.RFPARAM.Where(m => m.CCTABL == "CENTROCOSTO" && (m.CCCODE.ToUpper() + " " + m.CCDESC.ToUpper()).Contains(prefix)).Take(12).ToList();
+                res = query;
+            }
+            catch (Exception ex)
+            {
+                string err = ex.Message;
+            }
+
+            return res;
+        }
+
+        [HttpPost]
+        public JsonResult CentroCostoComplete(string Prefix)
+        {
+            List<RFPARAM> ObjList = ListCCProceso(Prefix);
+            return Json(ObjList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CuentaContableComplete(string Prefix, string CC)
+        {
+            List<RFPARAM> ObjList = ListCTACProceso(Prefix, CC.Split('-')[0].ToString().Trim());
+            return Json(ObjList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AreaComplete(string Prefix)
+        {
+            List<PanelAsistArea> ObjList = db.PanelAsistArea.Where(m => m.Descripcion.ToUpper().Contains(Prefix.ToUpper())).Take(12).ToList();
+            return Json(ObjList, JsonRequestBehavior.AllowGet);
+        }
+
         public List<PanelAsistProceso> GetAllProcess()
         {
             try
@@ -84,26 +160,6 @@ namespace CuentasporPagar.Controllers
                 {
                     item.NotaSolicitante = item.NotaAprobador;
                 }
-                if (item.STS01 == 1)
-                {
-                    item.Estado = "Pendiente";
-                }
-                if (item.STS02 == 1)
-                {
-                    item.Estado = "Procesada";
-                }
-                if (item.STS03 == 1)
-                {
-                    item.Estado = "Rechazada";
-                }
-                if (item.STS04 == 1)
-                {
-                    item.Estado = "Correo Enviado";
-                }
-                if (item.STS05 == 1)
-                {
-                    item.Estado = "Reenviando Correo";
-                }
                 solicita = lmRCAU.Where(m => m.UUSR.Trim() == item.Solicitante.Trim()).SingleOrDefault();
                 if (solicita != null)
                 {
@@ -119,11 +175,6 @@ namespace CuentasporPagar.Controllers
                 {
                     item.Creador = crea.UNOM.Trim();
                 }
-                area = lmPanelAsistArea.Where(m => m.IdPanelAsistArea == item.IdPanelAsistArea).SingleOrDefault();
-                if (area != null)
-                {
-                    item.Area = area.Descripcion;
-                }
                 cc = lmRFPARAMCC.Where(m => m.CCCODE == item.CodCentroCosto.ToString()).SingleOrDefault();
                 if (cc != null)
                 {
@@ -133,28 +184,6 @@ namespace CuentasporPagar.Controllers
                 if (ctac != null)
                 {
                     item.CodCuentaContable = ctac.CCCODE + "-" + ctac.CCDESC;
-                }
-                item.Adjunto = null;
-                item.AdjuntoNme = null;
-                var lRFADJU = lmRFADJUNTO.Where(m => m.FAPROCNUM == item.IdPanelAsistProceso).ToList();
-                if (lRFADJU != null)
-                {
-                    if (lRFADJU.Count() > 0)
-                    {
-                        foreach (var adju in lRFADJU)
-                        {
-                            if (item.Adjunto == null)
-                            {
-                                item.Adjunto = adju.FAURL.Replace("~", "..");
-                                item.AdjuntoNme = adju.FAFILE;
-                            }
-                            else
-                            {
-                                item.Adjunto += "|" + adju.FAURL.Replace("~", "..");
-                                item.AdjuntoNme += "|" + adju.FAFILE;
-                            }
-                        }
-                    }
                 }
             }
 

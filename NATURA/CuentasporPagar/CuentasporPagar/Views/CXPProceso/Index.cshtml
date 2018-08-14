@@ -38,6 +38,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                                             col.Width(100).Field("EmailProveedor").HeaderText("Email").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("NPedidoSAP").HeaderText("Número SAP").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("NFactura").HeaderText("Nùmero Factura").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(100).Field("FechaRadicacion").HeaderText("Fecha de Radicado").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("FechaMaxRadicacion").HeaderText("Fecha Máx. Radicado").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("FechaFactura").HeaderText("Fecha Factura").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("Valor").HeaderTextAlign(TextAlign.Center).Add();
@@ -87,18 +88,53 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                     <table width="100%">
                         <tr>
                             <td>
-                                <label>Código</label>
+                                <label>NIT Proveedor</label>
                             </td>
                             <td>
-                                <input id="nCodigo" class="ctext" />
+                                <input id="nNitProveedor" class="ctext" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Nombre</label>
+                                <label>Nombre Proveedor</label>
                             </td>
                             <td>
-                                <input id="nNombre" class="ctext" />
+                                <input id="nNombreProveedor" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Correo Electrónico</label>
+                            </td>
+                            <td>
+                                <input id="nEmailProveedor" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Area</label>
+                            </td>
+                            <td>
+                                <input id="nIdArea" type="hidden" />
+                                <input id="nArea" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Centro de Costo</label>
+                            </td>
+                            <td>
+                                <input id="nIdCentroCosto" type="hidden" />
+                                <input id="nCentroCosto" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Cuenta Contable</label>
+                            </td>
+                            <td>
+                                <input id="nIdCuentaContable" type="hidden" />
+                                <input id="nCuentaContable" class="ctext" />
                             </td>
                         </tr>
                     </table>
@@ -117,24 +153,59 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             <div class="modal-content fondoBody">
                 <div class="modal-header">
                     <button id="cerrarModal2" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Editar Concepto</h4>
+                    <h4 class="modal-title">Editar CxPProceso</h4>
                 </div>
                 <div class="modal-body">
                     <table width="100%">
                         <tr>
                             <td>
-                                <label>Código</label>
+                                <label>NIT Proveedor</label>
                             </td>
                             <td>
-                                <input id="uCodigo" class="ctext" />
+                                <input id="uNitProveedor" class="ctext" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Nombre</label>
+                                <label>Nombre Proveedor</label>
                             </td>
                             <td>
-                                <input id="uNombre" class="ctext" />
+                                <input id="uNombreProveedor" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Correo Electrónico</label>
+                            </td>
+                            <td>
+                                <input id="uEmailProveedor" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Area</label>
+                            </td>
+                            <td>
+                                <input id="uIdArea" type="hidden" />
+                                <input id="uArea" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Centro de Costo</label>
+                            </td>
+                            <td>
+                                <input id="uIdCentroCosto" type="hidden" />
+                                <input id="uCentroCosto" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Cuenta Contable</label>
+                            </td>
+                            <td>
+                                <input id="uIdCuentaContable" type="hidden" />
+                                <input id="uCuentaContable" class="ctext" />
                             </td>
                         </tr>
                     </table>
@@ -169,25 +240,34 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
 
 <script>
     var Carga = 0;
-    var urlNuevo = '@Url.Content("~/Concepto/Nuevo")';
-    var urlEdita = '@Url.Content("~/Concepto/Editar")';
-    var urlElimina = '@Url.Content("~/Concepto/Eliminar")';
+    var urlNuevo = '@Url.Content("~/CXPProceso/NuevoPaso1")';
+    var urlEdita = '@Url.Content("~/CXPProceso/Editar")';
+    var urlElimina = '@Url.Content("~/CXPProceso/Eliminar")';
     var idCC = "";
 
     function TBClick(args) {
         if (args.itemIndex == "0" && args.itemName == "Agregar") {
-            $("#nCodigo").val('');
-            $("#nNombre").val('');
+            $("#nNitProveedor").val('');
+            $("#nNombreProveedor").val('');
+            $("#nEmailProveedor").val('');
+            $("#nArea").val('');
+            $("#nCentroCosto").val('');
+            $("#nCuentaContable").val('');
+            $("#nCuentaContable").attr("disabled", "disabled");
             $("#myModal").css("display", "block");
         }
         if (args.itemIndex == "1" && args.itemName == "Editar") {
             if (args.model.selectedRowIndex != "-1") {
-                $("#uCodigo").val(args.model.selectedRecords[0].Codigo);
-                $("#uNombre").val(args.model.selectedRecords[0].Nombre);
+                $("#uNitProveedor").val(args.model.selectedRecords[0].NitProveedor);
+                $("#uNombreProveedor").val(args.model.selectedRecords[0].NombreProveedor);
+                $("#uEmailProveedor").val(args.model.selectedRecords[0].EmailProveedor);
+                $("#uIdArea").val(args.model.selectedRecords[0].IdArea);
+                $("#uCentroCosto").val(args.model.selectedRecords[0].CentroCosto);
+                $("#uCuentaContable").val(args.model.selectedRecords[0].CuentaContable);
                 idCC = args.model.selectedRecords[0].IdCxPConcepto;
                 $("#myModal2").css("display", "block");
             } else {
-                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#LblMsg").text("No se ha seleccionado ningún registro");
                 $("#myModMsg").css("display", "block");
                 $("#myModMsg").css("z-index", "999");
             }
@@ -198,7 +278,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                 $("#myModal3").css("display", "block");
             }
             else {
-                $("#LblMsg").text("No se ha seleccionado ningun registro");
+                $("#LblMsg").text("No se ha seleccionado ningún registro");
                 $("#myModMsg").css("display", "block");
                 $("#myModMsg").css("z-index", "999");
             }
@@ -208,17 +288,53 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
     function Save() {
         var continuar = true;
 
-        if ($("#nCodigo").val() == "") {
+        if ($("#nNitProveedor").val() == "") {
             continuar = false;
-            $("#LblMsg").text("El campo 'Código' es obligatorio");
+            $("#LblMsg").text("El campo 'NIT Proveedor' es obligatorio");
             $("#myModMsg").css("display", "block");
             $("#myModMsg").css("z-index", "999");
         }
 
         if (continuar) {
-            if ($("#nNombre").val() == "") {
+            if ($("#nNombreProveedor").val() == "") {
                 continuar = false;
-                $("#LblMsg").text("El campo 'Nombre' es obligatorio");
+                $("#LblMsg").text("El campo 'Nombre Proveedor' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            if ($("#nEmailProveedor").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Correo Electrónico' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            if ($("#nArea").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Area' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            if ($("#nCentroCosto").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Centro de Costo' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            if ($("#nCuentaContable").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Cuenta Contable' es obligatorio");
                 $("#myModMsg").css("display", "block");
                 $("#myModMsg").css("z-index", "999");
             }
@@ -228,7 +344,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             $.ajax({
                 type: "POST",
                 url: urlNuevo,
-                data: { Codigo: $("#nCodigo").val(), Nombre: $("#nNombre").val() },
+                data: { NitProveedor: $("#nNitProveedor").val(), NombreProveedor: $("#nNombreProveedor").val(), EmailProveedor: $("#nEmailProveedor"), IdArea: $("#nIdArea"), CentroCosto: $("#nIdCentroCosto"), CuentaContable: $("#nIdCuentaContable") },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {
@@ -248,17 +364,53 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
     function Update() {
         var continuar = true;
 
-        if ($("#uCodigo").val() == "") {
+        if ($("#uNitProveedor").val() == "") {
             continuar = false;
-            $("#LblMsg").text("El campo 'Código' es obligatorio");
+            $("#LblMsg").text("El campo 'NIT Proveedor' es obligatorio");
             $("#myModMsg").css("display", "block");
             $("#myModMsg").css("z-index", "999");
         }
 
         if (continuar) {
-            if ($("#uNombre").val() == "") {
+            if ($("#uNombreProveedor").val() == "") {
                 continuar = false;
-                $("#LblMsg").text("El campo 'Nombre' es obligatorio");
+                $("#LblMsg").text("El campo 'Nombre Proveedor' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            if ($("#uEmailProveedor").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Correo Electrónico' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            if ($("#uArea").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Area' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            if ($("#uCentroCosto").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Centro de Costo' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            if ($("#uCuentaContable").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Cuenta Contable' es obligatorio");
                 $("#myModMsg").css("display", "block");
                 $("#myModMsg").css("z-index", "999");
             }
@@ -268,7 +420,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             $.ajax({
                 type: "POST",
                 url: urlEdita,
-                data: { IdCxPConcepto: idCC, Codigo: $("#uCodigo").val(), Nombre: $("#uNombre").val() },
+                data: { IdCxPProceso: idCC, NitProveedor: $("#uNitProveedor").val(), NombreProveedor: $("#uNombreProveedor").val(), EmailProveedor: $("#uEmailProveedor"), IdArea: $("#uIdArea"), CentroCosto: $("#uIdCentroCosto"), CuentaContable: $("#uIdCuentaContable") },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {
@@ -339,4 +491,108 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
     $("#cancelModal3").click(function () {
         $("#myModal3").css("display", "none");
     });
+
+    var AutoCentroCosto = '@Url.Content("~/Proceso/CentroCostoComplete")';
+    var AutoCuentaContable = '@Url.Content("~/Proceso/CuentaContableComplete")';
+    var AutoArea = '@Url.Content("~/Proceso/AreaComplete")';
+
+    $(document).ready(function () {
+        $("input:text").focus(function () { $(this).select(); });
+        $("#nCentroCosto").autocomplete({
+            source: function (request, response) {
+                $("#nIdCentroCosto").val('');
+                $("#nCuentaContable").attr("disabled", "disabled");
+                $.ajax({
+                    url: AutoCentroCosto,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CCCODE + ' - ' + item.CCDESC, id: item.CCCODE };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nCentroCosto").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nCentroCosto").val(ui.item.label);
+                $("#nIdCentroCosto").val(ui.item.id);
+                $("#nCuentaContable").removeAttr("disabled");
+                return false;
+            },
+            change: function (event, ui) {
+                if ($("#nIdCentroCosto").val() == "") {
+                    $("#nCentroCosto").val('');
+                }
+                return false;
+            }
+        });
+        $("#nCuentaContable").autocomplete({
+            source: function (request, response) {
+                $("#nIdCuentaContable").val('');
+                $.ajax({
+                    url: AutoCuentaContable,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term, CC: $("#nCentroCosto").val() },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CCDESC, id: item.CCCODE2 };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nCuentaContable").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nCuentaContable").val(ui.item.label);
+                $("#nIdCuentaContable").val(ui.item.id);
+                return false;
+            },
+            change: function (event, ui) {
+                if ($("#nIdCuentaContable").val() == "") {
+                    $("#nCuentaContable").val('');
+                }
+                return false;
+            }
+        });
+        $("#nArea").autocomplete({
+            source: function (request, response) {
+                $("#nIdArea").val('');
+                $.ajax({
+                    url: AutoArea,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Descripcion, id: item.IdPanelAsistArea };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nArea").val(ui.item.label);
+                $("#nIdArea").val('');
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nArea").val(ui.item.label);
+                $("#nIdArea").val(ui.item.id);
+                return false;
+            },
+            change: function (event, ui) {
+                if ($("#nIdArea").val() == "") {
+                    $("#nArea").val('');
+                }
+                return false;
+            }
+        });
+    })
 </script>

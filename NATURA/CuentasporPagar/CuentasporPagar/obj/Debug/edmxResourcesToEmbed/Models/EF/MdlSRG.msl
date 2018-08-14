@@ -218,5 +218,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CxPProceso">
+      <EntityTypeMapping TypeName="SRGModel.CxPProceso">
+        <MappingFragment StoreEntitySet="CxPProceso">
+          <ScalarProperty Name="NHojaServicio" ColumnName="NHojaServicio" />
+          <ScalarProperty Name="FechaRecepcion" ColumnName="FechaRecepcion" />
+          <ScalarProperty Name="NombreRecibe" ColumnName="NombreRecibe" />
+          <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+          <ScalarProperty Name="IdArea" ColumnName="IdArea" />
+          <ScalarProperty Name="CuentaContable" ColumnName="CuentaContable" />
+          <ScalarProperty Name="CentroCostos" ColumnName="CentroCostos" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="CategorizacionFactura" ColumnName="CategorizacionFactura" />
+          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+          <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+          <ScalarProperty Name="FechaRadicacion" ColumnName="FechaRadicacion" />
+          <ScalarProperty Name="FechaMaxRadicacion" ColumnName="FechaMaxRadicacion" />
+          <ScalarProperty Name="NFactura" ColumnName="NFactura" />
+          <ScalarProperty Name="NPedidoSAP" ColumnName="NPedidoSAP" />
+          <ScalarProperty Name="EmailProveedor" ColumnName="EmailProveedor" />
+          <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+          <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
+          <ScalarProperty Name="IdCxPProceso" ColumnName="IdCxPProceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

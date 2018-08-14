@@ -25,6 +25,32 @@
     <Property Name="Nombre" Type="nvarchar" MaxLength="150" />
     <Property Name="Valor" Type="float" />
   </EntityType>
+  <EntityType Name="CxPProceso">
+    <Key>
+      <PropertyRef Name="IdCxPProceso" />
+    </Key>
+    <Property Name="IdCxPProceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NitProveedor" Type="nvarchar" MaxLength="50" />
+    <Property Name="NombreProveedor" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailProveedor" Type="nvarchar" MaxLength="50" />
+    <Property Name="NPedidoSAP" Type="nvarchar" MaxLength="50" />
+    <Property Name="NFactura" Type="nvarchar" MaxLength="50" />
+    <Property Name="FechaMaxRadicacion" Type="datetime" />
+    <Property Name="FechaRadicacion" Type="datetime" />
+    <Property Name="FechaFactura" Type="datetime" />
+    <Property Name="Valor" Type="float" />
+    <Property Name="ValorTotal" Type="float" />
+    <Property Name="Moneda" Type="nchar" MaxLength="10" />
+    <Property Name="CategorizacionFactura" Type="nvarchar" MaxLength="50" />
+    <Property Name="Observaciones" Type="nvarchar" MaxLength="500" />
+    <Property Name="CentroCostos" Type="nchar" MaxLength="10" />
+    <Property Name="CuentaContable" Type="nchar" MaxLength="10" />
+    <Property Name="IdArea" Type="int" />
+    <Property Name="FechaEntrega" Type="datetime" />
+    <Property Name="NombreRecibe" Type="nvarchar" MaxLength="50" />
+    <Property Name="FechaRecepcion" Type="datetime" />
+    <Property Name="NHojaServicio" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="CxPRegimen">
     <Key>
       <PropertyRef Name="IdCxPRegimen" />
@@ -219,6 +245,7 @@
     <EntitySet Name="CxPAsistentes" EntityType="Self.CxPAsistentes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CxPConceptos" EntityType="Self.CxPConceptos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CxPImpuestos" EntityType="Self.CxPImpuestos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CxPProceso" EntityType="Self.CxPProceso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CxPRegimen" EntityType="Self.CxPRegimen" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PanelAsistProceso" EntityType="Self.PanelAsistProceso" Schema="dbo" store:Type="Tables" />

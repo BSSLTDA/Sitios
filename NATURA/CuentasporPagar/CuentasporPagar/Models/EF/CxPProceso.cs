@@ -21,6 +21,7 @@ namespace CuentasporPagar.Models.EF
         public string NPedidoSAP { get; set; }
         public string NFactura { get; set; }
         public Nullable<System.DateTime> FechaMaxRadicacion { get; set; }
+        public Nullable<System.DateTime> FechaRadicacion { get; set; }
         public Nullable<System.DateTime> FechaFactura { get; set; }
         public Nullable<double> Valor { get; set; }
         public Nullable<double> ValorTotal { get; set; }
