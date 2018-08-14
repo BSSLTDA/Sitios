@@ -28,12 +28,13 @@ namespace CuentasporPagar.Controllers
             return View();
         }
 
-        public ActionResult Nuevo(string Nombre)
+        public ActionResult Nuevo(string Nombre, string Codigo)
         {
             string Respu = "";
             var nCxPRegimen = new CxPRegimen()
             {
-                Nombre = Nombre
+                Nombre = Nombre,
+                Codigo = Codigo
             };
             try
             {
@@ -49,13 +50,14 @@ namespace CuentasporPagar.Controllers
             return Json(new { result = Respu });
         }
 
-        public ActionResult Editar(int IdCxPRegimen, string Codigo, string Nombre)
+        public ActionResult Editar(int IdCxPRegimen, string Nombre, string Codigo)
         {
             string Respu = "";
             var uCxPRegimen = new CxPRegimen
             {
                 IdCxPRegimen = IdCxPRegimen,
-                Nombre = Nombre
+                Nombre = Nombre,
+                Codigo = Codigo
             };
             try
             {

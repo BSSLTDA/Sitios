@@ -178,6 +178,7 @@
     <Compile Include="Controllers\AsistentesController.cs" />
     <Compile Include="Controllers\ConceptoController.cs" />
     <Compile Include="Controllers\CXPProcesoController.cs" />
+    <Compile Include="Controllers\PruebaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImpuestosController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -690,6 +691,7 @@
     <Content Include="Views\CXPProceso\Factura.cshtml" />
     <Content Include="Views\CXPProceso\Entrega.cshtml" />
     <Content Include="Views\CXPProceso\HojaServicio.cshtml" />
+    <Content Include="Views\Prueba\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

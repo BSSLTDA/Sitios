@@ -29,14 +29,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CxPRegimen">
-      <EntityTypeMapping TypeName="SRGModel.CxPRegimen">
-        <MappingFragment StoreEntitySet="CxPRegimen">
-          <ScalarProperty Name="IdCxPRegimen" ColumnName="IdCxPRegimen" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PanelAsistArea">
       <EntityTypeMapping TypeName="SRGModel.PanelAsistArea">
         <MappingFragment StoreEntitySet="PanelAsistArea">
@@ -242,6 +234,15 @@
           <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
           <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
           <ScalarProperty Name="IdCxPProceso" ColumnName="IdCxPProceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CxPRegimen">
+      <EntityTypeMapping TypeName="SRGModel.CxPRegimen">
+        <MappingFragment StoreEntitySet="CxPRegimen">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdCxPRegimen" ColumnName="IdCxPRegimen" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

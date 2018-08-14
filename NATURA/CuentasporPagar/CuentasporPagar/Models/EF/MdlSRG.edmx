@@ -62,6 +62,7 @@
           </Key>
           <Property Name="IdCxPRegimen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Codigo" Type="nchar" MaxLength="4" />
         </EntityType>
         <EntityType Name="PanelAsistArea">
           <Key>
@@ -287,13 +288,6 @@
           <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Valor" Type="Double" />
         </EntityType>
-        <EntityType Name="CxPRegimen">
-          <Key>
-            <PropertyRef Name="IdCxPRegimen" />
-          </Key>
-          <Property Name="IdCxPRegimen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="PanelAsistArea">
           <Key>
             <PropertyRef Name="IdPanelAsistArea" />
@@ -334,13 +328,13 @@
           <EntitySet Name="CxPAsistentes" EntityType="Self.CxPAsistentes" />
           <EntitySet Name="CxPConceptos" EntityType="Self.CxPConceptos" />
           <EntitySet Name="CxPImpuestos" EntityType="Self.CxPImpuestos" />
-          <EntitySet Name="CxPRegimen" EntityType="Self.CxPRegimen" />
           <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" />
           <EntitySet Name="PanelAsistProceso" EntityType="Self.PanelAsistProceso" />
           <EntitySet Name="RCAU" EntityType="SRGModel.RCAU" />
           <EntitySet Name="RFPARAM" EntityType="SRGModel.RFPARAM" />
           <EntitySet Name="RFADJUNTO" EntityType="SRGModel.RFADJUNTO" />
           <EntitySet Name="CxPProceso" EntityType="SRGModel.CxPProceso" />
+          <EntitySet Name="CxPRegimen" EntityType="SRGModel.CxPRegimen" />
         </EntityContainer>
         <EntityType Name="RCAU">
           <Key>
@@ -515,6 +509,14 @@
           <Property Name="FechaRecepcion" Type="DateTime" Precision="3" />
           <Property Name="NHojaServicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="CxPRegimen">
+          <Key>
+            <PropertyRef Name="IdCxPRegimen" />
+          </Key>
+          <Property Name="IdCxPRegimen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Codigo" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -546,14 +548,6 @@
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Valor" ColumnName="Valor" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CxPRegimen">
-            <EntityTypeMapping TypeName="SRGModel.CxPRegimen">
-              <MappingFragment StoreEntitySet="CxPRegimen">
-                <ScalarProperty Name="IdCxPRegimen" ColumnName="IdCxPRegimen" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -762,6 +756,15 @@
                 <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
                 <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
                 <ScalarProperty Name="IdCxPProceso" ColumnName="IdCxPProceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CxPRegimen">
+            <EntityTypeMapping TypeName="SRGModel.CxPRegimen">
+              <MappingFragment StoreEntitySet="CxPRegimen">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdCxPRegimen" ColumnName="IdCxPRegimen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

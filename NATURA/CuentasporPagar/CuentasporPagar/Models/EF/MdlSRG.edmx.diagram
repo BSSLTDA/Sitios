@@ -8,13 +8,13 @@
         <EntityTypeShape EntityType="SRGModel.CxPAsistentes" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SRGModel.CxPConceptos" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SRGModel.CxPImpuestos" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SRGModel.CxPRegimen" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SRGModel.PanelAsistArea" Width="1.5" PointX="6.75" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SRGModel.PanelAsistProceso" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SRGModel.RCAU" Width="1.5" PointX="6.875" PointY="3.75" />
         <EntityTypeShape EntityType="SRGModel.RFPARAM" Width="1.5" PointX="9.125" PointY="0.5" />
         <EntityTypeShape EntityType="SRGModel.RFADJUNTO" Width="1.5" PointX="10.75" PointY="0.5" />
         <EntityTypeShape EntityType="SRGModel.CxPProceso" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SRGModel.CxPRegimen" Width="1.5" PointX="4.75" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

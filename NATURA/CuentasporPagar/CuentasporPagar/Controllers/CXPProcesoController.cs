@@ -1,6 +1,8 @@
 ﻿using CuentasporPagar.Models;
 using CuentasporPagar.Models.EF;
+using CuentasporPagar.Models.Enums;
 using Syncfusion.JavaScript;
+using Syncfusion.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -398,13 +400,120 @@ namespace CuentasporPagar.Controllers
             StringBuilder Error = new StringBuilder();
             try
             {
+                CxPRegimen mCxPRegimen = db.CxPRegimen.Find(IdRegimen);
+                CxPConceptos mCxPConcepto = db.CxPConceptos.Find(IdConcepto);
+                List<CxPImpuestos> mCxPImpuestosList = db.CxPImpuestos.ToList();
+                string sRegimen = mCxPRegimen.Codigo.Trim();
+                string sConcepto = mCxPConcepto.Codigo.Trim();
                 switch (TipoPersona)
                 {
-                    case "NATURAL":
-                        Respu = "Es natural";
+                    case "NATURAL":// solo régimen simplificado y común
+                        switch (sRegimen)
+                        {
+                            case "SN": case "SB": case "SC":
+                                switch (sConcepto)
+                                {
+                                    case "R"://Arrendamiento
+                                        Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 2).Nombre;
+                                        if (sRegimen == "SC") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 15).Nombre; }
+                                        break;
+                                    case "S"://Comerciales
+                                        break;
+                                    case "T"://Compras
+                                        Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 4).Nombre;
+                                        if (sRegimen == "SB") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 12).Nombre; }
+                                        else if (sRegimen == "SC") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 13).Nombre; }
+                                        break;
+                                    case "U"://Financiera
+                                        break;
+                                    case "V"://Honorarios
+                                        Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 5).Nombre;
+                                        if (sRegimen == "SB") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 16).Nombre; }
+                                        break;
+                                    case "W"://Industriales
+                                        break;
+                                    case "X"://Inventario
+                                        break;
+                                    case "Y"://Otros
+                                        break;
+                                    case "Z"://Servicios
+                                        Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 10).Nombre;
+                                        if (sRegimen == "SB") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 17).Nombre; }
+                                        else if (sRegimen == "SC") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 14).Nombre; }
+                                        break;
+                                }
+                                break;
+                            case "CN": case "CB": case "CC":
+                                switch (sConcepto)
+                                {
+                                    case "R":
+                                        Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 2).Nombre;
+                                        if (sRegimen == "CC") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 15).Nombre; }
+                                        break;
+                                    case "S":
+                                        break;
+                                    case "T":
+                                        Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 12).Nombre;
+                                        if (sRegimen == "CB") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 12).Nombre; }
+                                        else if (sRegimen == "CC") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 13).Nombre; }
+                                        break;
+                                    case "U":
+                                        break;
+                                    case "V":
+                                        Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 6).Nombre;
+                                        if (sRegimen == "CB") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 16).Nombre; }
+                                        break;
+                                    case "W":
+                                        break;
+                                    case "X":
+                                        break;
+                                    case "Y":
+                                        break;
+                                    case "Z":
+                                        Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 9).Nombre;
+                                        if (sRegimen == "CB") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 17).Nombre; }
+                                        else if (sRegimen == "CC") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 14).Nombre; }
+                                        break;
+                                }
+                                break;
+                        }
                         break;
-                    case "JURIDICA":
-                        Respu = "Es juridica";
+                    case "JURIDICA": //por defecto es régimen común
+                        if (sRegimen == "CN" || sRegimen == "CB" || sRegimen == "CC")
+                        {
+                            switch (sConcepto)
+                            {
+                                case "R":
+                                    Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 2).Nombre;
+                                    if (sRegimen == "CC") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 15).Nombre; }
+                                    break;
+                                case "S":
+                                    break;
+                                case "T":
+                                    Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 12).Nombre;
+                                    if (sRegimen == "CB") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 12).Nombre; }
+                                    else if (sRegimen == "CC") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 13).Nombre; }
+                                    break;
+                                case "U":
+                                    break;
+                                case "V":
+                                    Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 6).Nombre;
+                                    if (sRegimen == "CB") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 16).Nombre; }
+                                    break;
+                                case "W":
+                                    break;
+                                case "X":
+                                    break;
+                                case "Y":
+                                    break;
+                                case "Z":
+                                    Respu = "Se aplica " + mCxPImpuestosList.Find(x => x.Codigo == 9).Nombre;
+                                    if (sRegimen == "CB") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 17).Nombre; }
+                                    else if (sRegimen == "CC") { Respu += " y " + mCxPImpuestosList.Find(x => x.Codigo == 14).Nombre; }
+                                    break;
+                            }
+                            break;
+                        }
                         break;
                 }
             }

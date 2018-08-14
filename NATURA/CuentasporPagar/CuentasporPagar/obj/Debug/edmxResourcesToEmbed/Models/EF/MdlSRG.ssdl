@@ -57,6 +57,7 @@
     </Key>
     <Property Name="IdCxPRegimen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Codigo" Type="nchar" MaxLength="4" />
   </EntityType>
   <EntityType Name="PanelAsistArea">
     <Key>

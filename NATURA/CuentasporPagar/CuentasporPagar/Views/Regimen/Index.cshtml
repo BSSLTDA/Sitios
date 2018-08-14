@@ -34,6 +34,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                                         .Columns(col =>
                                                         {
                                                             col.Width(250).Field("Nombre").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(250).Field("Codigo").HeaderText("Código").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Field("IdCxPRegimen").Visible(false).Add();
                                                         })
                                                         .ClientSideEvents(eve => eve.Create("Create").ToolbarClick("TBClick"))
@@ -75,6 +76,14 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                 <input id="nNombre" class="ctext" />
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <label>Código</label>
+                            </td>
+                            <td>
+                                <input id="nCodigo" class="ctext" />
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -101,6 +110,14 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                             </td>
                             <td>
                                 <input id="uNombre" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Código</label>
+                            </td>
+                            <td>
+                                <input id="uCodigo" class="ctext" />
                             </td>
                         </tr>
                     </table>
@@ -143,11 +160,13 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
     function TBClick(args) {
         if (args.itemIndex == "0" && args.itemName == "Agregar") {
             $("#nNombre").val('');
+            $("#nCodigo").val('');
             $("#myModal").css("display", "block");
         }
         if (args.itemIndex == "1" && args.itemName == "Editar") {
             if (args.model.selectedRowIndex != "-1") {
                 $("#uNombre").val(args.model.selectedRecords[0].Nombre);
+                $("#uCodigo").val(args.model.selectedRecords[0].Codigo);
                 idCC = args.model.selectedRecords[0].IdCxPRegimen;
                 $("#myModal2").css("display", "block");
             } else {
@@ -182,10 +201,19 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
         }
 
         if (continuar) {
+            if ($("#nCodigo").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Código' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
             $.ajax({
                 type: "POST",
                 url: urlNuevo,
-                data: { Nombre: $("#nNombre").val() },
+                data: { Nombre: $("#nNombre").val(), Codigo: $("#nCodigo").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {
@@ -215,10 +243,19 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
         }
 
         if (continuar) {
+            if ($("#uCodigo").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Código' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
             $.ajax({
                 type: "POST",
                 url: urlEdita,
-                data: { IdCxPRegimen: idCC, Nombre: $("#uNombre").val() },
+                data: { IdCxPRegimen: idCC, Nombre: $("#uNombre").val(), Codigo: $("#uCodigo").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {

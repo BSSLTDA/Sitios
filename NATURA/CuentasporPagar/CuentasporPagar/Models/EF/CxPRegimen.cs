@@ -16,5 +16,6 @@ namespace CuentasporPagar.Models.EF
     {
         public int IdCxPRegimen { get; set; }
         public string Nombre { get; set; }
+        public string Codigo { get; set; }
     }
 }
