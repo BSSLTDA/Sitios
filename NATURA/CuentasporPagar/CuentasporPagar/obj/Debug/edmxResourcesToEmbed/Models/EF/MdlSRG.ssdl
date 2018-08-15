@@ -50,6 +50,7 @@
     <Property Name="NombreRecibe" Type="nvarchar" MaxLength="50" />
     <Property Name="FechaRecepcion" Type="datetime" />
     <Property Name="NHojaServicio" Type="nvarchar" MaxLength="50" />
+    <Property Name="Estado" Type="nvarchar" MaxLength="1" />
   </EntityType>
   <EntityType Name="CxPRegimen">
     <Key>

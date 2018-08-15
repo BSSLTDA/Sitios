@@ -210,9 +210,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CxPRegimen">
+      <EntityTypeMapping TypeName="SRGModel.CxPRegimen">
+        <MappingFragment StoreEntitySet="CxPRegimen">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdCxPRegimen" ColumnName="IdCxPRegimen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CxPProceso">
       <EntityTypeMapping TypeName="SRGModel.CxPProceso">
         <MappingFragment StoreEntitySet="CxPProceso">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="NHojaServicio" ColumnName="NHojaServicio" />
           <ScalarProperty Name="FechaRecepcion" ColumnName="FechaRecepcion" />
           <ScalarProperty Name="NombreRecibe" ColumnName="NombreRecibe" />
@@ -234,15 +244,6 @@
           <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
           <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
           <ScalarProperty Name="IdCxPProceso" ColumnName="IdCxPProceso" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CxPRegimen">
-      <EntityTypeMapping TypeName="SRGModel.CxPRegimen">
-        <MappingFragment StoreEntitySet="CxPRegimen">
-          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="IdCxPRegimen" ColumnName="IdCxPRegimen" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

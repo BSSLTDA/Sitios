@@ -53,6 +53,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                                                     col.Width(100).Field("NombreRecibido").HeaderText("Recibido por").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("FechaRecepcion").HeaderText("Fecha Recepción").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("NHojaServicio").HeaderText("Número Hoja de Servicio").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(100).Field("Estado").HeaderText("Status").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Field("IdCxPProceso").Visible(false).Add();
                                                                 })
                                                                 .ClientSideEvents(eve => eve.Create("Create").ToolbarClick("TBClick"))
@@ -142,6 +143,14 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                 <input id="nCategorizacionFactura" class="ctext" />
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <label>Observaciones</label>
+                            </td>
+                            <td>
+                                <input id="nObservaciones" class="ctext" />
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -218,6 +227,14 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                 <input id="uCategorizacionFactura" class="ctext" />
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <label>Observaciones</label>
+                            </td>
+                            <td>
+                                <input id="uObservaciones" class="ctext" />
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -264,6 +281,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             $("#nValorTotal").val('');
             $("#nMoneda").val('');
             $("#nCategorizacionFactura").val('');
+            $("#nObservaciones").val('');
             $("#myModal").css("display", "block");
         }
         if (args.itemIndex == "1" && args.itemName == "Editar") {
@@ -275,6 +293,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                 $("#uValorTotal").val(args.model.selectedRecords[0].ValorTotal);
                 $("#uMoneda").val(args.model.selectedRecords[0].Moneda);
                 $("#uCategorizacionFactura").val(args.model.selectedRecords[0].CategorizacionFactura);
+                $("#uObservaciones").val(args.model.selectedRecords[0].Observaciones);
                 idCC = args.model.selectedRecords[0].IdCxPProceso;
                 $("#myModal2").css("display", "block");
             } else {
@@ -364,7 +383,8 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             $.ajax({
                 type: "POST",
                 url: urlNuevo,
-                data: { FechaRadicacion: $("#nFechaRadicacion").val(), FechaFactura: $("#nFechaFactura").val(), NFactura: $("nNFactura").val(), Valor: $("nValor").val(), ValorTotal: $("nValorTotal").val(), Moneda: $("nMoneda").val(), CategorizacionFactura: $("nCategorizacionFactura").val() },
+                data: {
+                    FechaRadicacion: $("#nFechaRadicacion").val(), FechaFactura: $("#nFechaFactura").val(), NFactura: $("nNFactura").val(), Valor: $("nValor").val(), ValorTotal: $("nValorTotal").val(), Moneda: $("nMoneda").val(), CategorizacionFactura: $("nCategorizacionFactura").val(), Observaciones: $("nObservaciones").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {
@@ -449,7 +469,8 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             $.ajax({
                 type: "POST",
                 url: urlEdita,
-                data: { IdCxPProceso: idCC, FechaRadicacion: $("#uFechaRadicacion").val(), FechaFactura: $("#uFechaFactura").val(), NFactura: $("uNFactura").val(), Valor: $("uValor").val(), ValorTotal: $("uValorTotal").val(), Moneda: $("uMoneda").val(), CategorizacionFactura: $("uCategorizacionFactura").val() },
+                data: {
+                    IdCxPProceso: idCC, FechaRadicacion: $("#uFechaRadicacion").val(), FechaFactura: $("#uFechaFactura").val(), NFactura: $("uNFactura").val(), Valor: $("uValor").val(), ValorTotal: $("uValorTotal").val(), Moneda: $("uMoneda").val(), CategorizacionFactura: $("uCategorizacionFactura").val(), Observaciones: $("uObservaciones").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {

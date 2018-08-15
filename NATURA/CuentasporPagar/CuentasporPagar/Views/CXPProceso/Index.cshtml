@@ -53,6 +53,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                                             col.Width(100).Field("NombreRecibido").HeaderText("Recibido por").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("FechaRecepcion").HeaderText("Fecha Recepción").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("NHojaServicio").HeaderText("Número Hoja de Servicio").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(100).Field("Estado").HeaderText("Status").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Field("IdCxPProceso").Visible(false).Add();
                                                         })
                                                         .ClientSideEvents(eve => eve.Create("Create").ToolbarClick("TBClick"))

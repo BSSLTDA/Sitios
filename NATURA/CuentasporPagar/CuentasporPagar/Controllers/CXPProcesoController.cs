@@ -1,6 +1,5 @@
 ﻿using CuentasporPagar.Models;
 using CuentasporPagar.Models.EF;
-using CuentasporPagar.Models.Enums;
 using Syncfusion.JavaScript;
 using Syncfusion.Linq;
 using System;
@@ -32,7 +31,7 @@ namespace CuentasporPagar.Controllers
             return View();
         }
 
-        public ActionResult Factura()
+        public ActionResult Factura()//Paso de radicar factura
         {
             if (SessionManager.Get<RCAU>("VarUsuario") == null)
             {
@@ -43,7 +42,7 @@ namespace CuentasporPagar.Controllers
             return View();
         }
 
-        public ActionResult Entrega()
+        public ActionResult Entrega()//Paso de enviar correo al asistente
         {
             if (SessionManager.Get<RCAU>("VarUsuario") == null)
             {
@@ -54,7 +53,7 @@ namespace CuentasporPagar.Controllers
             return View();
         }
 
-        public ActionResult HojaServicio()
+        public ActionResult HojaServicio()//Paso de liquidar impuestos
         {
             if (SessionManager.Get<RCAU>("VarUsuario") == null)
             {
@@ -65,7 +64,7 @@ namespace CuentasporPagar.Controllers
             return View();
         }
 
-        public ActionResult GenerarImpuesto()
+        public ActionResult GenerarImpuesto()//No deberia estar aqui pero era pruebas del algoritmo de liquidar impuesto
         {
             if (SessionManager.Get<RCAU>("VarUsuario") == null)
             {
@@ -76,7 +75,7 @@ namespace CuentasporPagar.Controllers
             return View();
         }
 
-        public ActionResult GenerarDocumentoGED()
+        public ActionResult GenerarDocumentoGED()//Paso de generar documento para el GED
         {
             if (SessionManager.Get<RCAU>("VarUsuario") == null)
             {
@@ -86,141 +85,9 @@ namespace CuentasporPagar.Controllers
             SessionManager.Set("DCXPProceso", lmCxPProceso);
             return View();
         }
-
-        public ActionResult NuevoPaso1(string CentroCostos, string CuentaContable, string IdArea, string NitProveedor, string NombreProveedor, string EmailProveedor)
-        {
-            string Respu = "";
-            StringBuilder Error = new StringBuilder();
-            try
-            {
-                int Area = int.Parse(IdArea);
-                var nCxPProceso = new CxPProceso()
-                {
-                    CentroCostos = CentroCostos,
-                    CuentaContable = CuentaContable,
-                    IdArea = Area,
-                    NitProveedor = NitProveedor,
-                    NombreProveedor = NombreProveedor,
-                    EmailProveedor = EmailProveedor
-                };
-                db.CxPProceso.Add(nCxPProceso);
-                db.SaveChanges();
-                SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
-                Respu = "OK";
-            }
-            catch (DbEntityValidationException ex)
-            {
-                Error.AppendLine(ex.ToString());
-                foreach (var eve in ex.EntityValidationErrors)
-                {
-                    Error.AppendLine("");
-                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Error.AppendLine("");
-                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                Respu = "ERROR: " + Error.ToString();
-            }
-            catch (Exception ex)
-            {
-                Respu = "ERROR: " + ex.ToString() + ((ex.InnerException != null) ? ex.InnerException.ToString() : "");
-            }
-            return Json(new { result = Respu });
-        }
-
-        public ActionResult EditarPaso1(int IdCxPProceso, string CentroCostos, string CuentaContable, string IdArea, string NitProveedor, string NombreProveedor, string EmailProveedor)
-        {
-            string Respu = "";
-            StringBuilder Error = new StringBuilder();
-            try
-            {
-                int Area = int.Parse(IdArea);
-                var uCxPProceso = new CxPProceso()
-                {
-                    IdCxPProceso = IdCxPProceso,
-                    CentroCostos = CentroCostos,
-                    CuentaContable = CuentaContable,
-                    IdArea = Area,
-                    NitProveedor = NitProveedor,
-                    NombreProveedor = NombreProveedor,
-                    EmailProveedor = EmailProveedor
-                };
-                db.Entry(uCxPProceso).State = EntityState.Modified;
-                db.SaveChanges();
-                SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
-                Respu = "OK";
-            }
-            catch (DbEntityValidationException ex)
-            {
-                Error.AppendLine(ex.ToString());
-                foreach (var eve in ex.EntityValidationErrors)
-                {
-                    Error.AppendLine("");
-                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Error.AppendLine("");
-                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                Respu = "ERROR: " + Error.ToString();
-            }
-            catch (Exception ex)
-            {
-                Respu = "ERROR: " + ex.ToString();
-            }
-            return Json(new { result = Respu });
-        }
-
-        public ActionResult EditarPaso2(int IdCxPProceso, DateTime FechaMaxRadicado, string NPedidoSAP)
-        {
-            string Respu = "";
-            StringBuilder Error = new StringBuilder();
-            try
-            {
-                var uCxPProceso = new CxPProceso()
-                {
-                    IdCxPProceso = IdCxPProceso,
-                    FechaMaxRadicacion = FechaMaxRadicado,
-                    NPedidoSAP = NPedidoSAP
-                };
-                db.Entry(uCxPProceso).State = EntityState.Modified;
-                db.SaveChanges();
-                SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
-                Respu = "OK";
-            }
-            catch (DbEntityValidationException ex)
-            {
-                Error.AppendLine(ex.ToString());
-                foreach (var eve in ex.EntityValidationErrors)
-                {
-                    Error.AppendLine("");
-                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Error.AppendLine("");
-                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                Respu = "ERROR: " + Error.ToString();
-            }
-            catch (Exception ex)
-            {
-                Respu = "ERROR: " + ex.ToString();
-            }
-            return Json(new { result = Respu });
-        }
         
         public ActionResult NuevoPaso3(DateTime FechaRadicacion, DateTime FechaFactura, string NFactura, string Valor, string ValorTotal, string Moneda, string CategorizacionFactura, string Observaciones)
-        {
+        {//Este metodo no deberia estar ya que debe existir la factura desde panel de asistentes y solo debe estar el metodo para editar dicho registro
             string Respu = "";
             StringBuilder Error = new StringBuilder();
             try
