@@ -14,8 +14,17 @@ namespace CuentasporPagar.Models.EF
     
     public partial class CxPRegimen
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CxPRegimen()
+        {
+            this.CxPImpuestos = new HashSet<CxPImpuestos>();
+        }
+    
         public int IdCxPRegimen { get; set; }
-        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         public string Codigo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CxPImpuestos> CxPImpuestos { get; set; }
     }
 }

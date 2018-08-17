@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Tasas\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -175,15 +176,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AsistentesController.cs" />
-    <Compile Include="Controllers\ConceptoController.cs" />
+    <Compile Include="Controllers\CXPAsistentesController.cs" />
+    <Compile Include="Controllers\CXPConceptoController.cs" />
     <Compile Include="Controllers\CXPProcesoController.cs" />
+    <Compile Include="Controllers\CXPTasasController.cs" />
     <Compile Include="Controllers\PruebaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImpuestosController.cs" />
+    <Compile Include="Controllers\CXPImpuestosController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProcesoController.cs" />
-    <Compile Include="Controllers\RegimenController.cs" />
+    <Compile Include="Controllers\CXPRegimenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,6 +202,9 @@
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\CxPRegimen.cs">
+      <DependentUpon>MdlSRG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\CxPTasas.cs">
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\MdlInfoNatura.Context.cs">
@@ -677,21 +682,22 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Concepto\Index.cshtml" />
+    <Content Include="Views\CXPConcepto\Index.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\CambiaPass.cshtml" />
     <Content Include="Views\Account\CorreoPass.cshtml" />
     <Content Include="Views\Account\OlvidePass.cshtml" />
-    <Content Include="Views\Regimen\Index.cshtml" />
+    <Content Include="Views\CXPRegimen\Index.cshtml" />
     <Content Include="Views\Asistentes\Index.cshtml" />
-    <Content Include="Views\Impuestos\Index.cshtml" />
+    <Content Include="Views\CXPImpuestos\Index.cshtml" />
     <Content Include="Views\Proceso\Index.cshtml" />
     <Content Include="Views\CXPProceso\Index.cshtml" />
     <Content Include="Views\CXPProceso\Factura.cshtml" />
     <Content Include="Views\CXPProceso\Entrega.cshtml" />
     <Content Include="Views\CXPProceso\HojaServicio.cshtml" />
     <Content Include="Views\Prueba\Index.cshtml" />
+    <Content Include="Views\CXPTasas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

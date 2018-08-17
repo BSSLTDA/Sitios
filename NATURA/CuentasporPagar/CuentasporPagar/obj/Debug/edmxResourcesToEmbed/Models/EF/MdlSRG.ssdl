@@ -14,16 +14,16 @@
     </Key>
     <Property Name="IdCxPConcepto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Codigo" Type="nchar" MaxLength="1" />
-    <Property Name="Nombre" Type="nvarchar" MaxLength="20" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="CxPImpuestos">
     <Key>
-      <PropertyRef Name="IdCxPImpuestos" />
+      <PropertyRef Name="CxPIdImpuestos" />
     </Key>
-    <Property Name="IdCxPImpuestos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Codigo" Type="int" />
-    <Property Name="Nombre" Type="nvarchar" MaxLength="150" />
-    <Property Name="Valor" Type="float" />
+    <Property Name="CxPIdImpuestos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CxPRegimenId" Type="int" />
+    <Property Name="CxPConceptosId" Type="int" />
+    <Property Name="CxPTasasId" Type="int" />
   </EntityType>
   <EntityType Name="CxPProceso">
     <Key>
@@ -57,8 +57,19 @@
       <PropertyRef Name="IdCxPRegimen" />
     </Key>
     <Property Name="IdCxPRegimen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
     <Property Name="Codigo" Type="nchar" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="CxPTasas">
+    <Key>
+      <PropertyRef Name="IdCxPTasas" />
+    </Key>
+    <Property Name="IdCxPTasas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="20" />
+    <Property Name="Concepto" Type="nvarchar" MaxLength="150" />
+    <Property Name="Tasa" Type="float" />
+    <Property Name="Divisor" Type="float" />
+    <Property Name="Factor" Type="float" />
   </EntityType>
   <EntityType Name="PanelAsistArea">
     <Key>
@@ -243,16 +254,65 @@
     <Property Name="CFLAG2" Type="nchar" MaxLength="1" />
     <Property Name="CFLAG3" Type="nchar" MaxLength="1" />
   </EntityType>
+  <Association Name="FK_CxPImpuestos_CxPConceptos">
+    <End Role="CxPConceptos" Type="Self.CxPConceptos" Multiplicity="0..1" />
+    <End Role="CxPImpuestos" Type="Self.CxPImpuestos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CxPConceptos">
+        <PropertyRef Name="IdCxPConcepto" />
+      </Principal>
+      <Dependent Role="CxPImpuestos">
+        <PropertyRef Name="CxPConceptosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CxPImpuestos_CxPRegimen">
+    <End Role="CxPRegimen" Type="Self.CxPRegimen" Multiplicity="0..1" />
+    <End Role="CxPImpuestos" Type="Self.CxPImpuestos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CxPRegimen">
+        <PropertyRef Name="IdCxPRegimen" />
+      </Principal>
+      <Dependent Role="CxPImpuestos">
+        <PropertyRef Name="CxPRegimenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CxPImpuestos_CxPTasas">
+    <End Role="CxPTasas" Type="Self.CxPTasas" Multiplicity="0..1" />
+    <End Role="CxPImpuestos" Type="Self.CxPImpuestos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CxPTasas">
+        <PropertyRef Name="IdCxPTasas" />
+      </Principal>
+      <Dependent Role="CxPImpuestos">
+        <PropertyRef Name="CxPTasasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="SRGModelStoreContainer">
     <EntitySet Name="CxPAsistentes" EntityType="Self.CxPAsistentes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CxPConceptos" EntityType="Self.CxPConceptos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CxPImpuestos" EntityType="Self.CxPImpuestos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CxPProceso" EntityType="Self.CxPProceso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CxPRegimen" EntityType="Self.CxPRegimen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CxPTasas" EntityType="Self.CxPTasas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PanelAsistProceso" EntityType="Self.PanelAsistProceso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RCAU" EntityType="Self.RCAU" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RFADJUNTO" EntityType="Self.RFADJUNTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RFPARAM" EntityType="Self.RFPARAM" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CxPImpuestos_CxPConceptos" Association="Self.FK_CxPImpuestos_CxPConceptos">
+      <End Role="CxPConceptos" EntitySet="CxPConceptos" />
+      <End Role="CxPImpuestos" EntitySet="CxPImpuestos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CxPImpuestos_CxPRegimen" Association="Self.FK_CxPImpuestos_CxPRegimen">
+      <End Role="CxPRegimen" EntitySet="CxPRegimen" />
+      <End Role="CxPImpuestos" EntitySet="CxPImpuestos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CxPImpuestos_CxPTasas" Association="Self.FK_CxPImpuestos_CxPTasas">
+      <End Role="CxPTasas" EntitySet="CxPTasas" />
+      <End Role="CxPImpuestos" EntitySet="CxPImpuestos" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

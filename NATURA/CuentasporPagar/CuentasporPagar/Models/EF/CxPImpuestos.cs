@@ -14,9 +14,13 @@ namespace CuentasporPagar.Models.EF
     
     public partial class CxPImpuestos
     {
-        public int IdCxPImpuestos { get; set; }
-        public Nullable<int> Codigo { get; set; }
-        public string Nombre { get; set; }
-        public Nullable<double> Valor { get; set; }
+        public int CxPIdImpuestos { get; set; }
+        public Nullable<int> CxPRegimenId { get; set; }
+        public Nullable<int> CxPConceptosId { get; set; }
+        public Nullable<int> CxPTasasId { get; set; }
+    
+        public virtual CxPConceptos CxPConceptos { get; set; }
+        public virtual CxPRegimen CxPRegimen { get; set; }
+        public virtual CxPTasas CxPTasas { get; set; }
     }
 }

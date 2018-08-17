@@ -10,25 +10,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CxPConceptos">
-      <EntityTypeMapping TypeName="SRGModel.CxPConceptos">
-        <MappingFragment StoreEntitySet="CxPConceptos">
-          <ScalarProperty Name="IdCxPConcepto" ColumnName="IdCxPConcepto" />
-          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CxPImpuestos">
-      <EntityTypeMapping TypeName="SRGModel.CxPImpuestos">
-        <MappingFragment StoreEntitySet="CxPImpuestos">
-          <ScalarProperty Name="IdCxPImpuestos" ColumnName="IdCxPImpuestos" />
-          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Valor" ColumnName="Valor" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PanelAsistArea">
       <EntityTypeMapping TypeName="SRGModel.PanelAsistArea">
         <MappingFragment StoreEntitySet="PanelAsistArea">
@@ -210,15 +191,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CxPRegimen">
-      <EntityTypeMapping TypeName="SRGModel.CxPRegimen">
-        <MappingFragment StoreEntitySet="CxPRegimen">
-          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="IdCxPRegimen" ColumnName="IdCxPRegimen" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CxPProceso">
       <EntityTypeMapping TypeName="SRGModel.CxPProceso">
         <MappingFragment StoreEntitySet="CxPProceso">
@@ -244,6 +216,46 @@
           <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
           <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
           <ScalarProperty Name="IdCxPProceso" ColumnName="IdCxPProceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CxPConceptos">
+      <EntityTypeMapping TypeName="SRGModel.CxPConceptos">
+        <MappingFragment StoreEntitySet="CxPConceptos">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="IdCxPConcepto" ColumnName="IdCxPConcepto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CxPRegimen">
+      <EntityTypeMapping TypeName="SRGModel.CxPRegimen">
+        <MappingFragment StoreEntitySet="CxPRegimen">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdCxPRegimen" ColumnName="IdCxPRegimen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CxPImpuestos">
+      <EntityTypeMapping TypeName="SRGModel.CxPImpuestos">
+        <MappingFragment StoreEntitySet="CxPImpuestos">
+          <ScalarProperty Name="CxPTasasId" ColumnName="CxPTasasId" />
+          <ScalarProperty Name="CxPConceptosId" ColumnName="CxPConceptosId" />
+          <ScalarProperty Name="CxPRegimenId" ColumnName="CxPRegimenId" />
+          <ScalarProperty Name="CxPIdImpuestos" ColumnName="CxPIdImpuestos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CxPTasas">
+      <EntityTypeMapping TypeName="SRGModel.CxPTasas">
+        <MappingFragment StoreEntitySet="CxPTasas">
+          <ScalarProperty Name="Factor" ColumnName="Factor" />
+          <ScalarProperty Name="Divisor" ColumnName="Divisor" />
+          <ScalarProperty Name="Tasa" ColumnName="Tasa" />
+          <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="IdCxPTasas" ColumnName="IdCxPTasas" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

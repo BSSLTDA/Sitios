@@ -14,8 +14,17 @@ namespace CuentasporPagar.Models.EF
     
     public partial class CxPConceptos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CxPConceptos()
+        {
+            this.CxPImpuestos = new HashSet<CxPImpuestos>();
+        }
+    
         public int IdCxPConcepto { get; set; }
         public string Codigo { get; set; }
-        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CxPImpuestos> CxPImpuestos { get; set; }
     }
 }
