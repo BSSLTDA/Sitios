@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-<div style="max-width:500px;">
+<div>
     @(Html.EJ().Grid<CxPProceso>("Grid")
                                                         .Datasource(ds => ds.URL(@Url.Content("~/CXPProceso/DSCXPProceso")).Adaptor(AdaptorType.UrlAdaptor))
                                                         .EnableAltRow()
@@ -46,11 +46,11 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                                             col.Width(100).Field("Moneda").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("CategorizacionFactura").HeaderText("Categorización").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("Observaciones").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("CentroCosto").HeaderText("Centro de Costo").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(100).Field("CentroCostos").HeaderText("Centro de Costo").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("CuentaContable").HeaderText("Cuenta Contable").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("IdArea").HeaderText("Area").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("FechaEntrega").HeaderText("Fecha Entrega").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("NombreRecibido").HeaderText("Recibido por").HeaderTextAlign(TextAlign.Center).Add();
+                                                            col.Width(100).Field("NombreRecibe").HeaderText("Recibido por").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("FechaRecepcion").HeaderText("Fecha Recepción").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("NHojaServicio").HeaderText("Número Hoja de Servicio").HeaderTextAlign(TextAlign.Center).Add();
                                                             col.Width(100).Field("Estado").HeaderText("Status").HeaderTextAlign(TextAlign.Center).Add();
@@ -122,11 +122,11 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                         </tr>
                         <tr>
                             <td>
-                                <label>Centro de Costo</label>
+                                <label>Centro de Costos</label>
                             </td>
                             <td>
-                                <input id="nIdCentroCosto" type="hidden" />
-                                <input id="nCentroCosto" class="ctext" />
+                                <input id="nIdCentroCostos" type="hidden" />
+                                <input id="nCentroCostos" class="ctext" />
                             </td>
                         </tr>
                         <tr>
@@ -193,11 +193,11 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                         </tr>
                         <tr>
                             <td>
-                                <label>Centro de Costo</label>
+                                <label>Centro de Costos</label>
                             </td>
                             <td>
-                                <input id="uIdCentroCosto" type="hidden" />
-                                <input id="uCentroCosto" class="ctext" />
+                                <input id="uIdCentroCostos" type="hidden" />
+                                <input id="uCentroCostos" class="ctext" />
                             </td>
                         </tr>
                         <tr>
@@ -207,6 +207,22 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                             <td>
                                 <input id="uIdCuentaContable" type="hidden" />
                                 <input id="uCuentaContable" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Fecha Máxima de Radicación</label>
+                            </td>
+                            <td>
+                                <input id="uFechaMaxRadicacion" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Número Pedido SAP</label>
+                            </td>
+                            <td>
+                                <input id="uNPedidoSAP" class="ctext" />
                             </td>
                         </tr>
                     </table>
@@ -242,7 +258,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
 <script>
     var Carga = 0;
     var urlNuevo = '@Url.Content("~/CXPProceso/NuevoPaso1")';
-    var urlEdita = '@Url.Content("~/CXPProceso/Editar")';
+    var urlEdita = '@Url.Content("~/CXPProceso/EditarPaso1")';
     var urlElimina = '@Url.Content("~/CXPProceso/Eliminar")';
     var idCC = "";
 
@@ -252,7 +268,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             $("#nNombreProveedor").val('');
             $("#nEmailProveedor").val('');
             $("#nArea").val('');
-            $("#nCentroCosto").val('');
+            $("#nCentroCostos").val('');
             $("#nCuentaContable").val('');
             $("#nCuentaContable").attr("disabled", "disabled");
             $("#myModal").css("display", "block");
@@ -263,9 +279,14 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                 $("#uNombreProveedor").val(args.model.selectedRecords[0].NombreProveedor);
                 $("#uEmailProveedor").val(args.model.selectedRecords[0].EmailProveedor);
                 $("#uIdArea").val(args.model.selectedRecords[0].IdArea);
-                $("#uCentroCosto").val(args.model.selectedRecords[0].CentroCosto);
+                $("#uArea").val(args.model.selectedRecords[0].IdArea);
+                $("#uCentroCostos").val(args.model.selectedRecords[0].CentroCostos);
+                $("#uIdCentroCostos").val(args.model.selectedRecords[0].CentroCostos);
                 $("#uCuentaContable").val(args.model.selectedRecords[0].CuentaContable);
-                idCC = args.model.selectedRecords[0].IdCxPConcepto;
+                $("#uIdCuentaContable").val(args.model.selectedRecords[0].CuentaContable);
+                $("#uFechaMaxRadicacion").val(args.model.selectedRecords[0].FechaMaxRadicacion);
+                $("#uNPedidoSAP").val(args.model.selectedRecords[0].NPedidoSAP);
+                idCC = args.model.selectedRecords[0].IdCxPProceso;
                 $("#myModal2").css("display", "block");
             } else {
                 $("#LblMsg").text("No se ha seleccionado ningún registro");
@@ -275,7 +296,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
         }
         if (args.itemIndex == "2" && args.itemName == "Eliminar") {
             if (args.model.selectedRowIndex != "-1") {
-                idCC = args.model.selectedRecords[0].IdCxPConcepto;
+                idCC = args.model.selectedRecords[0].IdCxPProceso;
                 $("#myModal3").css("display", "block");
             }
             else {
@@ -324,9 +345,9 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
         }
 
         if (continuar) {
-            if ($("#nCentroCosto").val() == "") {
+            if ($("#nCentroCostos").val() == "") {
                 continuar = false;
-                $("#LblMsg").text("El campo 'Centro de Costo' es obligatorio");
+                $("#LblMsg").text("El campo 'Centro de Costos' es obligatorio");
                 $("#myModMsg").css("display", "block");
                 $("#myModMsg").css("z-index", "999");
             }
@@ -345,7 +366,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             $.ajax({
                 type: "POST",
                 url: urlNuevo,
-                data: { NitProveedor: $("#nNitProveedor").val(), NombreProveedor: $("#nNombreProveedor").val(), EmailProveedor: $("#nEmailProveedor"), IdArea: $("#nIdArea"), CentroCosto: $("#nIdCentroCosto"), CuentaContable: $("#nIdCuentaContable") },
+                data: { NitProveedor: $("#nNitProveedor").val(), NombreProveedor: $("#nNombreProveedor").val(), EmailProveedor: $("#nEmailProveedor").val(), IdArea: $("#nIdArea").val(), CentroCostos: $("#nIdCentroCostos").val(), CuentaContable: $("#nIdCuentaContable").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {
@@ -400,9 +421,9 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
         }
 
         if (continuar) {
-            if ($("#uCentroCosto").val() == "") {
+            if ($("#uCentroCostos").val() == "") {
                 continuar = false;
-                $("#LblMsg").text("El campo 'Centro de Costo' es obligatorio");
+                $("#LblMsg").text("El campo 'Centro de Costos' es obligatorio");
                 $("#myModMsg").css("display", "block");
                 $("#myModMsg").css("z-index", "999");
             }
@@ -418,10 +439,28 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
         }
 
         if (continuar) {
+            if ($("#uFechaMaxRadicacion").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Fecha Máxima de Radicación' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
+            if ($("#uNPedidoSAP").val() == "") {
+                continuar = false;
+                $("#LblMsg").text("El campo 'Número Pedido SAP' es obligatorio");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+        if (continuar) {
             $.ajax({
                 type: "POST",
                 url: urlEdita,
-                data: { IdCxPProceso: idCC, NitProveedor: $("#uNitProveedor").val(), NombreProveedor: $("#uNombreProveedor").val(), EmailProveedor: $("#uEmailProveedor"), IdArea: $("#uIdArea"), CentroCosto: $("#uIdCentroCosto"), CuentaContable: $("#uIdCuentaContable") },
+                data: { IdCxPProceso: idCC, NitProveedor: $("#uNitProveedor").val(), NombreProveedor: $("#uNombreProveedor").val(), EmailProveedor: $("#uEmailProveedor").val(), IdArea: $("#uArea").val(), CentroCostos: $("#uCentroCostos").val(), CuentaContable: $("#uCuentaContable").val(), FechaMaxRadicacion: $("#uFechaMaxRadicacion").val(), NPedidoSAP: $("#uNPedidoSAP").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {
@@ -499,9 +538,9 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
 
     $(document).ready(function () {
         $("input:text").focus(function () { $(this).select(); });
-        $("#nCentroCosto").autocomplete({
+        $("#nCentroCostos").autocomplete({
             source: function (request, response) {
-                $("#nIdCentroCosto").val('');
+                $("#nIdCentroCostos").val('');
                 $("#nCuentaContable").attr("disabled", "disabled");
                 $.ajax({
                     url: AutoCentroCosto,
@@ -516,18 +555,18 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                 })
             },
             focus: function (event, ui) {
-                $("#nCentroCosto").val(ui.item.label);
+                $("#nCentroCostos").val(ui.item.label);
                 return false;
             },
             select: function (event, ui) {
-                $("#nCentroCosto").val(ui.item.label);
-                $("#nIdCentroCosto").val(ui.item.id);
+                $("#nCentroCostos").val(ui.item.label);
+                $("#nIdCentroCostos").val(ui.item.id);
                 $("#nCuentaContable").removeAttr("disabled");
                 return false;
             },
             change: function (event, ui) {
-                if ($("#nIdCentroCosto").val() == "") {
-                    $("#nCentroCosto").val('');
+                if ($("#nIdCentroCostos").val() == "") {
+                    $("#nCentroCostos").val('');
                 }
                 return false;
             }
@@ -539,7 +578,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                     url: AutoCuentaContable,
                     type: "POST",
                     dataType: "json",
-                    data: { Prefix: request.term, CC: $("#nCentroCosto").val() },
+                    data: { Prefix: request.term, CC: $("#nCentroCostos").val() },
                     success: function (data) {
                         response($.map(data, function (item) {
                             return { label: item.CCDESC, id: item.CCCODE2 };

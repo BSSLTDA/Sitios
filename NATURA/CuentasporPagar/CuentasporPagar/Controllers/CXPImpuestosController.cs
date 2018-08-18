@@ -25,9 +25,27 @@ namespace CuentasporPagar.Controllers
             {
                 return RedirectToAction("Login", "Account", new { donde = Url.Action("Index", "Impuestos") });
             }
-            List<CxPImpuestos> lmCxPImpuestos = db.CxPImpuestos.ToList();
-            SessionManager.Set("DImpuestos", lmCxPImpuestos);
+            List<MdlImpuestos> lmMdlImpuestos = CargarImpuestos();
+            SessionManager.Set("DImpuestos", lmMdlImpuestos);
             return View();
+        }
+
+        private List<MdlImpuestos> CargarImpuestos()
+        {
+            return (from p in db.CxPImpuestos
+                    join p2 in db.CxPConceptos on p.CxPConceptosId equals p2.IdCxPConcepto
+                    join p3 in db.CxPRegimen on p.CxPRegimenId equals p3.IdCxPRegimen
+                    join p4 in db.CxPTasas on p.CxPTasasId equals p4.IdCxPTasas
+                    select new MdlImpuestos()
+                    {
+                        IdCxPImpuesto = p.CxPIdImpuestos,
+                        IdCxPConcepto = p.CxPConceptosId,
+                        IdCxPRegimen = p.CxPRegimenId,
+                        IdCxPTasa = p.CxPTasasId,
+                        Concepto = p2.Codigo + " - " + p2.Descripcion,
+                        Regimen = p3.Codigo + " - " + p3.Descripcion,
+                        Tasa = p4.Codigo + " - " + p4.Concepto
+                    }).ToList();
         }
 
         public ActionResult Nuevo(string RegimenId, string ConceptoId, string TasaId)
@@ -44,7 +62,7 @@ namespace CuentasporPagar.Controllers
                 };
                 db.CxPImpuestos.Add(nCxPImpuestos);
                 db.SaveChanges();
-                SessionManager.Set("DTasas", db.CxPImpuestos.ToList());
+                SessionManager.Set("DImpuestos", CargarImpuestos());
                 Respu = "OK";
             }
             catch (DbEntityValidationException ex)
@@ -86,7 +104,7 @@ namespace CuentasporPagar.Controllers
                 };
                 db.Entry(uCxPImpuestos).State = EntityState.Modified;
                 db.SaveChanges();
-                SessionManager.Set("DImpuestos", db.CxPImpuestos.ToList());
+                SessionManager.Set("DImpuestos", CargarImpuestos());
                 Respu = "OK";
             }
             catch (DbEntityValidationException ex)
@@ -121,7 +139,7 @@ namespace CuentasporPagar.Controllers
                 var rCxPImpuestos = db.CxPImpuestos.Find(int.Parse(Id));
                 db.CxPImpuestos.Remove(rCxPImpuestos);
                 db.SaveChanges();
-                SessionManager.Set("DImpuestos", db.CxPImpuestos.ToList());
+                SessionManager.Set("DImpuestos", CargarImpuestos());
                 Respu = "OK";
             }
             catch (Exception ex)
@@ -134,30 +152,30 @@ namespace CuentasporPagar.Controllers
         [HttpPost]
         public JsonResult ConceptoComplete(string Prefix)
         {
-            List<CxPConceptos> ObjList = db.CxPConceptos.Where(m => m.Codigo.Contains(Prefix.ToUpper())).Take(12).ToList();
+            List<MdlImpuestos> ObjList = db.CxPConceptos.Where(m => (m.Codigo + " - " + m.Descripcion).ToUpper().Contains(Prefix.ToUpper())).Take(12).ToList().Select(s => new MdlImpuestos() { Concepto = s.Codigo + " - " + s.Descripcion, IdCxPConcepto = s.IdCxPConcepto }).ToList();
             return Json(ObjList, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult RegimenComplete(string Prefix)
         {
-            List<CxPRegimen> ObjList = db.CxPRegimen.Where(m => m.Codigo.Contains(Prefix.ToUpper())).Take(12).ToList();
+            List<MdlImpuestos> ObjList = db.CxPRegimen.Where(m => (m.Codigo + " - " + m.Descripcion).ToUpper().Contains(Prefix.ToUpper())).Take(12).ToList().Select(s => new MdlImpuestos() { Regimen = s.Codigo + " - " + s.Descripcion, IdCxPRegimen = s.IdCxPRegimen }).ToList();
             return Json(ObjList, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult TasaComplete(string Prefix)
         {
-            List<CxPTasas> ObjList = db.CxPTasas.Where(m => m.Codigo.Contains(Prefix.ToUpper())).Take(12).ToList();
+            List<MdlImpuestos> ObjList = db.CxPTasas.Where(m => (m.Codigo + " - " + m.Concepto).ToUpper().Contains(Prefix.ToUpper())).Take(12).ToList().Select(s => new MdlImpuestos() { Tasa = s.Codigo + " - " + s.Concepto, IdCxPTasa = s.IdCxPTasas}).ToList();
             return Json(ObjList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult DSImpuestos(DataManager dm)
         {
-            IEnumerable Data = SessionManager.Get<List<CxPImpuestos>>("DImpuestos");
+            IEnumerable Data = SessionManager.Get<List<MdlImpuestos>>("DImpuestos");
             if (Data == null)
             {
-                Data = new List<CxPImpuestos>();
+                Data = new List<MdlImpuestos>();
             }
             return fc.DSGenerico(dm, Data);
         }

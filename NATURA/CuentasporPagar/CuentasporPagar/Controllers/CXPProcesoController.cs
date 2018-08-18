@@ -85,7 +85,133 @@ namespace CuentasporPagar.Controllers
             SessionManager.Set("DCXPProceso", lmCxPProceso);
             return View();
         }
-        
+
+        public ActionResult NuevoPaso1(string NitProveedor, string NombreProveedor, string EmailProveedor, string IdArea, string CentroCostos, string CuentaContable)
+        {//Este método permite crear un proceso si no existe y le permite almacenar los campos descrito en el parametro de este método
+            string Respu = "";
+            StringBuilder Error = new StringBuilder();
+            try
+            {
+                var nCxPProceso = new CxPProceso()
+                {
+                    NitProveedor = NitProveedor,
+                    NombreProveedor = NombreProveedor,
+                    EmailProveedor = EmailProveedor,
+                    IdArea = int.Parse(IdArea),
+                    CentroCostos = CentroCostos,
+                    CuentaContable = CuentaContable
+                };
+                db.CxPProceso.Add(nCxPProceso);
+                db.SaveChanges();
+                SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
+                Respu = "OK";
+            }
+            catch(DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                Respu = "ERROR: " + Error.ToString();
+            }
+            catch (Exception ex)
+            {
+                Respu = "ERROR: " + ex.ToString() + ((ex.InnerException != null) ? ex.InnerException.ToString() : "");
+            }
+            return Json(new { result = Respu });
+        }
+
+        public ActionResult EditarPaso1(int IdCxPProceso, string NitProveedor, string NombreProveedor, string EmailProveedor, string IdArea, string CentroCostos, string CuentaContable, DateTime FechaMaxRadicacion, string NPedidoSAP)
+        {//Este método esta cuando se requiere agregar la fecha máxima de radicación y el número SAP si llegara ser necesario
+            string Respu = "";
+            StringBuilder Error = new StringBuilder();
+            try
+            {
+                var uCxPProceso = db.CxPProceso.Find(IdCxPProceso);
+                uCxPProceso.NitProveedor = NitProveedor;
+                uCxPProceso.NombreProveedor = NombreProveedor;
+                uCxPProceso.EmailProveedor = EmailProveedor;
+                uCxPProceso.IdArea = int.Parse(IdArea);
+                uCxPProceso.CentroCostos = CentroCostos;
+                uCxPProceso.CuentaContable = CuentaContable;
+                uCxPProceso.FechaMaxRadicacion = FechaMaxRadicacion;
+                uCxPProceso.NPedidoSAP = NPedidoSAP;
+                db.Entry(uCxPProceso).State = EntityState.Modified;
+                db.SaveChanges();
+                SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
+                Respu = "OK";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                Respu = "ERROR: " + Error.ToString();
+            }
+            catch (Exception ex)
+            {
+                Respu = "ERROR: " + ex.ToString();
+            }
+            return Json(new { result = Respu });
+        }
+
+        public ActionResult EditarPaso2(int IdCxPProceso, DateTime FechaMaxRadicacion, string NPedidoSAP)
+        {//Este método esta cuando se requiere agregar la fecha máxima de radicación y el número SAP si llegara ser necesario
+            string Respu = "";
+            StringBuilder Error = new StringBuilder();
+            try
+            {
+                var uCxPProceso = db.CxPProceso.Find(IdCxPProceso);
+                uCxPProceso.FechaMaxRadicacion = FechaMaxRadicacion;
+                uCxPProceso.NPedidoSAP = NPedidoSAP;
+                db.Entry(uCxPProceso).State = EntityState.Modified;
+                db.SaveChanges();
+                SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
+                Respu = "OK";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                Respu = "ERROR: " + Error.ToString();
+            }
+            catch (Exception ex)
+            {
+                Respu = "ERROR: " + ex.ToString();
+            }
+            return Json(new { result = Respu });
+        }
+
         public ActionResult NuevoPaso3(DateTime FechaRadicacion, DateTime FechaFactura, string NFactura, string Valor, string ValorTotal, string Moneda, string CategorizacionFactura, string Observaciones)
         {//Este metodo no deberia estar ya que debe existir la factura desde panel de asistentes y solo debe estar el metodo para editar dicho registro
             string Respu = "";
@@ -138,18 +264,15 @@ namespace CuentasporPagar.Controllers
             StringBuilder Error = new StringBuilder();
             try
             {
-                var uCxPProceso = new CxPProceso()
-                {
-                    IdCxPProceso = IdCxPProceso,
-                    FechaRadicacion = FechaRadicacion,
-                    FechaFactura = FechaFactura,
-                    NFactura = NFactura,
-                    Valor = double.Parse(Valor),
-                    ValorTotal = double.Parse(ValorTotal),
-                    Moneda = Moneda,
-                    CategorizacionFactura = CategorizacionFactura,
-                    Observaciones = Observaciones
-                };
+                var uCxPProceso = db.CxPProceso.Find(IdCxPProceso);
+                uCxPProceso.FechaRadicacion = FechaRadicacion;
+                uCxPProceso.FechaFactura = FechaFactura;
+                uCxPProceso.NFactura = NFactura;
+                uCxPProceso.Valor = double.Parse(Valor);
+                uCxPProceso.ValorTotal = double.Parse(ValorTotal);
+                uCxPProceso.Moneda = Moneda;
+                uCxPProceso.CategorizacionFactura = CategorizacionFactura;
+                uCxPProceso.Observaciones = Observaciones;
                 db.Entry(uCxPProceso).State = EntityState.Modified;
                 db.SaveChanges();
                 SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
@@ -185,12 +308,9 @@ namespace CuentasporPagar.Controllers
             StringBuilder Error = new StringBuilder();
             try
             {
-                var uCxPProceso = new CxPProceso()
-                {
-                    IdCxPProceso = IdCxPProceso,
-                    FechaEntrega = FechaEntrega,
-                    NombreRecibe = NombreRecibe
-                };
+                var uCxPProceso = db.CxPProceso.Find(IdCxPProceso);
+                uCxPProceso.FechaEntrega = FechaEntrega;
+                uCxPProceso.NombreRecibe = NombreRecibe;
                 db.Entry(uCxPProceso).State = EntityState.Modified;
                 db.SaveChanges();
                 SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
@@ -226,12 +346,9 @@ namespace CuentasporPagar.Controllers
             StringBuilder Error = new StringBuilder();
             try
             {
-                var uCxPProceso = new CxPProceso()
-                {
-                    IdCxPProceso = IdCxPProceso,
-                    FechaRecepcion = FechaRecepcion,
-                    NHojaServicio = NHojaServicio
-                };
+                var uCxPProceso = db.CxPProceso.Find(IdCxPProceso);
+                uCxPProceso.FechaRecepcion = FechaRecepcion;
+                uCxPProceso.NHojaServicio = NHojaServicio;
                 db.Entry(uCxPProceso).State = EntityState.Modified;
                 db.SaveChanges();
                 SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
@@ -253,6 +370,24 @@ namespace CuentasporPagar.Controllers
                     }
                 }
                 Respu = "ERROR: " + Error.ToString();
+            }
+            catch (Exception ex)
+            {
+                Respu = "ERROR: " + ex.ToString();
+            }
+            return Json(new { result = Respu });
+        }
+
+        public ActionResult Eliminar(string Id)
+        {
+            string Respu = "";
+            try
+            {
+                var rCxPProceso = db.CxPProceso.Find(int.Parse(Id));
+                db.CxPProceso.Remove(rCxPProceso);
+                db.SaveChanges();
+                SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
+                Respu = "OK";
             }
             catch (Exception ex)
             {

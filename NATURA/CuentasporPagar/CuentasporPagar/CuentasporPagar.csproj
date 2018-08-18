@@ -257,6 +257,7 @@
     </Compile>
     <Compile Include="Models\FuncionesComunes.cs" />
     <Compile Include="Models\MdlCambioPass.cs" />
+    <Compile Include="Models\MdlImpuestos.cs" />
     <Compile Include="Models\MdlLogin.cs" />
     <Compile Include="Models\MdlRecuperaUsr.cs" />
     <Compile Include="Models\MdlRFPARAM.cs" />

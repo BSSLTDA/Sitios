@@ -46,11 +46,11 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                                                     col.Width(100).Field("Moneda").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("CategorizacionFactura").HeaderText("Categorización").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("Observaciones").HeaderTextAlign(TextAlign.Center).Add();
-                                                                    col.Width(100).Field("CentroCosto").HeaderText("Centro de Costo").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(100).Field("CentroCostos").HeaderText("Centro de Costo").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("CuentaContable").HeaderText("Cuenta Contable").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("IdArea").HeaderText("Area").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("FechaEntrega").HeaderText("Fecha Entrega").HeaderTextAlign(TextAlign.Center).Add();
-                                                                    col.Width(100).Field("NombreRecibido").HeaderText("Recibido por").HeaderTextAlign(TextAlign.Center).Add();
+                                                                    col.Width(100).Field("NombreRecibe").HeaderText("Recibido por").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("FechaRecepcion").HeaderText("Fecha Recepción").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("NHojaServicio").HeaderText("Número Hoja de Servicio").HeaderTextAlign(TextAlign.Center).Add();
                                                                     col.Width(100).Field("Estado").HeaderText("Status").HeaderTextAlign(TextAlign.Center).Add();
@@ -384,7 +384,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                 type: "POST",
                 url: urlNuevo,
                 data: {
-                    FechaRadicacion: $("#nFechaRadicacion").val(), FechaFactura: $("#nFechaFactura").val(), NFactura: $("nNFactura").val(), Valor: $("nValor").val(), ValorTotal: $("nValorTotal").val(), Moneda: $("nMoneda").val(), CategorizacionFactura: $("nCategorizacionFactura").val(), Observaciones: $("nObservaciones").val() },
+                    FechaRadicacion: $("#nFechaRadicacion").val(), FechaFactura: $("#nFechaFactura").val(), NFactura: $("#nNFactura").val(), Valor: $("#nValor").val(), ValorTotal: $("#nValorTotal").val(), Moneda: $("#nMoneda").val(), CategorizacionFactura: $("#nCategorizacionFactura").val(), Observaciones: $("#nObservaciones").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {
@@ -470,7 +470,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                 type: "POST",
                 url: urlEdita,
                 data: {
-                    IdCxPProceso: idCC, FechaRadicacion: $("#uFechaRadicacion").val(), FechaFactura: $("#uFechaFactura").val(), NFactura: $("uNFactura").val(), Valor: $("uValor").val(), ValorTotal: $("uValorTotal").val(), Moneda: $("uMoneda").val(), CategorizacionFactura: $("uCategorizacionFactura").val(), Observaciones: $("uObservaciones").val() },
+                    IdCxPProceso: idCC, FechaRadicacion: $("#uFechaRadicacion").val(), FechaFactura: $("#uFechaFactura").val(), NFactura: $("#uNFactura").val(), Valor: $("#uValor").val(), ValorTotal: $("#uValorTotal").val(), Moneda: $("#uMoneda").val(), CategorizacionFactura: $("#uCategorizacionFactura").val(), Observaciones: $("#uObservaciones").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {

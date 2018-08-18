@@ -1,4 +1,4 @@
-﻿@using CuentasporPagar.Models.EF;
+﻿@using CuentasporPagar.Models;
 
 @{
     ViewBag.Title = "Impuestos";
@@ -6,8 +6,8 @@
 
 <h2>@ViewBag.Title</h2>
 
-<div style="max-width:500px;">
-    @(Html.EJ().Grid<CxPImpuestos>("Grid")
+<div style="max-width:1000px;">
+    @(Html.EJ().Grid<MdlImpuestos>("Grid")
                                                                         .Datasource(ds => ds.URL(@Url.Content("~/CXPImpuestos/DSImpuestos")).Adaptor(AdaptorType.UrlAdaptor))
                                                                         .EnableAltRow()
                                                                         .MinWidth(120)
@@ -33,10 +33,13 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                                                                         .AllowSorting()
                                                                         .Columns(col =>
                                                                         {
-                                                                            col.Width(100).Field("CodigoConcepto").HeaderText("Cód. Concepto").HeaderTextAlign(TextAlign.Center).Add();
-                                                                            col.Width(100).Field("CodigoRegimen").HeaderText("Cód. Régimen").HeaderTextAlign(TextAlign.Center).Add();
-                                                                            col.Width(100).Field("CodigoTasa").HeaderText("Cód. Tasa").HeaderTextAlign(TextAlign.Center).Add();
+                                                                            col.Width(100).Field("Concepto").HeaderText("Concepto").HeaderTextAlign(TextAlign.Center).Add();
+                                                                            col.Width(100).Field("Regimen").HeaderText("Régimen").HeaderTextAlign(TextAlign.Center).Add();
+                                                                            col.Width(100).Field("Tasa").HeaderText("Tasa").HeaderTextAlign(TextAlign.Center).Add();
                                                                             col.Field("IdCxPImpuestos").Visible(false).Add();
+                                                                            col.Field("IdCxPConcepto").Visible(false).Add();
+                                                                            col.Field("IdCxPRegimen").Visible(false).Add();
+                                                                            col.Field("IdCxPTasa").Visible(false).Add();
                                                                         })
                                                                         .ClientSideEvents(eve => eve.Create("Create").ToolbarClick("TBClick"))
     )
@@ -189,9 +192,9 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
         }
         if (args.itemIndex == "1" && args.itemName == "Editar") {
             if (args.model.selectedRowIndex != "-1") {
-                $("#uCodigoConcepto").val(args.model.selectedRecords[0].CodigoConcepto);
-                $("#uCodigoRegimen").val(args.model.selectedRecords[0].CodigoRegimen);
-                $("#uCodigoTasa").val(args.model.selectedRecords[0].CodigoTasa);
+                $("#uCodigoConcepto").val(args.model.selectedRecords[0].Concepto);
+                $("#uCodigoRegimen").val(args.model.selectedRecords[0].Regimen);
+                $("#uCodigoTasa").val(args.model.selectedRecords[0].Tasa);
                 idCC = args.model.selectedRecords[0].IdCxPImpuestos;
                 $("#myModal2").css("display", "block");
             } else {
@@ -218,7 +221,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
 
         if ($("#nCodigoConcepto").val() == "") {
             continuar = false;
-            $("#LblMsg").text("El campo 'Cód. Concpeto' es obligatorio");
+            $("#LblMsg").text("El campo 'Cód. Concepto' es obligatorio");
             $("#myModMsg").css("display", "block");
             $("#myModMsg").css("z-index", "999");
         }
@@ -374,7 +377,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
         $("input:text").focus(function () { $(this).select(); });
         $("#nCodigoConcepto").autocomplete({
             source: function (request, response) {
-                $("#nConceptpId").val('');
+                $("#nConceptoId").val('');
                 $.ajax({
                     url: ConceptoComplete,
                     type: "POST",
@@ -382,7 +385,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                     data: { Prefix: request.term },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return { label: item.Codigo + ' - ' + item.Descripcion, id: item.IdCxPConcepto };
+                            return { label: item.Concepto, id: item.IdCxPConcepto };
                         }))
                     }
                 })
@@ -413,7 +416,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                     data: { Prefix: request.term },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return { label: item.Codigo + ' - ' + item.Descripcion, id: item.IdCxPRegimen };
+                            return { label: item.Regimen, id: item.IdCxPRegimen };
                         }))
                     }
                 })
@@ -444,7 +447,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
                     data: { Prefix: request.term },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return { label: item.Codigo + ' - ' + item.Concepto, id: item.IdCxPTasas };
+                            return { label: item.Tasa, id: item.IdCxPTasas };
                         }))
                     }
                 })
