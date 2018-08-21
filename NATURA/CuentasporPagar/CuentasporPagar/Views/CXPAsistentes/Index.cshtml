@@ -8,7 +8,7 @@
 
 <div style="max-width:500px;">
     @(Html.EJ().Grid<CxPAsistentes>("Grid")
-                                                        .Datasource(ds => ds.URL(@Url.Content("~/Asistentes/DSAsistentes")).Adaptor(AdaptorType.UrlAdaptor))
+                                                        .Datasource(ds => ds.URL(@Url.Content("~/CXPAsistentes/DSAsistentes")).Adaptor(AdaptorType.UrlAdaptor))
                                                         .EnableAltRow()
                                                         .MinWidth(120)
                                                         .AllowScrolling()
@@ -152,9 +152,9 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
 
 <script>
     var Carga = 0;
-    var urlNuevo = '@Url.Content("~/Asistentes/Nuevo")';
-    var urlEdita = '@Url.Content("~/Asistentes/Editar")';
-    var urlElimina = '@Url.Content("~/Asistentes/Eliminar")';
+    var urlNuevo = '@Url.Content("~/CXPAsistentes/Nuevo")';
+    var urlEdita = '@Url.Content("~/CXPAsistentes/Editar")';
+    var urlElimina = '@Url.Content("~/CXPAsistentes/Eliminar")';
     var idCC = "";
 
     function TBClick(args) {

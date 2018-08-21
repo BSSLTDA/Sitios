@@ -690,7 +690,7 @@
     <Content Include="Views\Account\CorreoPass.cshtml" />
     <Content Include="Views\Account\OlvidePass.cshtml" />
     <Content Include="Views\CXPRegimen\Index.cshtml" />
-    <Content Include="Views\Asistentes\Index.cshtml" />
+    <Content Include="Views\CXPAsistentes\Index.cshtml" />
     <Content Include="Views\CXPImpuestos\Index.cshtml" />
     <Content Include="Views\Proceso\Index.cshtml" />
     <Content Include="Views\CXPProceso\Index.cshtml" />

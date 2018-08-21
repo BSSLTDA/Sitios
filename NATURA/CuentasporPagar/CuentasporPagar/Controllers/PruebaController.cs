@@ -12,7 +12,7 @@ namespace CuentasporPagar.Controllers
         public ActionResult Index()
         {
             CXPProcesoController cXPProcesoController = new CXPProcesoController();
-            Console.WriteLine(cXPProcesoController.CalculoImpuesto("NATURAL", 5, 4));
+            Console.WriteLine(cXPProcesoController.CalculoImpuesto("NATURAL", 4, 8));
             return View();
         }
     }
