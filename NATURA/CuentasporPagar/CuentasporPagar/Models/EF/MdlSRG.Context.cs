@@ -31,10 +31,10 @@ namespace CuentasporPagar.Models.EF
         public virtual DbSet<RCAU> RCAU { get; set; }
         public virtual DbSet<RFPARAM> RFPARAM { get; set; }
         public virtual DbSet<RFADJUNTO> RFADJUNTO { get; set; }
-        public virtual DbSet<CxPProceso> CxPProceso { get; set; }
         public virtual DbSet<CxPConceptos> CxPConceptos { get; set; }
         public virtual DbSet<CxPRegimen> CxPRegimen { get; set; }
         public virtual DbSet<CxPImpuestos> CxPImpuestos { get; set; }
         public virtual DbSet<CxPTasas> CxPTasas { get; set; }
+        public virtual DbSet<CxPProceso> CxPProceso { get; set; }
     }
 }

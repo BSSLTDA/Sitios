@@ -11,7 +11,7 @@
     display: none;
 }
 
-.e-scrollbar .e-hhandle {    
+.e-scrollbar .e-hhandle {
     background: #d4d4d4;
 }
 
@@ -311,7 +311,7 @@
     border: 1px solid #41484f;
     border-radius: 2px;
     transition: all 0.3s linear;
-    padding:4px;
+    padding: 4px;
 }
 
     .BtnToolbar:hover {
@@ -324,5 +324,39 @@
     .BtnToolbar[disabled] {
         background-color: #959ca3;
         border: 1px solid #939ba3;
-        cursor:not-allowed;
+        cursor: not-allowed;
     }
+
+.EstiloTool {
+    border: 1.5px solid #969696;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 35px !important;
+    height: 35px !important;
+    line-height: 32px !important;
+    color: #969696;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    cursor: pointer;
+}
+
+    /*.EstiloTool:hover {
+        color: #858585;
+        border-color: #858585;
+    }*/
+
+    a:hover, a:focus {
+        text-decoration: none !important;
+    }
+
+    .ToolVerde{
+        color:green;
+        border-color:green;
+    }
+
+.ToolAmarillo {
+    color: #f2a900;
+    border-color: #f2a900;
+}

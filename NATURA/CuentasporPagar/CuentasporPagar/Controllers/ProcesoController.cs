@@ -1,8 +1,12 @@
 ﻿using CuentasporPagar.Models;
 using CuentasporPagar.Models.EF;
+using Syncfusion.JavaScript;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -23,6 +27,8 @@ namespace CuentasporPagar.Controllers
                 return RedirectToAction("Login", "Account", new { donde = Url.Action("Index", "Proceso") });
             }
             lmPanelAsistProceso = GetAllProcess();
+            lmPanelAsistProceso = db.PanelAsistProceso.Where(m => m.NumPedidoSAP != null).ToList();
+            SessionManager.Set("DProceso", lmPanelAsistProceso);
 
             return View();
         }
@@ -100,6 +106,13 @@ namespace CuentasporPagar.Controllers
         public JsonResult AreaComplete(string Prefix)
         {
             List<PanelAsistArea> ObjList = db.PanelAsistArea.Where(m => m.Descripcion.ToUpper().Contains(Prefix.ToUpper())).Take(12).ToList();
+            return Json(ObjList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SolicitanteComplete(string Prefix)
+        {
+            List<RCAU> ObjList = db.RCAU.Where(m => m.USTS == "A" && m.UMOD == "SRGUSR" && (m.UUSR.ToUpper() + " - " + m.UNOM.ToUpper()).Contains(Prefix.ToUpper())).Take(12).ToList();
             return Json(ObjList, JsonRequestBehavior.AllowGet);
         }
 
@@ -188,6 +201,161 @@ namespace CuentasporPagar.Controllers
             }
 
             return Pap;
+        }
+
+        public ActionResult DSProceso(DataManager dm)
+        {
+            IEnumerable Data = SessionManager.Get<List<PanelAsistProceso>>("DProceso");
+            if (Data == null)
+            {
+                Data = new List<PanelAsistProceso>();
+            }
+            return fc.DSGenerico(dm, Data);
+        }
+
+        public ActionResult GuardarCxPProceso(string CentroCosto, string CuentaContable, string Nota, string Area, string DescGastos, string NmeProveedor, string NitProveedor, string MailProveedor, string Solicitante, string VlrAntesIva, string NumPedSAP, string FecMaxRadicacion, string NFactura, string FecFac, string VlrTotal, string Mon, string CategFactu, string Asist)
+        {
+            if (SessionManager.Get<RCAU>("VarUsuario") == null)
+            {
+                return RedirectToAction("Login", "Account", new { donde = Url.Action("Index", "Proceso") });
+            }
+            string res = "";
+            StringBuilder Err = new StringBuilder();            
+
+            try
+            {                
+                CxPProceso mCxPProceso = new CxPProceso()
+                {
+                    NitProveedor = NitProveedor,
+                    NombreProveedor = NmeProveedor,
+                    EmailProveedor = MailProveedor,
+                    NPedidoSAP = NumPedSAP,
+                    FechaMaxRadicacion = DateTime.Parse(FecMaxRadicacion),
+                    Observaciones = Nota,
+                    CentroCostos = CentroCosto,
+                    CuentaContable = CuentaContable,
+                    IdArea = int.Parse(Area),
+                    NFactura = NFactura,                    
+                    FechaRadicacion = DateTime.Now,
+                    FechaFactura = DateTime.Parse(FecFac),
+                    Valor = double.Parse(VlrAntesIva),
+                    ValorTotal = double.Parse(VlrTotal),
+                    Moneda = Mon,
+                    CategorizacionFactura = CategFactu,
+                    NombreRecibe = Asist,
+                    
+                    STS001 = "1",
+                    STS002 = "0",
+                    STS003 = "0",
+                    STS004 = "0",
+                    STS005 = "0",
+                    STS006 = "0",
+                    STS007 = "0"
+                };
+                db.CxPProceso.Add(mCxPProceso);
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Err.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Err.AppendLine("");
+                    Err.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Err.AppendLine("");
+                        Err.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                res = "ERROR: " + Err.ToString();
+            }
+            catch (Exception ex)
+            {
+                res = "ERROR: " + ex.ToString() + ((ex.InnerException != null) ? ex.InnerException.ToString() : "");
+            }
+
+
+            return Json(new { result = res });
+        }
+
+        public ActionResult IniciaCxpProceso(string IdP, string FecFac, string NFactura, string VlrAntesImpu, string VlrTotal, string Mon, string CategFactu, string Asist)
+        {
+            if (SessionManager.Get<RCAU>("VarUsuario") == null)
+            {
+                return RedirectToAction("Login", "Account", new { donde = Url.Action("Index", "Proceso") });
+            }
+            string res = "";
+            StringBuilder Err = new StringBuilder();
+
+            try
+            {
+                PanelAsistProceso mPanelAsistProceso = db.PanelAsistProceso.Find(int.Parse(IdP));
+                if (mPanelAsistProceso != null)
+                {
+                    CxPProceso mCxPProceso = new CxPProceso()
+                    {
+                        NitProveedor = mPanelAsistProceso.NitProveedor,
+                        NombreProveedor = mPanelAsistProceso.NombreProveedor,
+                        EmailProveedor = mPanelAsistProceso.CorreoProveedor,
+                        NPedidoSAP = mPanelAsistProceso.NumPedidoSAP,
+                        NFactura = NFactura,
+                        FechaMaxRadicacion = mPanelAsistProceso.FechaMaximaRadicacion,
+                        FechaRadicacion = DateTime.Now,
+                        FechaFactura = DateTime.Parse(FecFac),
+                        Valor = double.Parse(VlrAntesImpu),
+                        ValorTotal = double.Parse(VlrTotal),
+                        Moneda = Mon,
+                        CategorizacionFactura = CategFactu,
+                        Observaciones = mPanelAsistProceso.NotaAprobador,
+                        CentroCostos = mPanelAsistProceso.CodCentroCosto,
+                        CuentaContable = mPanelAsistProceso.CodCuentaContable,
+                        IdArea = mPanelAsistProceso.IdPanelAsistArea,
+                        NombreRecibe = Asist,
+                        
+                        STS001 = "1",
+                        STS002 = "0",
+                        STS003 = "0",
+                        STS004 = "0",
+                        STS005 = "0",
+                        STS006 = "0",
+                        STS007 = "0"
+                    };
+                    db.CxPProceso.Add(mCxPProceso);
+                    db.SaveChanges();
+                    res = "OK";
+                }
+                else
+                {
+                    res = "No existe Proceso";
+                }                
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Err.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Err.AppendLine("");
+                    Err.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Err.AppendLine("");
+                        Err.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                res = "ERROR: " + Err.ToString();
+            }
+            catch (Exception ex)
+            {
+                res = "ERROR: " + ex.ToString() + ((ex.InnerException != null) ? ex.InnerException.ToString() : "");
+            }
+
+
+            return Json(new { result = res });
         }
     }
 }

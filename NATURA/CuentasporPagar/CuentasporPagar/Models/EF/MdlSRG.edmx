@@ -18,8 +18,8 @@
             <PropertyRef Name="IdCxPConcepto" />
           </Key>
           <Property Name="IdCxPConcepto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Codigo" Type="nchar" MaxLength="1" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="20" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CxPImpuestos">
           <Key>
@@ -56,6 +56,13 @@
           <Property Name="FechaRecepcion" Type="datetime" />
           <Property Name="NHojaServicio" Type="nvarchar" MaxLength="50" />
           <Property Name="Estado" Type="nvarchar" MaxLength="1" />
+          <Property Name="STS001" Type="nchar" MaxLength="1" />
+          <Property Name="STS002" Type="nchar" MaxLength="1" />
+          <Property Name="STS003" Type="nchar" MaxLength="1" />
+          <Property Name="STS004" Type="nchar" MaxLength="1" />
+          <Property Name="STS005" Type="nchar" MaxLength="1" />
+          <Property Name="STS006" Type="nchar" MaxLength="1" />
+          <Property Name="STS007" Type="nchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="CxPRegimen">
           <Key>
@@ -375,7 +382,6 @@
           <EntitySet Name="RCAU" EntityType="SRGModel.RCAU" />
           <EntitySet Name="RFPARAM" EntityType="SRGModel.RFPARAM" />
           <EntitySet Name="RFADJUNTO" EntityType="SRGModel.RFADJUNTO" />
-          <EntitySet Name="CxPProceso" EntityType="SRGModel.CxPProceso" />
           <EntitySet Name="CxPConceptos" EntityType="SRGModel.CxPConceptos" />
           <EntitySet Name="CxPRegimen" EntityType="SRGModel.CxPRegimen" />
           <EntitySet Name="CxPImpuestos" EntityType="SRGModel.CxPImpuestos" />
@@ -392,6 +398,7 @@
             <End Role="CxPTasas" EntitySet="CxPTasas" />
             <End Role="CxPImpuestos" EntitySet="CxPImpuestos" />
           </AssociationSet>
+          <EntitySet Name="CxPProceso" EntityType="SRGModel.CxPProceso" />
         </EntityContainer>
         <EntityType Name="RCAU">
           <Key>
@@ -540,40 +547,13 @@
           <Property Name="STS05" Type="Decimal" Precision="1" Scale="0" />
           <Property Name="FREFNUM" Type="Int64" />
         </EntityType>
-        <EntityType Name="CxPProceso">
-          <Key>
-            <PropertyRef Name="IdCxPProceso" />
-          </Key>
-          <Property Name="IdCxPProceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NitProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NombreProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmailProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NPedidoSAP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NFactura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FechaMaxRadicacion" Type="DateTime" Precision="3" />
-          <Property Name="FechaRadicacion" Type="DateTime" Precision="3" />
-          <Property Name="FechaFactura" Type="DateTime" Precision="3" />
-          <Property Name="Valor" Type="Double" />
-          <Property Name="ValorTotal" Type="Double" />
-          <Property Name="Moneda" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="CategorizacionFactura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CentroCostos" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="CuentaContable" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="IdArea" Type="Int32" />
-          <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
-          <Property Name="NombreRecibe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FechaRecepcion" Type="DateTime" Precision="3" />
-          <Property Name="NHojaServicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="CxPConceptos">
           <Key>
             <PropertyRef Name="IdCxPConcepto" />
           </Key>
           <Property Name="IdCxPConcepto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Codigo" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-          <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CxPImpuestos" Relationship="SRGModel.FK_CxPImpuestos_CxPConceptos" FromRole="CxPConceptos" ToRole="CxPImpuestos" />
         </EntityType>
         <EntityType Name="CxPRegimen">
@@ -645,6 +625,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CxPProceso">
+          <Key>
+            <PropertyRef Name="IdCxPProceso" />
+          </Key>
+          <Property Name="IdCxPProceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NitProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NombreProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NPedidoSAP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NFactura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaMaxRadicacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaRadicacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaFactura" Type="DateTime" Precision="3" />
+          <Property Name="Valor" Type="Double" />
+          <Property Name="ValorTotal" Type="Double" />
+          <Property Name="Moneda" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CategorizacionFactura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CentroCostos" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CuentaContable" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IdArea" Type="Int32" />
+          <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
+          <Property Name="NombreRecibe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaRecepcion" Type="DateTime" Precision="3" />
+          <Property Name="NHojaServicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="STS001" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="STS002" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="STS003" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="STS004" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="STS005" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="STS006" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="STS007" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -841,34 +855,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CxPProceso">
-            <EntityTypeMapping TypeName="SRGModel.CxPProceso">
-              <MappingFragment StoreEntitySet="CxPProceso">
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="NHojaServicio" ColumnName="NHojaServicio" />
-                <ScalarProperty Name="FechaRecepcion" ColumnName="FechaRecepcion" />
-                <ScalarProperty Name="NombreRecibe" ColumnName="NombreRecibe" />
-                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
-                <ScalarProperty Name="IdArea" ColumnName="IdArea" />
-                <ScalarProperty Name="CuentaContable" ColumnName="CuentaContable" />
-                <ScalarProperty Name="CentroCostos" ColumnName="CentroCostos" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-                <ScalarProperty Name="CategorizacionFactura" ColumnName="CategorizacionFactura" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
-                <ScalarProperty Name="Valor" ColumnName="Valor" />
-                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
-                <ScalarProperty Name="FechaRadicacion" ColumnName="FechaRadicacion" />
-                <ScalarProperty Name="FechaMaxRadicacion" ColumnName="FechaMaxRadicacion" />
-                <ScalarProperty Name="NFactura" ColumnName="NFactura" />
-                <ScalarProperty Name="NPedidoSAP" ColumnName="NPedidoSAP" />
-                <ScalarProperty Name="EmailProveedor" ColumnName="EmailProveedor" />
-                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
-                <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
-                <ScalarProperty Name="IdCxPProceso" ColumnName="IdCxPProceso" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CxPConceptos">
             <EntityTypeMapping TypeName="SRGModel.CxPConceptos">
               <MappingFragment StoreEntitySet="CxPConceptos">
@@ -906,6 +892,41 @@
                 <ScalarProperty Name="Concepto" ColumnName="Concepto" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="IdCxPTasas" ColumnName="IdCxPTasas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CxPProceso">
+            <EntityTypeMapping TypeName="SRGModel.CxPProceso">
+              <MappingFragment StoreEntitySet="CxPProceso">
+                <ScalarProperty Name="STS007" ColumnName="STS007" />
+                <ScalarProperty Name="STS006" ColumnName="STS006" />
+                <ScalarProperty Name="STS005" ColumnName="STS005" />
+                <ScalarProperty Name="STS004" ColumnName="STS004" />
+                <ScalarProperty Name="STS003" ColumnName="STS003" />
+                <ScalarProperty Name="STS002" ColumnName="STS002" />
+                <ScalarProperty Name="STS001" ColumnName="STS001" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="NHojaServicio" ColumnName="NHojaServicio" />
+                <ScalarProperty Name="FechaRecepcion" ColumnName="FechaRecepcion" />
+                <ScalarProperty Name="NombreRecibe" ColumnName="NombreRecibe" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="IdArea" ColumnName="IdArea" />
+                <ScalarProperty Name="CuentaContable" ColumnName="CuentaContable" />
+                <ScalarProperty Name="CentroCostos" ColumnName="CentroCostos" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="CategorizacionFactura" ColumnName="CategorizacionFactura" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="FechaRadicacion" ColumnName="FechaRadicacion" />
+                <ScalarProperty Name="FechaMaxRadicacion" ColumnName="FechaMaxRadicacion" />
+                <ScalarProperty Name="NFactura" ColumnName="NFactura" />
+                <ScalarProperty Name="NPedidoSAP" ColumnName="NPedidoSAP" />
+                <ScalarProperty Name="EmailProveedor" ColumnName="EmailProveedor" />
+                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+                <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
+                <ScalarProperty Name="IdCxPProceso" ColumnName="IdCxPProceso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
