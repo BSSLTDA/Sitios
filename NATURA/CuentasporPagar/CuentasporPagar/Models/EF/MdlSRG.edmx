@@ -64,6 +64,18 @@
           <Property Name="STS006" Type="nchar" MaxLength="1" />
           <Property Name="STS007" Type="nchar" MaxLength="1" />
         </EntityType>
+        <EntityType Name="CxPProveedor">
+          <Key>
+            <PropertyRef Name="IdCxPProveedor" />
+          </Key>
+          <Property Name="IdCxPProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NIT" Type="nvarchar" MaxLength="20" />
+          <Property Name="DV" Type="nchar" MaxLength="2" />
+          <Property Name="CodigoSAP" Type="nvarchar" MaxLength="20" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="TipoPersona" Type="nvarchar" MaxLength="20" />
+          <Property Name="DescripcionRegimen" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="CxPRegimen">
           <Key>
             <PropertyRef Name="IdCxPRegimen" />
@@ -307,6 +319,7 @@
           <EntitySet Name="CxPConceptos" EntityType="Self.CxPConceptos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CxPImpuestos" EntityType="Self.CxPImpuestos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CxPProceso" EntityType="Self.CxPProceso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CxPProveedor" EntityType="Self.CxPProveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CxPRegimen" EntityType="Self.CxPRegimen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CxPTasas" EntityType="Self.CxPTasas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PanelAsistArea" EntityType="Self.PanelAsistArea" Schema="dbo" store:Type="Tables" />
@@ -399,6 +412,7 @@
             <End Role="CxPImpuestos" EntitySet="CxPImpuestos" />
           </AssociationSet>
           <EntitySet Name="CxPProceso" EntityType="SRGModel.CxPProceso" />
+          <EntitySet Name="CxPProveedor" EntityType="SRGModel.CxPProveedor" />
         </EntityContainer>
         <EntityType Name="RCAU">
           <Key>
@@ -658,6 +672,18 @@
           <Property Name="STS005" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="STS006" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="STS007" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CxPProveedor">
+          <Key>
+            <PropertyRef Name="IdCxPProveedor" />
+          </Key>
+          <Property Name="IdCxPProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NIT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DV" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="CodigoSAP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TipoPersona" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DescripcionRegimen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -927,6 +953,19 @@
                 <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
                 <ScalarProperty Name="NitProveedor" ColumnName="NitProveedor" />
                 <ScalarProperty Name="IdCxPProceso" ColumnName="IdCxPProceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CxPProveedor">
+            <EntityTypeMapping TypeName="SRGModel.CxPProveedor">
+              <MappingFragment StoreEntitySet="CxPProveedor">
+                <ScalarProperty Name="DescripcionRegimen" ColumnName="DescripcionRegimen" />
+                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodigoSAP" ColumnName="CodigoSAP" />
+                <ScalarProperty Name="DV" ColumnName="DV" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="IdCxPProveedor" ColumnName="IdCxPProveedor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
