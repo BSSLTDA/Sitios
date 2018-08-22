@@ -22,18 +22,23 @@
             </li>
             @if (SessionManager.Get<CuentasporPagar.Models.EF.RCAU>("VarUsuario") != null)
             {
-                <li>@Html.ActionLink("Asistentes", "Index", "CXPAsistentes")</li>
-                <li>@Html.ActionLink("Conceptos", "Index", "CXPConcepto")</li>
-                <li>@Html.ActionLink("Regimen", "Index", "CXPRegimen")</li>
-                <li>@Html.ActionLink("Tasas", "Index", "CXPTasas")</li>
-                <li>@Html.ActionLink("Impuestos", "Index", "CXPImpuestos")</li>
-                <li>@Html.ActionLink("Procesos", "Index", "CXPProceso")
+                <li>
+                    <a>Administración</a>
                     <ul>
-                        <li>@Html.ActionLink("Prueba", "Index", "Prueba")</li>
-                        <li>@Html.ActionLink("Generar Factura", "Factura", "CXPProceso")</li>
-                        <li>@Html.ActionLink("Entrega Factura", "Entrega", "CXPProceso")</li>
+                        <li>@Html.ActionLink("Asistentes", "Index", "CXPAsistentes")</li>
+                        <li>@Html.ActionLink("Conceptos", "Index", "CXPConcepto")</li>
+                        <li>@Html.ActionLink("Regimen", "Index", "CXPRegimen")</li>
+                        <li>@Html.ActionLink("Tasas", "Index", "CXPTasas")</li>
+                        <li>@Html.ActionLink("Impuestos", "Index", "CXPImpuestos")</li>
+                    </ul>
+                </li>                
+                <li>@Html.ActionLink("Procesos", "Index", "Proceso")
+                    <ul>
+                        <li>@Html.ActionLink("Cuentas por Pagar", "Index", "CXPProceso")</li>
+                        @*<li>@Html.ActionLink("Entrega Factura", "Entrega", "CXPProceso")</li>
                         <li>@Html.ActionLink("Agregar Hoja de Servicios", "HojaServicio", "CXPProceso")</li>
-                        <li>Paso 6 en construcción</li>
+                        <li>@Html.ActionLink("Prueba", "Index", "Prueba")</li>
+                        <li>Paso 6 en construcción</li>*@
                     </ul>
                 </li>
                 <li>@Html.ActionLink("Salir", "LogOff", "Account")</li>

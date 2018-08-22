@@ -333,8 +333,16 @@ C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.DocIO.Bas
 C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.ExcelToPDFConverter.Base.xml
 C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.PivotAnalysis.Base.xml
 C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.OfficeChart.Base.xml
-C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.csprojAssemblyReference.cache
 C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.csproj.CoreCompileInputs.cache
 C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.csproj.CopyComplete
 C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.dll
 C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.pdb
+C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.Compression.Base.dll
+C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.EJ.dll
+C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.EJ.Export.dll
+C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.EJ.Mvc.dll
+C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.EJ.Pivot.dll
+C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.Linq.Base.dll
+C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.Olap.Base.dll
+C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\bin\Syncfusion.XlsIO.Base.dll
+C:\GitHub\Sitios\NATURA\CuentasporPagar\CuentasporPagar\obj\Debug\CuentasporPagar.csprojResolveAssemblyReference.cache

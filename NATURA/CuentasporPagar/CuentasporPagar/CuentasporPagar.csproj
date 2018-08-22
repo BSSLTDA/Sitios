@@ -547,6 +547,8 @@
     <Content Include="Content\ej\web\ribbon-css\ej.icons.css" />
     <Content Include="Content\Img\25.gif" />
     <Content Include="Content\Img\add.svg" />
+    <Content Include="Content\Img\CxP.svg" />
+    <Content Include="Content\Img\CxP2.svg" />
     <Content Include="Content\Img\delete.svg" />
     <Content Include="Content\Img\edit.svg" />
     <Content Include="Content\Img\LogoBSS.svg" />

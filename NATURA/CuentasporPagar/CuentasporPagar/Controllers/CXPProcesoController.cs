@@ -26,7 +26,7 @@ namespace CuentasporPagar.Controllers
             {
                 return RedirectToAction("Login", "Account", new { donde = Url.Action("Index", "CXPProceso") });
             }
-            List<CxPProceso> lmCxPProceso = db.CxPProceso.ToList();
+            List<CxPProceso> lmCxPProceso = CargarProcesos();
             SessionManager.Set("DCXPProceso", lmCxPProceso);
             return View();
         }
@@ -86,6 +86,257 @@ namespace CuentasporPagar.Controllers
             return View();
         }
 
+        public ActionResult NumHojaServicio(int IdP, string NHoja)
+        {
+            string res = "";
+            StringBuilder Error = new StringBuilder();
+
+            try
+            {
+                CxPProceso mCxPProceso = db.CxPProceso.Find(IdP);
+                mCxPProceso.FechaRecepcion = DateTime.Now;
+                mCxPProceso.STS003 = "1";
+                mCxPProceso.NHojaServicio = NHoja;
+
+                db.Entry(mCxPProceso).State = EntityState.Modified;
+                db.SaveChanges();
+                SessionManager.Set("DCXPProceso", CargarProcesos());
+                res = "OK";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                res = "ERROR: " + Error.ToString();
+            }
+            catch (Exception ex)
+            {
+                res = "ERROR: " + ex.ToString();
+            }
+
+            return Json(new { result = res });
+        }
+
+        public ActionResult ArchivaProceso(int IdP)
+        {
+            string res = "";
+            StringBuilder Error = new StringBuilder();
+
+            try
+            {
+                CxPProceso mCxPProceso = db.CxPProceso.Find(IdP);
+                mCxPProceso.STS006 = "1";
+
+                db.Entry(mCxPProceso).State = EntityState.Modified;
+                db.SaveChanges();
+                SessionManager.Set("DCXPProceso", CargarProcesos());
+                res = "OK";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                res = "ERROR: " + Error.ToString();
+            }
+            catch (Exception ex)
+            {
+                res = "ERROR: " + ex.ToString();
+            }
+
+            return Json(new { result = res });
+        }
+
+        public ActionResult BorrarProceso(int IdP)
+        {
+            string res = "";
+            StringBuilder Error = new StringBuilder();
+
+            try
+            {
+                CxPProceso mCxPProceso = db.CxPProceso.Find(IdP);
+                mCxPProceso.STS007 = "1";
+
+                db.Entry(mCxPProceso).State = EntityState.Modified;
+                db.SaveChanges();
+                SessionManager.Set("DCXPProceso", CargarProcesos());
+                res = "OK";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                res = "ERROR: " + Error.ToString();
+            }
+            catch (Exception ex)
+            {
+                res = "ERROR: " + ex.ToString();
+            }
+
+            return Json(new { result = res });
+        }
+
+        public ActionResult EHojaServicio(int IdP)
+        {
+            string res = "";
+            StringBuilder Error = new StringBuilder();
+
+            try
+            {
+                CxPProceso mCxPProceso = db.CxPProceso.Find(IdP);
+                mCxPProceso.FechaEntrega = DateTime.Now;
+                mCxPProceso.STS002 = "1";
+
+                db.Entry(mCxPProceso).State = EntityState.Modified;
+                db.SaveChanges();
+                SessionManager.Set("DCXPProceso", CargarProcesos());
+                res = "OK";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                res = "ERROR: " + Error.ToString();
+            }
+            catch (Exception ex)
+            {
+                res = "ERROR: " + ex.ToString();
+            }
+
+            return Json(new { result = res });
+        }
+        
+        public JsonResult CalculoImpuesto(string TipoPersona, int IdRegimen, int IdConcepto)
+        {
+            string Respu = "";
+            StringBuilder Error = new StringBuilder();
+            try
+            {
+                CxPRegimen mCxPRegimen = db.CxPRegimen.Find(IdRegimen);
+                List<CxPImpuestos> mCxPImpuestosList = db.CxPImpuestos.Where(m => m.CxPRegimenId == IdRegimen && m.CxPConceptosId == IdConcepto).ToList();
+                string sRegimen = mCxPRegimen.Codigo.Trim();
+                switch (TipoPersona)
+                {
+                    case "NATURAL":// solo régimen simplificado y común
+                        if (sRegimen == "SN" || sRegimen == "SB" || sRegimen == "SC"
+                            || sRegimen == "CN" || sRegimen == "CB" || sRegimen == "CC")
+                        {
+                            foreach (CxPImpuestos impuesto in mCxPImpuestosList)
+                            {
+                                Respu += impuesto.CxPTasas.Concepto + " - " + impuesto.CxPConceptos.Descripcion + "\n";
+                            }
+                        }
+                        break;
+                    case "JURIDICA": //por defecto es régimen común
+                        if (sRegimen == "CN" || sRegimen == "CB" || sRegimen == "CC")
+                        {
+                            foreach (CxPImpuestos impuesto in mCxPImpuestosList)
+                            {
+                                Respu += impuesto.CxPTasas.Concepto + " - " + impuesto.CxPConceptos.Descripcion + "\n";
+                            }
+                        }
+                        break;
+                    default: //para otros régimen como el gran contribuyente y los especiales
+                        if (sRegimen == "GN" || sRegimen == "GB" || sRegimen == "GC"
+                            || sRegimen == "RCA" || sRegimen == "RGA" || sRegimen == "RE")
+                        {
+                            Respu = "Estoy en caso de régimen gran contribuyente o de tipo especial";
+                        }
+                        break;
+                }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Error.AppendLine(ex.ToString());
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Error.AppendLine("");
+                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Error.AppendLine("");
+                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                Respu = "ERROR: " + Error.ToString();
+            }
+            catch (Exception ex)
+            {
+                Respu = "ERROR: " + ex.ToString();
+            }
+            return Json(new { result = Respu });
+        }
+
+        public ActionResult DSCXPProceso(DataManager dm)
+        {
+            IEnumerable Data = SessionManager.Get<List<CxPProceso>>("DCXPProceso");
+            if (Data == null)
+            {
+                Data = new List<CxPProceso>();
+            }
+            return fc.DSGenerico(dm, Data);
+        }
+
+        public List<CxPProceso> CargarProcesos()
+        {
+            List<CxPProceso> lmCxPProceso = new List<CxPProceso>();
+
+            lmCxPProceso = db.CxPProceso.Where(m => m.STS006 == "0" && m.STS007 == "0").ToList();
+
+            return lmCxPProceso;
+        }
+
+
+
+
+
+
+
         public ActionResult NuevoPaso1(string NitProveedor, string NombreProveedor, string EmailProveedor, string IdArea, string CentroCostos, string CuentaContable)
         {//Este método permite crear un proceso si no existe y le permite almacenar los campos descrito en el parametro de este método
             string Respu = "";
@@ -106,7 +357,7 @@ namespace CuentasporPagar.Controllers
                 SessionManager.Set("DCXPProceso", db.CxPProceso.ToList());
                 Respu = "OK";
             }
-            catch(DbEntityValidationException ex)
+            catch (DbEntityValidationException ex)
             {
                 Error.AppendLine(ex.ToString());
                 foreach (var eve in ex.EntityValidationErrors)
@@ -220,7 +471,7 @@ namespace CuentasporPagar.Controllers
             {
                 var nCxPProceso = new CxPProceso()
                 {
-                    FechaRadicacion =  FechaRadicacion,
+                    FechaRadicacion = FechaRadicacion,
                     FechaFactura = FechaFactura,
                     NFactura = NFactura,
                     Valor = double.Parse(Valor),
@@ -394,79 +645,6 @@ namespace CuentasporPagar.Controllers
                 Respu = "ERROR: " + ex.ToString();
             }
             return Json(new { result = Respu });
-        }
-
-        public JsonResult CalculoImpuesto(string TipoPersona, int IdRegimen, int IdConcepto)
-        {
-            string Respu = "";
-            StringBuilder Error = new StringBuilder();
-            try
-            {
-                CxPRegimen mCxPRegimen = db.CxPRegimen.Find(IdRegimen);
-                List<CxPImpuestos> mCxPImpuestosList = db.CxPImpuestos.Where(m => m.CxPRegimenId == IdRegimen && m.CxPConceptosId == IdConcepto).ToList();
-                string sRegimen = mCxPRegimen.Codigo.Trim();
-                switch (TipoPersona)
-                {
-                    case "NATURAL":// solo régimen simplificado y común
-                        if (sRegimen == "SN" || sRegimen == "SB" || sRegimen == "SC"
-                            || sRegimen == "CN" || sRegimen == "CB" || sRegimen == "CC")
-                        {
-                            foreach (CxPImpuestos impuesto in mCxPImpuestosList)
-                            {
-                                Respu += impuesto.CxPTasas.Concepto + " - " + impuesto.CxPConceptos.Descripcion + "\n";
-                            }
-                        }
-                        break;
-                    case "JURIDICA": //por defecto es régimen común
-                        if (sRegimen == "CN" || sRegimen == "CB" || sRegimen == "CC")
-                        {
-                            foreach (CxPImpuestos impuesto in mCxPImpuestosList)
-                            {
-                                Respu += impuesto.CxPTasas.Concepto + " - " + impuesto.CxPConceptos.Descripcion + "\n";
-                            }
-                        }
-                        break;
-                    default: //para otros régimen como el gran contribuyente y los especiales
-                        if (sRegimen == "GN" || sRegimen == "GB" || sRegimen == "GC"
-                            || sRegimen == "RCA" || sRegimen == "RGA" || sRegimen == "RE")
-                        {
-                            Respu = "Estoy en caso de régimen gran contribuyente o de tipo especial";
-                        }
-                        break;
-                }
-            }
-            catch (DbEntityValidationException ex)
-            {
-                Error.AppendLine(ex.ToString());
-                foreach (var eve in ex.EntityValidationErrors)
-                {
-                    Error.AppendLine("");
-                    Error.AppendFormat("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Error.AppendLine("");
-                        Error.AppendFormat("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                Respu = "ERROR: " + Error.ToString();
-            }
-            catch (Exception ex)
-            {
-                Respu = "ERROR: " + ex.ToString();
-            }
-            return Json(new { result = Respu });
-        }
-
-        public ActionResult DSCXPProceso(DataManager dm)
-        {
-            IEnumerable Data = SessionManager.Get<List<CxPProceso>>("DCXPProceso");
-            if (Data == null)
-            {
-                Data = new List<CxPProceso>();
-            }
-            return fc.DSGenerico(dm, Data);
         }
     }
 }

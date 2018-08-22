@@ -8,58 +8,111 @@
 
 <div>
     @(Html.EJ().Grid<CxPProceso>("Grid")
-                                                        .Datasource(ds => ds.URL(@Url.Content("~/CXPProceso/DSCXPProceso")).Adaptor(AdaptorType.UrlAdaptor))
-                                                        .EnableAltRow()
-                                                        .MinWidth(120)
-                                                        .AllowScrolling()
-                                                        .IsResponsive(true)
-                                                        .EnableResponsiveRow(true)
-                                                        .ScrollSettings(col => { col.Width("100%").Height("auto"); })
-                                                        .ToolbarSettings(toolBar =>
-                                                            toolBar.ShowToolbar()
-                                                            .CustomToolbarItems(new List<object>() {
-new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Agregar" },
-new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Editar" },
-new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" }
-                                                            })
-                                                            .ToolbarItems(items =>
-                                                            {
-                                                            }))
-                                                        .Locale("es-CO")
-                                                        .PageSettings(p => { p.PageCount(7).PageSize(25); })
-                                                        .AllowPaging()
-                                                        .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
-                                                        .AllowFiltering()
-                                                        .AllowSorting()
-                                                        .Columns(col =>
-                                                        {
-                                                            col.Width(100).Field("NitProveedor").HeaderText("NIT Proveedor").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("NombreProveedor").HeaderText("Nombre Proveedor").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("EmailProveedor").HeaderText("Email").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("NPedidoSAP").HeaderText("Número SAP").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("NFactura").HeaderText("Nùmero Factura").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("FechaRadicacion").HeaderText("Fecha de Radicado").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("FechaMaxRadicacion").HeaderText("Fecha Máx. Radicado").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("FechaFactura").HeaderText("Fecha Factura").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("Valor").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("ValorTotal").HeaderText("Total").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("Moneda").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("CategorizacionFactura").HeaderText("Categorización").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("Observaciones").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("CentroCostos").HeaderText("Centro de Costo").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("CuentaContable").HeaderText("Cuenta Contable").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("IdArea").HeaderText("Area").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("FechaEntrega").HeaderText("Fecha Entrega").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("NombreRecibe").HeaderText("Recibido por").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("FechaRecepcion").HeaderText("Fecha Recepción").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("NHojaServicio").HeaderText("Número Hoja de Servicio").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Width(100).Field("Estado").HeaderText("Status").HeaderTextAlign(TextAlign.Center).Add();
-                                                            col.Field("IdCxPProceso").Visible(false).Add();
-                                                        })
-                                                        .ClientSideEvents(eve => eve.Create("Create").ToolbarClick("TBClick"))
+                                .Datasource(ds => ds.URL(@Url.Content("~/CXPProceso/DSCXPProceso")).Adaptor(AdaptorType.UrlAdaptor))
+                                .EnableAltRow()
+                                .MinWidth(120)
+                                .AllowScrolling()
+                                .IsResponsive(true)
+                                .EnableResponsiveRow(true)
+                                .ScrollSettings(col => { col.Width("100%").Height("auto"); })
+                                .ToolbarSettings(toolBar =>
+                                    toolBar.ShowToolbar()
+                                    .CustomToolbarItems(new List<object>() {
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Creacion" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#HServicio" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Impuestos" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#GED" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#FIN" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Borrar" }
+                                    })
+                                    .ToolbarItems(items =>
+                                    {
+                                    }))
+                                .Locale("es-CO")
+                                .PageSettings(p => { p.PageCount(7).PageSize(25); })
+                                .AllowPaging()
+                                .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+                                .AllowFiltering()
+                                .AllowSorting()
+                                .Columns(col =>
+                                {
+                                    col.Width(100).Field("NitProveedor").HeaderText("NIT Proveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("NombreProveedor").HeaderText("Nombre Proveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("EmailProveedor").HeaderText("Email").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("NPedidoSAP").HeaderText("Número SAP").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("NFactura").HeaderText("Nùmero Factura").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("FechaRadicacion").HeaderText("Fecha de Radicado").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("FechaMaxRadicacion").HeaderText("Fecha Máx. Radicado").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("FechaFactura").HeaderText("Fecha Factura").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("Valor").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("ValorTotal").HeaderText("Total").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("Moneda").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("CategorizacionFactura").HeaderText("Categorización").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("Observaciones").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("CentroCostos").HeaderText("Centro de Costo").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("CuentaContable").HeaderText("Cuenta Contable").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("IdArea").HeaderText("Area").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("FechaEntrega").HeaderText("Fecha Entrega").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("NombreRecibe").HeaderText("Recibido por").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("FechaRecepcion").HeaderText("Fecha Recepción").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("NHojaServicio").HeaderText("Número Hoja de Servicio").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Width(100).Field("Estado").HeaderText("Status").HeaderTextAlign(TextAlign.Center).Add();
+                                    col.Field("IdCxPProceso").Visible(false).Add();
+                                    col.Field("STS001").Visible(false).Add();
+                                    col.Field("STS002").Visible(false).Add();
+                                    col.Field("STS003").Visible(false).Add();
+                                    col.Field("STS004").Visible(false).Add();
+                                    col.Field("STS005").Visible(false).Add();
+                                    col.Field("STS006").Visible(false).Add();
+                                    col.Field("STS007").Visible(false).Add();
+                                })
+                                .ClientSideEvents(eve => eve.Create("Create").ToolbarClick("TBClick").RecordClick("RClick"))
     )
+    <script type="text/x-jsrender" id="Creacion">
+        <a id="aCustomLib" class="iconCus" style="padding-left:0;padding-right:0;">
+            <div id="DivC" class="EstiloTool">
+                C
+            </div>
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="HServicio">
+        <a id="aCustomLib" class="iconCus" style="padding-left:0;padding-right:0;">
+            <div id="DivHS" class="EstiloTool">
+                HS
+            </div>
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Impuestos">
+        <a id="aCustomLib" class="iconCus" style="padding-left:0;padding-right:0;">
+            <div id="DivIMP" class="EstiloTool">
+                IMP
+            </div>
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="GED">
+        <a id="aCustomLib" class="iconCus" style="padding-left:0;padding-right:0;">
+            <div id="DivGED" class="EstiloTool">
+                GED
+            </div>
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="FIN">
+        <a id="aCustomLib" class="iconCus" style="padding-left:0;padding-right:0;">
+            <div id="DivFIN" class="EstiloTool">
+                FIN
+            </div>
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="Borrar">
+        <a id="aCustomLib" class="iconCus" style="padding-left:0;padding-right:0;">
+            <div id="DivBOR" class="EstiloTool">
+                BOR
+            </div>
+        </a>
+    </script>
+
     <script type="text/x-jsrender" id="Agregar">
-        <a id="aCustomLib" class="iconCus">
+        <a id="aCustomLib" class="iconCus ">
             <img width="14" src='@Url.Content("~/Content/img/add.svg")' />
         </a>
     </script>
@@ -241,14 +294,119 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             <div class="modal-content fondoBody">
                 <div class="modal-header">
                     <button id="cerrarModal3" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Eliminar Concepto</h4>
+                    <h4 class="modal-title">Eliminar Proceso</h4>
                 </div>
                 <div class="modal-body">
                     Esta seguro de eliminar el registro seleccionado
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="Delete()" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-primary" onclick="Borra()" data-dismiss="modal">Aceptar</button>
                     <button id="cancelModal3" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal4" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal4" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Hoja de servicio</h4>
+                </div>
+                <div class="modal-body">
+                    Entregar para hoja de servicio
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="EntregaParaHoja()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal4" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal5" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal5" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Hoja de servicio</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <th>Número hoja de servicio</th>
+                            <td>
+                                <input id="nNumHojaServ" class="ctext" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="NumeroHoja()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal5" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal6" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal6" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Calculo Impuestos</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <th>Tipo Persona</th>
+                            <td>
+                                <select id="nTipoPersona">
+                                    <option value="NATURAL">NATURAL</option>
+                                    <option value="JURIDICA">JURIDICA</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Régimen</th>
+                            <td>
+                                <input id="nRegimen" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Concepto</th>
+                            <td>
+                                <input id="nconcepto" class="ctext" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="NumeroHoja()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal6" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal7" class="modalu">
+        <div class="fondomodal">
+        </div>
+        <div class="modal-dialogu">
+            <div class="modal-content fondoBody">
+                <div class="modal-header">
+                    <button id="cerrarModal7" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Archivar Proceso</h4>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de archivar el registro seleccionado
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="Archiva()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal7" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -260,9 +418,189 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
     var urlNuevo = '@Url.Content("~/CXPProceso/NuevoPaso1")';
     var urlEdita = '@Url.Content("~/CXPProceso/EditarPaso1")';
     var urlElimina = '@Url.Content("~/CXPProceso/Eliminar")';
+    var urlEntregaParaHS = '@Url.Content("~/CXPProceso/EHojaServicio")';
+    var urlNumeroHS = '@Url.Content("~/CXPProceso/NumHojaServicio")';
+    var urlArchiva = '@Url.Content("~/CXPProceso/ArchivaProceso")';
+    var urlBorra = '@Url.Content("~/CXPProceso/BorrarProceso")';
+    var urlCalcImp = '@Url.Content("~/CXPProceso/CalculoImpuesto")';
     var idCC = "";
 
+    function Borra() {
+        $.ajax({
+            type: "POST",
+            url: urlBorra,
+            data: { IdP: idCC },
+            cache: true,
+            dataType: 'json',
+            success: function (result) {
+                if (result.result == "OK") {
+                    $("#fondo").addClass("oculto");
+                    gridObj = $("#Grid").data("ejGrid");
+                    gridObj.refreshContent();
+                    $("#myModal3").css("display", "none");
+                } else {
+                    $("#fondo").addClass("oculto");
+                    $("#LblMsg").text(result.result);
+                    $("#myModMsg").css("display", "block");
+                }
+            }
+        });
+    }
+
+    function Archiva() {
+        $.ajax({
+            type: "POST",
+            url: urlArchiva,
+            data: { IdP: idCC },
+            cache: true,
+            dataType: 'json',
+            success: function (result) {
+                if (result.result == "OK") {
+                    $("#fondo").addClass("oculto");
+                    gridObj = $("#Grid").data("ejGrid");
+                    gridObj.refreshContent();
+                    $("#myModal7").css("display", "none");
+                } else {
+                    $("#fondo").addClass("oculto");
+                    $("#LblMsg").text(result.result);
+                    $("#myModMsg").css("display", "block");
+                }
+            }
+        });
+    }
+
+    function NumeroHoja() {
+        var continuar = true;
+        $("#fondo").removeClass("oculto");
+        if (idCC == "" || $("#nNumHojaServ").val() == "") {
+            $("#fondo").addClass("oculto");
+            continuar = false;
+            $("#LblMsg").text("Faltan datos por llenar");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
+
+        if (continuar) {
+            $.ajax({
+                type: "POST",
+                url: urlNumeroHS,
+                data: { IdP: idCC, NHoja: $("#nNumHojaServ").val() },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == "OK") {
+                        $("#fondo").addClass("oculto");
+                        gridObj = $("#Grid").data("ejGrid");
+                        gridObj.refreshContent();
+                        $("#myModal5").css("display", "none");
+                    } else {
+                        $("#fondo").addClass("oculto");
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                    }
+                }
+            });
+        }
+    }
+
+    function EntregaParaHoja() {
+        $.ajax({
+            type: "POST",
+            url: urlEntregaParaHS,
+            data: { IdP: idCC },
+            cache: true,
+            dataType: 'json',
+            success: function (result) {
+                if (result.result == "OK") {
+                    gridObj = $("#Grid").data("ejGrid");
+                    gridObj.refreshContent();
+                    $("#myModal4").css("display", "none");
+                } else {
+                    $("#LblMsg").text(result.result);
+                    $("#myModMsg").css("display", "block");
+                }
+            }
+        });
+    }
+
+    function RClick(args) {
+        console.log(args);
+        $("#DivC").removeClass("ToolVerde");
+        $("#DivHS").removeClass("ToolAmarillo");
+        $("#DivIMP").removeClass("ToolVerde");
+        $("#DivGED").removeClass("ToolVerde");
+        $("#DivFIN").removeClass("ToolVerde");
+        $("#DivBOR").removeClass("ToolVerde");
+        $("#DivHS").removeClass("ToolVerde");
+
+        if (args.data.STS001 == "1") {
+            $("#DivC").addClass("ToolVerde");
+        }
+        if (args.data.STS002 == "1") {
+            $("#DivHS").addClass("ToolAmarillo");
+        }
+        if (args.data.STS003 == "1") {
+            $("#DivHS").removeClass("ToolAmarillo");
+            $("#DivHS").addClass("ToolVerde");
+        }
+        if (args.data.STS004 == "1") {
+            $("#DivIMP").addClass("ToolVerde");
+        }
+        if (args.data.STS005 == "1") {
+            $("#DivGED").addClass("ToolVerde");
+        }
+        if (args.data.STS006 == "1") {
+            $("#DivFIN").addClass("ToolVerde");
+        }
+        if (args.data.STS007 == "2") {
+            $("#DivBOR").addClass("ToolVerde");
+        }
+    }
+
     function TBClick(args) {
+        if (args.itemIndex == "1" && args.itemName == "HServicio") {
+            if (args.model.selectedRowIndex != "-1") {
+                idCC = args.model.selectedRecords[0].IdCxPProceso;
+                if (args.model.selectedRecords[0].STS002 == "1") {
+                    $("#myModal5").css("display", "block");
+                } else {
+                    $("#myModal4").css("display", "block");
+                }
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningún registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+        if (args.itemIndex == "2" && args.itemName == "Impuestos") {
+            $("#myModal6").css("display", "block");
+        }
+        if (args.itemIndex == "4" && args.itemName == "FIN") {
+            if (args.model.selectedRowIndex != "-1") {
+                idCC = args.model.selectedRecords[0].IdCxPProceso;
+                    $("#myModal7").css("display", "block");
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningún registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+        if (args.itemIndex == "5" && args.itemName == "Borrar") {
+            if (args.model.selectedRowIndex != "-1") {
+                idCC = args.model.selectedRecords[0].IdCxPProceso;
+                $("#myModal3").css("display", "block");
+            } else {
+                $("#LblMsg").text("No se ha seleccionado ningún registro");
+                $("#myModMsg").css("display", "block");
+                $("#myModMsg").css("z-index", "999");
+            }
+        }
+
+
+
+
+
+
         if (args.itemIndex == "0" && args.itemName == "Agregar") {
             $("#nNitProveedor").val('');
             $("#nNombreProveedor").val('');
@@ -307,195 +645,6 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
         }
     }
 
-    function Save() {
-        var continuar = true;
-
-        if ($("#nNitProveedor").val() == "") {
-            continuar = false;
-            $("#LblMsg").text("El campo 'NIT Proveedor' es obligatorio");
-            $("#myModMsg").css("display", "block");
-            $("#myModMsg").css("z-index", "999");
-        }
-
-        if (continuar) {
-            if ($("#nNombreProveedor").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Nombre Proveedor' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#nEmailProveedor").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Correo Electrónico' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#nArea").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Area' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#nCentroCostos").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Centro de Costos' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#nCuentaContable").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Cuenta Contable' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            $.ajax({
-                type: "POST",
-                url: urlNuevo,
-                data: { NitProveedor: $("#nNitProveedor").val(), NombreProveedor: $("#nNombreProveedor").val(), EmailProveedor: $("#nEmailProveedor").val(), IdArea: $("#nIdArea").val(), CentroCostos: $("#nIdCentroCostos").val(), CuentaContable: $("#nIdCuentaContable").val() },
-                cache: true,
-                dataType: 'json',
-                success: function (result) {
-                    if (result.result == "OK") {
-                        gridObj = $("#Grid").data("ejGrid");
-                        gridObj.refreshContent();
-                        $("#myModal").css("display", "none");
-                    } else {
-                        $("#LblMsg").text(result.result);
-                        $("#myModMsg").css("display", "block");
-                    }
-                }
-            });
-        }
-    }
-
-    function Update() {
-        var continuar = true;
-
-        if ($("#uNitProveedor").val() == "") {
-            continuar = false;
-            $("#LblMsg").text("El campo 'NIT Proveedor' es obligatorio");
-            $("#myModMsg").css("display", "block");
-            $("#myModMsg").css("z-index", "999");
-        }
-
-        if (continuar) {
-            if ($("#uNombreProveedor").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Nombre Proveedor' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#uEmailProveedor").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Correo Electrónico' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#uArea").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Area' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#uCentroCostos").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Centro de Costos' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#uCuentaContable").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Cuenta Contable' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#uFechaMaxRadicacion").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Fecha Máxima de Radicación' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            if ($("#uNPedidoSAP").val() == "") {
-                continuar = false;
-                $("#LblMsg").text("El campo 'Número Pedido SAP' es obligatorio");
-                $("#myModMsg").css("display", "block");
-                $("#myModMsg").css("z-index", "999");
-            }
-        }
-
-        if (continuar) {
-            $.ajax({
-                type: "POST",
-                url: urlEdita,
-                data: { IdCxPProceso: idCC, NitProveedor: $("#uNitProveedor").val(), NombreProveedor: $("#uNombreProveedor").val(), EmailProveedor: $("#uEmailProveedor").val(), IdArea: $("#uArea").val(), CentroCostos: $("#uCentroCostos").val(), CuentaContable: $("#uCuentaContable").val(), FechaMaxRadicacion: $("#uFechaMaxRadicacion").val(), NPedidoSAP: $("#uNPedidoSAP").val() },
-                cache: true,
-                dataType: 'json',
-                success: function (result) {
-                    if (result.result == "OK") {
-                        gridObj = $("#Grid").data("ejGrid");
-                        gridObj.refreshContent();
-                        $("#myModal2").css("display", "none");
-                    } else {
-                        $("#LblMsg").text(result.result);
-                        $("#myModMsg").css("display", "block");
-                    }
-                }
-            });
-        }
-    }
-
-    function Delete() {
-        $.ajax({
-            type: "POST",
-            url: urlElimina,
-            data: { Id: idCC },
-            cache: true,
-            dataType: 'json',
-            success: function (result) {
-                if (result.result == "OK") {
-                    gridObj = $("#Grid").data("ejGrid");
-                    gridObj.refreshContent();
-                    $("#myModal3").css("display", "none");
-                } else {
-                    $("#LblMsg").text(result.result);
-                    $("#myModMsg").css("display", "block");
-                }
-            }
-        });
-    }
 </script>
 
 <link href="~/Content/jquery-ui.css" rel="stylesheet" />
@@ -530,6 +679,36 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
     });
     $("#cancelModal3").click(function () {
         $("#myModal3").css("display", "none");
+    });
+
+    $("#myModal4").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal4").click(function () {
+        $("#myModal4").css("display", "none");
+    });
+    $("#cancelModal4").click(function () {
+        $("#myModal4").css("display", "none");
+    });
+
+    $("#myModal5").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal5").click(function () {
+        $("#myModal5").css("display", "none");
+    });
+    $("#cancelModal5").click(function () {
+        $("#myModal5").css("display", "none");
+    });
+
+    $("#myModal6").draggable({
+        handle: ".modal-header"
+    });
+    $("#cerrarModal6").click(function () {
+        $("#myModal6").css("display", "none");
+    });
+    $("#cancelModal6").click(function () {
+        $("#myModal6").css("display", "none");
     });
 
     var AutoCentroCosto = '@Url.Content("~/Proceso/CentroCostoComplete")';
@@ -630,6 +809,68 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Eliminar" 
             change: function (event, ui) {
                 if ($("#nIdArea").val() == "") {
                     $("#nArea").val('');
+                }
+                return false;
+            }
+        });
+        $("#nRegimen").autocomplete({
+            source: function (request, response) {
+                $("#nIdRegimen").val('');
+                $.ajax({
+                    url: AutoRegimen,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CCCODE + ' - ' + item.CCDESC, id: item.CCCODE };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nRegimen").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nRegimen").val(ui.item.label);
+                $("#nIdRegimen").val(ui.item.id);
+                return false;
+            },
+            change: function (event, ui) {
+                if ($("#nIdRegimen").val() == "") {
+                    $("#nRegimen").val('');
+                }
+                return false;
+            }
+        });
+        $("#nConcepto").autocomplete({
+            source: function (request, response) {
+                $("#nIdConcepto").val('');
+                $.ajax({
+                    url: AutoConcepto,
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CCCODE + ' - ' + item.CCDESC, id: item.CCCODE };
+                        }))
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#nConcepto").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#nConcepto").val(ui.item.label);
+                $("#nIdConcepto").val(ui.item.id);
+                return false;
+            },
+            change: function (event, ui) {
+                if ($("#nIdConcepto").val() == "") {
+                    $("#nConcepto").val('');
                 }
                 return false;
             }

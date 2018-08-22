@@ -13,8 +13,8 @@
       <PropertyRef Name="IdCxPConcepto" />
     </Key>
     <Property Name="IdCxPConcepto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Codigo" Type="nchar" MaxLength="1" />
-    <Property Name="Descripcion" Type="nvarchar" MaxLength="20" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="10" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="CxPImpuestos">
     <Key>
@@ -51,6 +51,13 @@
     <Property Name="FechaRecepcion" Type="datetime" />
     <Property Name="NHojaServicio" Type="nvarchar" MaxLength="50" />
     <Property Name="Estado" Type="nvarchar" MaxLength="1" />
+    <Property Name="STS001" Type="nchar" MaxLength="1" />
+    <Property Name="STS002" Type="nchar" MaxLength="1" />
+    <Property Name="STS003" Type="nchar" MaxLength="1" />
+    <Property Name="STS004" Type="nchar" MaxLength="1" />
+    <Property Name="STS005" Type="nchar" MaxLength="1" />
+    <Property Name="STS006" Type="nchar" MaxLength="1" />
+    <Property Name="STS007" Type="nchar" MaxLength="1" />
   </EntityType>
   <EntityType Name="CxPRegimen">
     <Key>

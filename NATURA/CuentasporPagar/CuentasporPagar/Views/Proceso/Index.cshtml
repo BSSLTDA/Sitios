@@ -8,64 +8,69 @@
 
 <div>
     @(Html.EJ().Grid<PanelAsistProceso>("Grid")
-                                                                                .Datasource(ds => ds.URL(@Url.Content("~/Proceso/DSProcesoJefe")).Adaptor(AdaptorType.UrlAdaptor))
-                                                                                .EnableAltRow()
-                                                                                .MinWidth(120)
-                                                                                .AllowScrolling()
-                                                                                .IsResponsive(true)
-                                                                                .EnableResponsiveRow(true)
-                                                                                .ScrollSettings(col => { col.Width("100%").Height("auto"); })
-                                                                                .ToolbarSettings(toolBar =>
-                                                                                    toolBar.ShowToolbar()
-                                                                                    .CustomToolbarItems(new List<object>() {
+                                                                                        .Datasource(ds => ds.URL(@Url.Content("~/Proceso/DSProceso")).Adaptor(AdaptorType.UrlAdaptor))
+                                                                                        .EnableAltRow()
+                                                                                        .MinWidth(120)
+                                                                                        .AllowScrolling()
+                                                                                        .IsResponsive(true)
+                                                                                        .EnableResponsiveRow(true)
+                                                                                        .ScrollSettings(col => { col.Width("100%").Height("auto"); })
+                                                                                        .ToolbarSettings(toolBar =>
+                                                                                            toolBar.ShowToolbar()
+                                                                                            .CustomToolbarItems(new List<object>() {
 new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Agregar" },
-new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Adjuntar" },
+new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#CxP" },
 new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" }
-                                                                                    })
-                                                                                    .ToolbarItems(items =>
-                                                                                    {
-                                                                                        items.AddTool(ToolBarItems.ExcelExport);
-                                                                                    }))
-                                                                                .Mappers(map => map.ExportToExcelAction(@Url.Action("ExpToExc", "Proceso")))
-                                                                                .Locale("es-CO")
-                                                                                .PageSettings(p => { p.PageCount(7).PageSize(25); })
-                                                                                .AllowPaging()
-                                                                                .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
-                                                                                .AllowFiltering()
-                                                                                .AllowSorting()
-                                                                                .Columns(col =>
-                                                                                {
-                                                                                    //col.Width(50).Template("#TmpAdjunto").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    col.Width(70).Field("IdPanelAsistProceso").TextAlign(TextAlign.Left).HeaderTextAlign(TextAlign.Center).Visible(false).Add();
-                                                                                    //col.Width(80).Field("Estado").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(110).Field("FechaCierra").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(150).Field("FechaMaximaRadicacion").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(280).Field("Creador").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(280).Field("Solicitante").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(280).Field("Asistente").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(250).Field("CodCentroCosto").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(250).Field("CodCuentaContable").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(250).Field("NotaSolicitante").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(250).Field("Area").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(250).Field("DescripcionGastos").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(120).Field("VlrAntesIVA").Format("{0:N0}").TextAlign(TextAlign.Right).HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(110).Field("FechaCrea").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    col.Width(250).Field("NombreProveedor").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    col.Width(150).Field("NitProveedor").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    col.Width(200).Field("CorreoProveedor").HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    col.Width(130).Field("NumPedidoSAP").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    //col.Width(130).Field("NumeroReenvios").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
-                                                                                    col.Field("STS01").Visible(false).Add();
-                                                                                    col.Field("STS02").Visible(false).Add();
-                                                                                    col.Field("STS03").Visible(false).Add();
-                                                                                    col.Field("STS04").Visible(false).Add();
-                                                                                    col.Field("STS05").Visible(false).Add();
-                                                                                })
-                                                                                .ClientSideEvents(eve => eve.Create("Create").QueryCellInfo("QCInfo").RecordDoubleClick("RDClick").ToolbarClick("TBClick"))
+                                                                                            })
+                                                                                            .ToolbarItems(items =>
+                                                                                            {
+                                                                                                items.AddTool(ToolBarItems.ExcelExport);
+                                                                                            }))
+                                                                                        .Mappers(map => map.ExportToExcelAction(@Url.Action("ExpToExc", "Proceso")))
+                                                                                        .Locale("es-CO")
+                                                                                        .PageSettings(p => { p.PageCount(7).PageSize(25); })
+                                                                                        .AllowPaging()
+                                                                                        .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+                                                                                        .AllowFiltering()
+                                                                                        .AllowSorting()
+                                                                                        .Columns(col =>
+                                                                                        {
+                                                                                //col.Width(50).Template("#TmpAdjunto").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                                col.Width(70).Field("IdPanelAsistProceso").TextAlign(TextAlign.Left).HeaderTextAlign(TextAlign.Center).Visible(false).Add();
+                                                                                //col.Width(80).Field("Estado").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(110).Field("FechaCierra").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(150).Field("FechaMaximaRadicacion").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(280).Field("Creador").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(280).Field("Solicitante").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(280).Field("Asistente").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(250).Field("CodCentroCosto").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(250).Field("CodCuentaContable").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(250).Field("NotaSolicitante").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(250).Field("Area").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(250).Field("DescripcionGastos").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(120).Field("VlrAntesIVA").Format("{0:N0}").TextAlign(TextAlign.Right).HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(110).Field("FechaCrea").Format("{0:yyyy-MM-dd}").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                                col.Width(250).Field("NombreProveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                            col.Width(150).Field("NitProveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                            col.Width(200).Field("CorreoProveedor").HeaderTextAlign(TextAlign.Center).Add();
+                                                                                            col.Width(130).Field("NumPedidoSAP").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                                //col.Width(130).Field("NumeroReenvios").TextAlign(TextAlign.Center).HeaderTextAlign(TextAlign.Center).Add();
+                                                                                col.Field("STS01").Visible(false).Add();
+                                                                                            col.Field("STS02").Visible(false).Add();
+                                                                                            col.Field("STS03").Visible(false).Add();
+                                                                                            col.Field("STS04").Visible(false).Add();
+                                                                                            col.Field("STS05").Visible(false).Add();
+                                                                                        })
+                                                                                        .ClientSideEvents(eve => eve.Create("Create").QueryCellInfo("QCInfo").RecordDoubleClick("RDClick").ToolbarClick("TBClick"))
     )
     <script type="text/x-jsrender" id="Agregar">
         <a id="aCustomLib" class="iconCus">
             <img width="14" src='@Url.Content("~/Content/img/add.svg")' onclick="Agregar()" />
+        </a>
+    </script>
+    <script type="text/x-jsrender" id="CxP">
+        <a id="aCustomLib" class="iconCus">
+            <img width="22" src='@Url.Content("~/Content/img/CxP2.svg")' />
         </a>
     </script>
     <!--script type="text/x-jsrender" id="Adjuntar">
@@ -189,6 +194,56 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" 
                                 <input type="email" id="nMailProveedor" class="ctext" />
                             </td>
                         </tr>
+                        <tr>
+                            <td><label>Número Pedido SAP</label></td>
+                            <td>
+                                <input id="nNumero" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Fecha Maxima radicación</label></td>
+                            <td>
+                                <input id="nFecha" placeholder="2018-01-01" class="ctext" readonly="readonly" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Fecha factura</label></td>
+                            <td>
+                                <input id="nFechaFactura" placeholder="2018-01-01" class="ctext" readonly="readonly" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Número Factura</label></td>
+                            <td>
+                                <input id="nNumeroFact" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Valor total</label></td>
+                            <td>
+                                <input id="nVlrTotal" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Moneda</label></td>
+                            <td>
+                                <input id="nMoneda" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Categorización factura</label></td>
+                            <td>
+                                <input id="nCatFactura" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Asistente</label>
+                            </td>
+                            <td>
+                                <input id="nAsistente" class="ctext" />
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -205,69 +260,67 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" 
             <div class="modal-content fondoBody">
                 <div class="modal-header">
                     <button id="cerrarModal2" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Agregar Proceso</h4>
+                    <h4 class="modal-title">Iniciar Proceso</h4>
                 </div>
                 <div class="modal-body">
-                    <table>
+                    <table width="100%">
                         <tr>
-                            <td colspan="2">
-                                Su solicitud ha sido procesada con el # P<span id="NumProceso" style="font-weight:bold;">01</span>, y asignada a la asistente <span id="NmeAsistente" style="font-weight:bold;"></span> con los siguientes datos:
+                            <td>
+                                <label>Notas</label>
+                            </td>
+                            <td style="width:350px;">
+                                <textarea id="cNota" class="ctext"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Fecha factura</label></td>
+                            <td>
+                                <input id="cFechaFactura" placeholder="2018-01-01" class="ctext" readonly="readonly" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Número Factura</label></td>
+                            <td>
+                                <input id="cNumeroFact" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Valor antes de impuestos</label></td>
+                            <td>
+                                <input id="cVlrAntesImp" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Valor total</label></td>
+                            <td>
+                                <input id="cVlrTotal" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Moneda</label></td>
+                            <td>
+                                <input id="cMoneda" class="ctext" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Categorización factura</label></td>
+                            <td>
+                                <input id="cCatFactura" class="ctext" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Centro de Costos </label>
+                                <label>Asistente</label>
                             </td>
                             <td>
-                                <span id="CC"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Cuenta Contable</label>
-                            </td>
-                            <td>
-                                <span id="CtaC"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Descripción de gasto</label>
-                            </td>
-                            <td>
-                                <span id="DG"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Vlr. antes IVA</label>
-                            </td>
-                            <td>
-                                <span id="VAI"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Proveedor</label>
-                            </td>
-                            <td>
-                                <span id="Prov"></span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label>Observaciones</label>
-                            </td>
-                            <td>
-                                <span id="Obs"></span>
+                                <input id="cAsistente" class="ctext" />
                             </td>
                         </tr>
                     </table>
-
                 </div>
                 <div class="modal-footer">
-                    <button id="cancelModal2" type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-primary" onclick="IniciarProceso()" data-dismiss="modal">Aceptar</button>
+                    <button id="cancelModal2" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -360,31 +413,7 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" 
             </div>
         </div>
     </div>
-    <div id="myModal5" class="modalu">
-        <div class="fondomodal">
-        </div>
-        <div class="modal-dialogu">
-            <div class="modal-content fondoBody">
-                <div class="modal-header">
-                    <button id="cerrarModal5" type="button" class="close oculto" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Agregar Adjunto</h4>
-                </div>
-                <div class="modal-body">
-                    <table width="100%">
-                        <tr>
-                            <td colspan="2">
-                                <div id="dropzone">
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="FinalizaAdjunto()" data-dismiss="modal">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div id="myModal6" class="modalu">
         <div class="fondomodal">
         </div>
@@ -406,7 +435,8 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" 
 </div>
 
 <script>
-    var urlSave = '@Url.Content("~/Proceso/SaveProcess")';
+    var urlSave = '@Url.Content("~/Proceso/GuardarCxPProceso")';
+    var urlBegin = '@Url.Content("~/Proceso/IniciaCxpProceso")';
     var imgPdf = '@Url.Content("~/Content/img/pdf2.svg")';
     var urlAction = '@Url.Content("~/Proceso/SaveFile")';
     var urlCorreo = '@Url.Content("~/Proceso/CorreoProceso")';
@@ -490,11 +520,18 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" 
     }
 
     function TBClick(sender) {
-        if (sender.itemIndex == "1" && sender.itemName == "Adjuntar") {
+        if (sender.itemIndex == "1" && sender.itemName == "CxP") {
             if (sender.model.selectedRowIndex != "-1") {
                 if (sender.model.selectedRecords.length == 1) {
-                    $("#cerrarModal5").removeClass("oculto");
-                    PedirAdjunto(sender.model.selectedRecords[0].IdPanelAsistProceso);
+                    console.log(sender.model.selectedRecords[0].IdPanelAsistProceso);
+                    Id = sender.model.selectedRecords[0].IdPanelAsistProceso;
+                    $("#myModal2").css("display", "block");
+                    $('body').css('overflow', 'hidden');
+                    $(".modal-body").css("max-height", ($(window).height() - 150) + "px");
+
+
+
+
                 } else {
                     $("#LblMsg").text("Solo se permite un registro");
                     $("#myModMsg").css("display", "block");
@@ -661,26 +698,48 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" 
             $.ajax({
                 type: "POST",
                 url: urlSave,
-                data: { CentroCosto: $("#nIdCentroCosto").val(), CuentaContable: $("#nIdCuentaContable").val(), Nota: $("#nNota").val(), Area: $("#nIdArea").val(), DescGastos: $("#nDescGastos").val(), NmeProveedor: $("#nNmeProveedor").val(), NitProveedor: $("#nNitProveedor").val(), MailProveedor: $("#nMailProveedor").val(), Solicitante: $("#nSolicitante").val().split('-')[0].trim(), VlrAntesIva: $("#nVlrAntesIVA").val() },
+                data: {
+                    CentroCosto: $("#nIdCentroCosto").val(), CuentaContable: $("#nIdCuentaContable").val(), Nota: $("#nNota").val(), Area: $("#nIdArea").val(), DescGastos: $("#nDescGastos").val(), NmeProveedor: $("#nNmeProveedor").val(), NitProveedor: $("#nNitProveedor").val(), MailProveedor: $("#nMailProveedor").val(), Solicitante: $("#nSolicitante").val(), VlrAntesIva: $("#nVlrAntesIVA").val(), NumPedSAP: $("#nNumero").val(), FecMaxRadicacion: $("#nFecha").val(), NFactura: $("#nNumeroFact").val(), FecFac: $("#nFechaFactura").val(), VlrTotal: $("#nVlrTotal").val(), Mon: $("#nMoneda").val(), CategFactu: $("#nCatFactura").val(), Asist: $("#nAsistente").val() },
                 cache: true,
                 dataType: 'json',
                 success: function (result) {
                     if (result.result == "OK") {
                         $("#fondo").addClass("oculto");
+                        $("#myModal").css("display", "none");                        
+                    } else {
+                        $("#fondo").addClass("oculto");
+                        $("#LblMsg").text(result.result);
+                        $("#myModMsg").css("display", "block");
+                        $("#myModMsg").css("z-index", "999");
+                    }
+                }
+            });
+        }
+    }
 
-                        $("#myModal").css("display", "none");
-                        $("#NumProceso").text(result.idp);
-                        $("#NmeAsistente").text(result.asi);
-                        $("#CC").text($("#nCentroCosto").val());
-                        $("#CtaC").text($("#nCuentaContable").val());
-                        $("#DG").text($("#nDescGastos").val());
-                        $("#VAI").text($("#nVlrAntesIVA").val());
-                        $("#Prov").text($("#nNmeProveedor").val());
+    function IniciarProceso() {
+        $("#fondo").removeClass("oculto");
+        var continuar = true;
+        console.log(Id);
+        if (Id == "" || $("#cFechaFactura").val() == "" || $("#cNumeroFact").val() == "" || $("#cVlrAntesImp").val() == "" || $("#cVlrTotal").val() == "" || $("#cMoneda").val() == "" || $("#cCatFactura").val() == "") {
+            $("#fondo").addClass("oculto");
+            continuar = false;
+            $("#LblMsg").text("Faltan datos por llenar");
+            $("#myModMsg").css("display", "block");
+            $("#myModMsg").css("z-index", "999");
+        }
 
-                        $("#Obs").text($("#nNota").val());
-                        $("#cerrarModal5").addClass("oculto");
-                        PedirAdjunto(result.idp);
-
+        if (continuar) {
+            $.ajax({
+                type: "POST",
+                url: urlBegin,
+                data: { IdP: Id, FecFac: $("#cFechaFactura").val(), NFactura: $("#cNumeroFact").val(), VlrAntesImpu: $("#cVlrAntesImp").val(), VlrTotal: $("#cVlrTotal").val(), Mon: $("#cMoneda").val(), CategFactu: $("#cCatFactura").val(), Asist: $("#cAsistente").val() },
+                cache: true,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.result == "OK") {
+                        $("#fondo").addClass("oculto");
+                        $("#myModal2").css("display", "none");
                     } else {
                         $("#fondo").addClass("oculto");
                         $("#LblMsg").text(result.result);
@@ -769,6 +828,34 @@ new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Reenviar" 
     var AutoSolicitante = '@Url.Content("~/Proceso/SolicitanteComplete")';
 
     $(document).ready(function () {
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '&#x3c;Ant',
+            nextText: 'Sig&#x3e;',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+                'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacute;rcoles', 'Jueves', 'Viernes', 'S&aacute;bado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mi&eacute;', 'Juv', 'Vie', 'S&aacute;b'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'S&aacute;'],
+            weekHeader: 'Sm',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+        $("#cFecha").datepicker({
+            appendText: ' Haga click para introducir una fecha', changeMonth: true,
+            changeYear: true
+        });
+        $("#cFechaFactura").datepicker({
+            appendText: ' Haga click para introducir una fecha', changeMonth: true,
+            changeYear: true
+        });
         $("input:text").focus(function () { $(this).select(); });
         $("#nCentroCosto").autocomplete({
             source: function (request, response) {

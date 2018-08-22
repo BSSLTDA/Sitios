@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="SRGModel.RCAU" Width="1.5" PointX="4.875" PointY="3.625" />
         <EntityTypeShape EntityType="SRGModel.RFPARAM" Width="1.5" PointX="10.875" PointY="0.5" />
         <EntityTypeShape EntityType="SRGModel.RFADJUNTO" Width="1.5" PointX="12.875" PointY="0.5" />
-        <EntityTypeShape EntityType="SRGModel.CxPProceso" Width="1.5" PointX="0.875" PointY="3.625" />
         <EntityTypeShape EntityType="SRGModel.CxPConceptos" Width="1.5" PointX="2.875" PointY="0.5" />
         <EntityTypeShape EntityType="SRGModel.CxPRegimen" Width="1.5" PointX="4.875" PointY="0.5" />
         <EntityTypeShape EntityType="SRGModel.CxPImpuestos" Width="1.5" PointX="6.875" PointY="0.5" />
@@ -19,6 +18,7 @@
         <AssociationConnector Association="SRGModel.FK_CxPImpuestos_CxPRegimen" />
         <EntityTypeShape EntityType="SRGModel.CxPTasas" Width="1.5" PointX="6.875" PointY="3.625" />
         <AssociationConnector Association="SRGModel.FK_CxPImpuestos_CxPTasas" />
+        <EntityTypeShape EntityType="SRGModel.CxPProceso" Width="1.5" PointX="7.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

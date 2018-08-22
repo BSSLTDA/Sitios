@@ -36,5 +36,12 @@ namespace CuentasporPagar.Models.EF
         public Nullable<System.DateTime> FechaRecepcion { get; set; }
         public string NHojaServicio { get; set; }
         public string Estado { get; set; }
+        public string STS001 { get; set; }
+        public string STS002 { get; set; }
+        public string STS003 { get; set; }
+        public string STS004 { get; set; }
+        public string STS005 { get; set; }
+        public string STS006 { get; set; }
+        public string STS007 { get; set; }
     }
 }
