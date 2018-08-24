@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CXPProveedor\" />
     <Folder Include="Views\Tasas\" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +180,7 @@
     <Compile Include="Controllers\CXPAsistentesController.cs" />
     <Compile Include="Controllers\CXPConceptoController.cs" />
     <Compile Include="Controllers\CXPProcesoController.cs" />
+    <Compile Include="Controllers\CXPProveedorController.cs" />
     <Compile Include="Controllers\CXPTasasController.cs" />
     <Compile Include="Controllers\PruebaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -199,6 +201,9 @@
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\CxPProceso.cs">
+      <DependentUpon>MdlSRG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\CxPProveedor.cs">
       <DependentUpon>MdlSRG.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\CxPRegimen.cs">

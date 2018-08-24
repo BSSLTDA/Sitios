@@ -36,5 +36,6 @@ namespace CuentasporPagar.Models.EF
         public virtual DbSet<CxPImpuestos> CxPImpuestos { get; set; }
         public virtual DbSet<CxPTasas> CxPTasas { get; set; }
         public virtual DbSet<CxPProceso> CxPProceso { get; set; }
+        public virtual DbSet<CxPProveedor> CxPProveedor { get; set; }
     }
 }
