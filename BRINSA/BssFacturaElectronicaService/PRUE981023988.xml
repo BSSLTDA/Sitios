@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FACTURA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ENC>
+    <ENC_1>INVOIC</ENC_1>
+    <ENC_4>UBL 2.0</ENC_4>
+    <ENC_5>DIAN 1.0</ENC_5>
+    <ENC_6>PRUE981023988</ENC_6>
+    <ENC_7>2018-07-01</ENC_7>
+    <ENC_8>14:53:12</ENC_8>
+    <ENC_9>1</ENC_9>
+    <ENC_10>COP</ENC_10>
+    <ENC_13>1740</ENC_13>
+    <ENC_15>1</ENC_15>
+    <ENC_16>2018-07-30</ENC_16>
+  </ENC>
+  <EMI>
+    <EMI_1>3</EMI_1>
+    <EMI_2>800221789</EMI_2>
+    <EMI_3>31</EMI_3>
+    <EMI_4>2</EMI_4>
+    <EMI_6>BRINSA S.A.</EMI_6>
+    <EMI_10>KM 6 VIA CAJICA - ZIPAQUIRA</EMI_10>
+    <EMI_11>D.C</EMI_11>
+    <EMI_12>CAJICA</EMI_12>
+    <EMI_13>BOGOTA</EMI_13>
+    <EMI_15>CO</EMI_15>
+    <EMI_18>KM 6 VIA CAJICA - ZIPAQUIRA</EMI_18>
+    <ICC>
+      <ICC_1>MM44444444</ICC_1>
+      <ICC_3>BOGOTA</ICC_3>
+      <ICC_5>D.C</ICC_5>
+      <ICC_6>KM 6 VIA CAJICA - ZIPAQUIRA</ICC_6>
+      <ICC_7>CO</ICC_7>
+      <ICC_8>COLOMBIA</ICC_8>
+    </ICC>
+  </EMI>
+  <ADQ>
+    <ADQ_1>2</ADQ_1>
+    <ADQ_2>900164023</ADQ_2>
+    <ADQ_3>31</ADQ_3>
+    <ADQ_4>2</ADQ_4>
+    <ADQ_5>1740</ADQ_5>
+    <ADQ_6 />
+    <ADQ_8 />
+    <ADQ_9 />
+    <ADQ_10>CLL 5A NO.5A-04</ADQ_10>
+    <ADQ_11>BOY</ADQ_11>
+    <ADQ_13>SOATA</ADQ_13>
+    <ADQ_15>CO</ADQ_15>
+    <ADQ_18>CLL 5A NO.5A-04</ADQ_18>
+    <ICR>
+      <ICR_3>SOATA</ICR_3>
+      <ICR_5>BOY</ICR_5>
+      <ICR_6>CLL 5A NO.5A-04</ICR_6>
+      <ICR_7>CO</ICR_7>
+    </ICR>
+    <CDA>
+      <CDA_1>1</CDA_1>
+      <CDA_2>FAMI TIENDA E.U</CDA_2>
+      <CDA_3>3125169614</CDA_3>
+      <CDA_4>MAD6</CDA_4>
+    </CDA>
+  </ADQ>
+  <TOT>
+    <TOT_1>472583.0000</TOT_1>
+    <TOT_2>COP</TOT_2>
+    <TOT_3>472583.0000</TOT_3>
+    <TOT_4>COP</TOT_4>
+    <TOT_5>472583.0000</TOT_5>
+    <TOT_6>COP</TOT_6>
+  </TOT>
+  <TDC>
+    <TDC_1>COP</TDC_1>
+    <TDC_2>COP</TDC_2>
+  </TDC>
+  <DRF>
+    <DRF_1>18762009192891</DRF_1>
+    <DRF_2>2018-07-16</DRF_2>
+    <DRF_4>PRUE</DRF_4>
+    <DRF_5>980000000</DRF_5>
+    <DRF_6>985000000</DRF_6>
+  </DRF>
+  <NOT>
+    <NOT_1>1.-Somos autoretenedores, Resolución N° 0068 del 20^de junio de 1994 de la Unidad Administrativa Especial^Dirección de Impuestos y Aduanas Nacionales.^Somos contribuyentes del impuesto de industria y^comercio en el municipio de Cajicá (Cundinamarca)^^IVA Régimen Común - Grandes Contribuyentes Agente Retenedor de IVA - Resolución N° 000076^del 1 de diciembre de 2016.</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>6.-TREINTA Y CINCO MILLONES DE PESOS</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>7.-www.brinsa.com.co</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>9.-Betania Km 6 via Cajicá - Zipaquirá ^ Tel: (57) - (1) 8833555 - Fax: (57) - (1) 8793603 | Medellín: Carrera 33 # 7 - 41 Edificio Bianco, Piso 2 ^ Tel: (57) - (4) 3355060</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>12.-800 221 789 - 2</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>13.-12345 | 456 3253</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>14.-12345 | 30 DIAS</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>16.-320.000.000.000 | 3.234,12 | 320.000.003.234,12</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>17.-HABILITACIÓN DE FACTURA DIAN No 18762006079880 DE 2017/12/12. NUMERIACIÓN DEL A 1003800 AL A 1050000</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>3.-31FAMI TIENDAS E.U</NOT_1>
+  </NOT>
+  <ORC>
+    <ORC_1>01431048-052</ORC_1>
+  </ORC>
+  <REF>
+    <REF_1>RF1</REF_1>
+    <REF_2>1436498</REF_2>
+  </REF>
+  <REF>
+    <REF_1>RF2</REF_1>
+    <REF_2>30797</REF_2>
+  </REF>
+  <IEN>
+    <IEN_1>CL 5 A  5 A- 04</IEN_1>
+    <IEN_2>BOY</IEN_2>
+    <IEN_4>SOATA</IEN_4>
+    <IEN_6>CO</IEN_6>
+    <IEN_7>FAMITIENDAS</IEN_7>
+  </IEN>
+  <ITE>
+    <ITE_1>1</ITE_1>
+    <ITE_2>false</ITE_2>
+    <ITE_3>20.0000</ITE_3>
+    <ITE_4>PK</ITE_4>
+    <ITE_5>472583.0000</ITE_5>
+    <ITE_6>COP</ITE_6>
+    <ITE_7>23629.1500</ITE_7>
+    <ITE_8>COP</ITE_8>
+    <ITE_10>PK</ITE_10>
+    <ITE_11>SAL REFISAL INST SCX50KG</ITE_11>
+    <ITE_18>10011049</ITE_18>
+    <ITE_19>472583.0000</ITE_19>
+    <ITE_20>COP</ITE_20>
+    <TII>
+      <TII_1>0,0000</TII_1>
+      <TII_3>false</TII_3>
+      <IIM>
+        <IIM_1>01</IIM_1>
+        <IIM_2>0,0000</IIM_2>
+        <IIM_3>COP</IIM_3>
+        <IIM_4>0.0000</IIM_4>
+        <IIM_5>COP</IIM_5>
+        <IIM_6>0</IIM_6>
+      </IIM>
+    </TII>
+  </ITE>
+</FACTURA>

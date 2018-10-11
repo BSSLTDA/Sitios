@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NOTA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ENC>
+    <ENC_1>NC</ENC_1>
+    <ENC_4>UBL 2.0</ENC_4>
+    <ENC_5>DIAN 1.0</ENC_5>
+    <ENC_6>DV1100151574</ENC_6>
+    <ENC_7>2018-03-10</ENC_7>
+    <ENC_8>13:58:58</ENC_8>
+    <ENC_9>9</ENC_9>
+    <ENC_10>COP</ENC_10>
+    <ENC_13>1677</ENC_13>
+    <ENC_15>1</ENC_15>
+    <ENC_16>2018-03-11</ENC_16>
+  </ENC>
+  <EMI>
+    <EMI_1>3</EMI_1>
+    <EMI_2>800221789</EMI_2>
+    <EMI_3>31</EMI_3>
+    <EMI_4>2</EMI_4>
+    <EMI_6>BRINSA S.A.</EMI_6>
+    <EMI_10>KM 6 VIA CAJICA - ZIPAQUIRA</EMI_10>
+    <EMI_11>D.C</EMI_11>
+    <EMI_12>CAJICA</EMI_12>
+    <EMI_13>BOGOTA</EMI_13>
+    <EMI_15>CO</EMI_15>
+    <EMI_18>KM 6 VIA CAJICA - ZIPAQUIRA</EMI_18>
+    <ICC>
+      <ICC_1>MM44444444</ICC_1>
+      <ICC_3>BOGOTA</ICC_3>
+      <ICC_5>D.C</ICC_5>
+      <ICC_6>KM 6 VIA CAJICA - ZIPAQUIRA</ICC_6>
+      <ICC_7>CO</ICC_7>
+      <ICC_8>COLOMBIA</ICC_8>
+    </ICC>
+  </EMI>
+  <ADQ>
+    <ADQ_1>1</ADQ_1>
+    <ADQ_2>900402426</ADQ_2>
+    <ADQ_3>31</ADQ_3>
+    <ADQ_4>2</ADQ_4>
+    <ADQ_5>1677</ADQ_5>
+    <ADQ_6>DISTRIBUCIONES ASUTIENDA SAS</ADQ_6>
+    <ADQ_8 />
+    <ADQ_9 />
+    <ADQ_10>AV 39 D 73-48</ADQ_10>
+    <ADQ_11>ANT</ADQ_11>
+    <ADQ_13>ANTIOQUIA</ADQ_13>
+    <ADQ_15>CO</ADQ_15>
+    <ADQ_18>AV 39 D 73-48</ADQ_18>
+    <ICR>
+      <ICR_3>ANTIOQUIA</ICR_3>
+      <ICR_5>ANT</ICR_5>
+      <ICR_6>AV 39 D 73-48</ICR_6>
+      <ICR_7>CO</ICR_7>
+    </ICR>
+    <CDA>
+      <CDA_1>1</CDA_1>
+      <CDA_2>DISTRIBUCIONES ASUTIENDA SAS</CDA_2>
+      <CDA_3>(4)4112484</CDA_3>
+      <CDA_4>MAD6</CDA_4>
+    </CDA>
+  </ADQ>
+  <TOT>
+    <TOT_1>-13709.0000</TOT_1>
+    <TOT_2>COP</TOT_2>
+    <TOT_3>-13709.0000</TOT_3>
+    <TOT_4>COP</TOT_4>
+    <TOT_5>-16314.0000</TOT_5>
+    <TOT_6>COP</TOT_6>
+  </TOT>
+  <TIM>
+    <TIM_1>false</TIM_1>
+    <TIM_2>2605.00</TIM_2>
+    <TIM_3>COP</TIM_3>
+  </TIM>
+  <TDC>
+    <TDC_1>COP</TDC_1>
+    <TDC_2>COP</TDC_2>
+  </TDC>
+  <DRF>
+    <DRF_1>18762009192891</DRF_1>
+    <DRF_2>2018-07-16</DRF_2>
+    <DRF_4>DV</DRF_4>
+    <DRF_5>1100000000</DRF_5>
+    <DRF_6>9900000000</DRF_6>
+  </DRF>
+  <NOT>
+    <NOT_1>3.-21NC64 No.11005149</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>3.-22AVERIAS EN ENTREGA</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>3.-23Orden de Compra 1</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>3.-24De la factura A1023450</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>3.-25Consolidado 548949</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>3.-26Novedad 219549</NOT_1>
+  </NOT>
+  <NOT>
+    <NOT_1>3.-27Planilla 30277</NOT_1>
+  </NOT>
+  <REF>
+    <REF_1>RF1</REF_1>
+    <REF_2>1436248</REF_2>
+  </REF>
+  <IEN>
+    <IEN_1>CARRERA 80 34B-76</IEN_1>
+    <IEN_2>ANT</IEN_2>
+    <IEN_4>MEDELLIN</IEN_4>
+    <IEN_6>CO</IEN_6>
+    <IEN_7>DISTRIBUCIONES ASUTIENDA</IEN_7>
+  </IEN>
+  <ITE>
+    <ITE_1>1</ITE_1>
+    <ITE_2>false</ITE_2>
+    <ITE_3>-1.0000</ITE_3>
+    <ITE_4>BB</ITE_4>
+    <ITE_5>-13708.8000</ITE_5>
+    <ITE_6>COP</ITE_6>
+    <ITE_7>13708.8000</ITE_7>
+    <ITE_8>COP</ITE_8>
+    <ITE_10>BB</ITE_10>
+    <ITE_11>BLANCOX  AROMAS CJX24X500ml</ITE_11>
+    <ITE_18>10030002</ITE_18>
+    <ITE_19>-13708.8000</ITE_19>
+    <ITE_20>COP</ITE_20>
+    <TII>
+      <TII_1>2604.6720</TII_1>
+      <TII_2>COP</TII_2>
+      <TII_3>false</TII_3>
+      <IIM>
+        <IIM_1>01</IIM_1>
+        <IIM_2>2604.6720</IIM_2>
+        <IIM_3>COP</IIM_3>
+        <IIM_4>0.0000</IIM_4>
+        <IIM_5>COP</IIM_5>
+        <IIM_6>19.00 </IIM_6>
+      </IIM>
+    </TII>
+  </ITE>
+</NOTA>

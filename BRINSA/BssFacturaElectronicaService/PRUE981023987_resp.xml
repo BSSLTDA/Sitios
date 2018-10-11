@@ -1,0 +1,2 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:DocumentStatusResponse xmlns:ns2="http://invoice.carvajal.com/invoiceService/"><processName>SEND_TO_RECEIVER</processName><processStatus>OK</processStatus><processDate>2018-08-23T15:32:18.557-05:00</processDate><messageType>PROCESSING</messageType><errorMessage>SIGNED_DOCUMENT</errorMessage><businessStatus>PUBLISHED</businessStatus></ns2:DocumentStatusResponse></soap:Body></soap:Envelope>
+

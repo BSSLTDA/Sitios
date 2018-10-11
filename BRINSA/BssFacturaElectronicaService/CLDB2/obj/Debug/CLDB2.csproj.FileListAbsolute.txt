@@ -1,0 +1,12 @@
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\bin\Debug\CLDB2.dll
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\bin\Debug\CLDB2.pdb
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\bin\Debug\CLCommon.dll
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\bin\Debug\Dapper.dll
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\bin\Debug\IBM.Data.DB2.iSeries.dll
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\bin\Debug\CLCommon.pdb
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\bin\Debug\Dapper.xml
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\obj\Debug\CLDB2.csprojResolveAssemblyReference.cache
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\obj\Debug\CLDB2.csproj.CoreCompileInputs.cache
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\obj\Debug\CLDB2.csproj.CopyComplete
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\obj\Debug\CLDB2.dll
+C:\Copia_Servidor\Proyectos\BRINSA\BssFacturaElectronicaService\CLDB2\obj\Debug\CLDB2.pdb

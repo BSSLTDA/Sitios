@@ -1,0 +1,13 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BssFacturaElectronicaService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConexionDB2" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;DataSource=192.168.10.1;User ID=APLLX;Password=LXAPL;LibraryList=ERPLX834F,SYSIBM,QGPL;SchemaSearchList=ERPLX834F,SYSIBM,QGPL;Naming=System;CharBitDataAsString=true;AllowUnsupportedChar=true;ApplicationName=CARTERA77&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">DataSource=192.168.10.1;User ID=APLLX;Password=LXAPL;LibraryList=ERPLX834F,SYSIBM,QGPL;SchemaSearchList=ERPLX834F,SYSIBM,QGPL;Naming=System;CharBitDataAsString=true;AllowUnsupportedChar=true;ApplicationName=CARTERA77</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
