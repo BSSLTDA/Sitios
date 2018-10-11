@@ -1,0 +1,13 @@
+Cmd en Raiz
+
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+
+InstallUtil.exe -i o -u
+
+"Ruta Fisica Servicio"
+"C:\Program Files (x86)\BSSLTDA\BSSFacturaElectronica\BSSFacturaElectronica.exe"
+
+InstallUtil.exe -i "C:\Program Files (x86)\BSSLTDA\BSS_FacturaElectronica\WSBSS_FacturaElectronica.exe"
+
+
+InstallUtil.exe -u "C:\Program Files (x86)\BSSLTDA\BSS_FacturaElectronica\WSBSS_FacturaElectronica.exe"

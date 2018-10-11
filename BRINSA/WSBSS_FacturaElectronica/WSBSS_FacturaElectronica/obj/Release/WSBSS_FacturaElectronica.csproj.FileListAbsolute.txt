@@ -1,0 +1,17 @@
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\WSBSS_FacturaElectronica.exe.config
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\WSBSS_FacturaElectronica.exe
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\WSBSS_FacturaElectronica.pdb
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\CLCommon.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\CLDB2.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\IBM.Data.DB2.iSeries.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\Dapper.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\CLCommon.pdb
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\CLDB2.pdb
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\bin\Release\Dapper.xml
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\obj\Release\WSBSS_FacturaElectronica.csprojAssemblyReference.cache
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\obj\Release\WSBSS_FacturaElectronica.ProjectInstaller.resources
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\obj\Release\WSBSS_FacturaElectronica.csproj.GenerateResource.cache
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\obj\Release\WSBSS_FacturaElectronica.csproj.CoreCompileInputs.cache
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\obj\Release\WSBSS_FacturaElectronica.csproj.CopyComplete
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\obj\Release\WSBSS_FacturaElectronica.exe
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\WSBSS_FacturaElectronica\obj\Release\WSBSS_FacturaElectronica.pdb

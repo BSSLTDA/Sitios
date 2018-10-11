@@ -1,0 +1,4 @@
+GenerarHiloFE
+SQL0104 Smbolo { no vlido. Smbolos vlidos: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS.
+03/09/2018 04:38:09 p.m.
+
