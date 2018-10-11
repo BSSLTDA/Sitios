@@ -1,0 +1,12 @@
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\bin\Release\CLDB2.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\bin\Release\CLDB2.pdb
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\bin\Release\CLCommon.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\bin\Release\Dapper.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\bin\Release\IBM.Data.DB2.iSeries.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\bin\Release\CLCommon.pdb
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\bin\Release\Dapper.xml
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\obj\Release\CLDB2.csprojAssemblyReference.cache
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\obj\Release\CLDB2.csproj.CoreCompileInputs.cache
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\obj\Release\CLDB2.csproj.CopyComplete
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\obj\Release\CLDB2.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLDB2\obj\Release\CLDB2.pdb

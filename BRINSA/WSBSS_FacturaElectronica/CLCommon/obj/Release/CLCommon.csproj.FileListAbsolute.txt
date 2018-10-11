@@ -1,0 +1,5 @@
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLCommon\bin\Release\CLCommon.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLCommon\bin\Release\CLCommon.pdb
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLCommon\obj\Release\CLCommon.csproj.CoreCompileInputs.cache
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLCommon\obj\Release\CLCommon.dll
+C:\Copia_Servidor\Proyectos\BRINSA\WSBSS_FacturaElectronica\CLCommon\obj\Release\CLCommon.pdb
